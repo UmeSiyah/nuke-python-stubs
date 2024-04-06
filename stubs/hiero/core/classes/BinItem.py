@@ -78,7 +78,7 @@ class BinItem:
         """
         ...
 
-    def __bool__(self, ) -> None:
+    def __bool__(self, ) -> bool:
         """
         True if self else False
         """
@@ -96,7 +96,7 @@ class BinItem:
         """
         ...
 
-    def activeItem(self) -> None:
+    def activeItem(self) -> hiero.core.Clip | hiero.core.Sequence:
         """
         self.activeItem() -> returns the item contained by this bin item.
 

@@ -42,7 +42,7 @@ class RenderProgressObserver:
         """
         ...
 
-    def __bool__(self, ) -> None:
+    def __bool__(self, ) -> bool:
         """
         True if self else False
         """

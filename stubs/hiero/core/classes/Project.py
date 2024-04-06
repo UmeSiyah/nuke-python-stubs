@@ -92,13 +92,13 @@ class Project:
         """
         ...
 
-    def __bool__(self, ) -> None:
+    def __bool__(self, ) -> bool:
         """
         True if self else False
         """
         ...
 
-    def addView(self, name: str, color: str = Default(self, Hiero.Python.String)) -> bool:
+    def addView(self, name: str, color: str = '') -> bool:
         """
         addView(name, color) -> Appends a view to this project's list of views. Returns False if name is empty or a view already exists with the same name.
 
@@ -372,7 +372,7 @@ class Project:
         """
         ...
 
-    def posterFrameSettings(self) -> typing.Tuple[core.Project.PosterFrameSetting, int]:
+    def posterFrameSettings(self) -> typing.Tuple[hiero.core.Project.PosterFrameSetting, int]:
         """
         posterFrameSettings() -> Get the poster frame settings used for clips added to the project.
         @return: tuple of poster frame setting and custom frame number
@@ -706,7 +706,7 @@ class Project:
         """
         ...
 
-    def sequences(self, partialNam: Optional[str] = None) -> list[core.Sequence]:
+    def sequences(self, partialNam: Optional[str] = None) -> list[hiero.core.Sequence]:
         """
         self.sequences(partialName) -> returns all sequences in a project. User can filter by by partial name.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -718,7 +718,7 @@ class Project:
         """
         ...
 
-    def bins(self, partialName: Optional[str] = None) -> list[core.Bin]:
+    def bins(self, partialName: Optional[str] = None) -> list[hiero.core.Bin]:
         """
         self.bins(partialName) -> returns all bins in a project. Searches recursively, so will return bins within other bins in the list.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -731,7 +731,7 @@ class Project:
         """
         ...
 
-    def clips(self, partialName: Optional[str] = None) -> list[core.Clip]:
+    def clips(self, partialName: Optional[str] = None) -> list[hiero.core.Clip]:
         """
         self.clips(partialName) -> returns all clips in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -744,7 +744,7 @@ class Project:
         """
         ...
 
-    def tracks(self, partialName: Optional[str] = None) -> list[core.Track]:
+    def tracks(self, partialName: Optional[str] = None) -> list[hiero.core.Track]:
         """
         self.tracks(partialName) -> returns all tracks in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -757,7 +757,7 @@ class Project:
         """
         ...
 
-    def videoTracks(self, partialName: Optional[str] = None) -> list[core.VideoTrack]:
+    def videoTracks(self, partialName: Optional[str] = None) -> list[hiero.core.VideoTrack]:
         """
         self.videoTracks(partialName) -> returns all video tracks in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -770,7 +770,7 @@ class Project:
         """
         ...
 
-    def audioTracks(self, partialName: Optional[str] = None) -> list[core.AudioTrack]:
+    def audioTracks(self, partialName: Optional[str] = None) -> list[hiero.core.AudioTrack]:
         """
         self.audioTracks(partialName) -> returns all audio tracks in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -783,7 +783,7 @@ class Project:
         """
         ...
 
-    def trackItems(self, partialName: Optional[str] = None) -> list[core.TrackItem]:
+    def trackItems(self, partialName: Optional[str] = None) -> list[hiero.core.TrackItem]:
         """
         self.trackItems(partialName) -> returns all track items in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -796,7 +796,7 @@ class Project:
         """
         ...
 
-    def videoTrackItems(self, partialName: Optional[str] = None) -> list[core.TrackItem]:
+    def videoTrackItems(self, partialName: Optional[str] = None) -> list[hiero.core.TrackItem]:
         """
         self.videoTrackItems(partialName) -> returns all video track items in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -809,7 +809,7 @@ class Project:
         """
         ...
 
-    def audioTrackItems(self, partialName: Optional[str] = None) -> list[core.TrackItem]:
+    def audioTrackItems(self, partialName: Optional[str] = None) -> list[hiero.core.TrackItem]:
         """
         self.audioTrackItems(partialName) -> returns all audio track items in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.

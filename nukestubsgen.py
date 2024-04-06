@@ -195,15 +195,15 @@ HIERO_CORE_POST_FIX = {
     '__init__': [
         {
             'old': r'def conformer\(.+',
-            'new': 'def conformer() -> Conformer:'
+            'new': 'def conformer() -> hiero.core.Conformer:'
         },
         {
             'old': r'def project\(.+',
-            'new': 'def project(arg__1: str) -> Project:'
+            'new': 'def project(arg__1: str) -> Optional[hiero.core.Project]:'
         },
         {
             'old': r'def projects\(.+',
-            'new': 'def projects(*args, **kwargs) -> Tuple[Project, ...]:'
+            'new': 'def projects(*args, **kwargs) -> tuple[hiero.core.Project, ...]:'
         },
         {
             'old': r'def activeSequence\(.+',
@@ -305,8 +305,48 @@ HIERO_CORE_POST_FIX = {
     'Bin': [
         {
             'old': r'def importSequence\(.+',
-            'new': 'def importSequence(self, filename: str, timeBase: core.TimeBase, frameRate: float = 0.0, dropFrame: bool = False) -> core.Sequence: '
+            'new': 'def importSequence(self, filename: str, timeBase: Optional[hiero.core.TimeBase] = None, frameRate: float = 0.0, dropFrame: bool = False) -> core.Sequence: '
         },
+        {
+            'old': r'def items\(.+',
+            'new': 'def items(self, *args, **kwargs) -> tuple[hiero.core.BinItem, ...]:'
+        },
+        {
+            'old': r'def createClip\(.+',
+            'new': 'def createClip(self, path: str, **knobs: Any) -> Clip:'
+        },
+        {
+            'old': r'def clips(self).+',
+            'new': 'def clips(self) -> tuple[hiero.core.BinItem, ...]:'
+        },
+        {
+            'def': r'def bins\(.+',
+            'new': 'def bins(self) -> tuple[hiero.core.Bin, ...]:'
+        }
+    ],
+    'TimelineEditor': [
+        {
+            'old': r'def selection\(.+',
+            'new': 'def selection(self) -> tuple[hiero.core.TrackItem, hiero.core.Transition]:'
+        },
+        {
+            'old': r'def sequence\(.+',
+            'new': 'def sequence(self) -> hiero.core.Sequence:'
+        }
+    ],
+    'SequenceBase': [
+        {
+            'old': r'def tags\(.+',
+            'new': 'def tags(self) -> tuple[hiero.core.Tag, ...]:'
+        },
+        {
+            'old': r'def thumbnail\(.+',
+            'new': 'def thumbnail(self, index: int = 0, layer: str = None) -> PySide2.QtGui.QImage:'
+        },
+        {
+            'old': r'def project\(.+',
+            'new': 'def project(self) -> hiero.core.Project:'
+        }
     ],
     'Project': [
         {
@@ -377,7 +417,12 @@ GLOBAL_POST_FIXES = [
     {
         'old': r'(->|:)\s?((?:core|ui)\.[^,):]+)',  # -> core.Sequence or : core.Sequence
         'new': r'\1hiero.\2',
+    },
+    {
+        'old': r'def __bool__.+',
+        'new': 'def __bool__(self) -> bool:',
     }
+
 ]
 
 

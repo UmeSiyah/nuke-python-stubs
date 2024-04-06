@@ -123,7 +123,7 @@ class Bin:
         """
         ...
 
-    def bins(self) -> object:
+    def bins(self) -> tuple[hiero.core.Bin, ...]:
         """
         self.bins() -> returns a tuple with all of the sub bins contained by this object.
 
@@ -131,7 +131,7 @@ class Bin:
         """
         ...
 
-    def clips(self) -> object:
+    def clips(self) -> tuple[hiero.core.BinItem, ...]:
         """
         self.clips() -> returns a tuple with all of the BinItem's containing clips contained by this bin.
 
@@ -147,7 +147,7 @@ class Bin:
         """
         ...
 
-    def createClip(self, *args, **knobs) -> Clip:
+    def createClip(self, path: str, **knobs: Any) -> Clip:
         """
         self.createClip(path, **knobs) -> Construct a clip from a path and optional knob values, and add it to the bin.
 
@@ -186,7 +186,7 @@ class Bin:
         """
         ...
 
-    def importSequence(self, filename: str, timeBase: hiero.core.TimeBase, frameRate: float = 0.0, dropFrame: bool = False) -> hiero.core.Sequence:
+    def importSequence(self, filename: str, timeBase: hiero.core.TimeBase = None, frameRate: float = 0.0, dropFrame: bool = False) -> hiero.core.Sequence:
         """
         self.importSequence(filename, timeBase=None, frameRate=None, dropFrame=False) -> imports the sequence stored in filename into this bin (needs a project).  If the timebase/frame rate for the sequence isnot specified, the project defaults will be used.
 
@@ -205,7 +205,7 @@ class Bin:
         """
         ...
 
-    def items(self, *args: typing.Any, **kwargs: typing.Any) -> tuple:
+    def items(self, *args: typing.Any, **kwargs: typing.Any) -> tuple[hiero.core.BinItem, ...]:
         """
         self.items(typeFilter) -> returns a tuple with all of the objects contained by this bin, filtered by the typeFilter argument, if supplied.
 

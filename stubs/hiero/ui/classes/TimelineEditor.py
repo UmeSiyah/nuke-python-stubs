@@ -66,7 +66,7 @@ class TimelineEditor:
         """
         ...
 
-    def selection(self) -> object:
+    def selection(self) -> tuple[hiero.core.TrackItem, hiero.core.Transition]:
         """
         self.selection() -> returns a tuple with the currently selected items.
 
@@ -74,7 +74,7 @@ class TimelineEditor:
         """
         ...
 
-    def sequence(self) -> object:
+    def sequence(self) -> hiero.core.Sequence:
         """
         self.sequence() -> returns the Sequence currently being edited in the timeline editor.
 

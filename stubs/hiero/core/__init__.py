@@ -849,7 +849,7 @@ def pluginPath() -> tuple:
     ...
 
 
-def project(arg__1: str) -> Project:
+def project(arg__1: str) -> Optional[hiero.core.Project]:
     """
     hiero.core.project(name) -> returns the Project with the specified name, if it can be found, or None.
 
@@ -858,7 +858,7 @@ def project(arg__1: str) -> Project:
     ...
 
 
-def projects(*args, **kwargs) -> Tuple[Project, ...]:
+def projects(*args: Any, **kwargs: Any) -> Tuple[Project, ...]:
     """
     hiero.core.projects() -> returns a tuple of currently loaded projects which are user projects (not startup). Same effect as calling the method below passing Project.kUserProjects.
     hiero.core.projects(projectTypes) -> returns a tuple of currently loaded projects, filtered according to projectTypes. Use hiero.core.projects()[-1] to get the last loaded project.

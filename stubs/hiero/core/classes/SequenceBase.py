@@ -265,7 +265,7 @@ class SequenceBase:
         """
         ...
 
-    def project(self) -> object:
+    def project(self) -> hiero.core.Project:
         """
         self.project() -> returns the Project object that this is attached to, or None if the object is not attached to a project.
 
@@ -428,7 +428,7 @@ class SequenceBase:
         """
         ...
 
-    def tags(self) -> object:
+    def tags(self) -> tuple[hiero.core.Tag, ...]:
         """
         self.tags() -> returns a tuple of all of the tags applied to this object.
 
@@ -436,7 +436,7 @@ class SequenceBase:
         """
         ...
 
-    def thumbnail(self, index: int = 0, layer: str = Default(self, Hiero.Python.String)) -> PySide2.QtGui.QImage:
+    def thumbnail(self, index: int = 0, layer: str = '') -> PySide2.QtGui.QImage:
         """
         self.thumbnail(frame, layer) -> returns a thumbnail of the frame specified as a QImage object.
 

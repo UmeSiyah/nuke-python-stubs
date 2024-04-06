@@ -176,7 +176,7 @@ class ScriptWriter:
         # Add the node(s) to the current layout context
         self._layoutContextStack[-1].addNode(node)
 
-    def getNodes(self):
+    def getNodes(self) -> list[hiero.core.nuke.Node]:
         return self._nodes
 
     def writeToDisk(self, scriptFilename):

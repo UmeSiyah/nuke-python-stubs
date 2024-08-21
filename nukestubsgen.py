@@ -320,7 +320,7 @@ HIERO_CORE_POST_FIX = {
             'new': 'def clips(self) -> tuple[hiero.core.BinItem, ...]:'
         },
         {
-            'def': r'def bins\(.+',
+            'old': r'def bins\(.+',
             'new': 'def bins(self) -> tuple[hiero.core.Bin, ...]:'
         }
     ],

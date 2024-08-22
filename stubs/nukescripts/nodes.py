@@ -5,18 +5,18 @@ import nuke_internal as nuke
 
 def color_nodes():
     """Set all selected nodes to be the same colour as the first selected node."""
-    n = nuke.selectedNode()
-    if n is None:
+    nodes = nuke.selectedNodes(recursive=True)
+    if nodes is None:
         nuke.message('No node selected')
         return
 
+    n = nodes[0]
     c = n.knob('tile_color')
     c = nuke.getColor(c.value())
     n.knob('tile_color').setValue(c)
 
     # get other nodes:
-    n = nuke.selectedNodes()
-    for i in n:
+    for i in nodes:
         i.knob('tile_color').setValue(c)
     nuke.modified(True)
 

@@ -70,8 +70,10 @@ class ConnectDialog(QDialog):
     ERROR_LABEL = "<font color='red'>{}</font>"
     DEFAULT_ERROR_MESSAGE = 'Connection failed: Adjust settings and try again'
 
-    def __init__(self, connectionManager):
-        super(ConnectDialog, self).__init__()
+    def __init__(self, connectionManager, parent=None):
+        if not parent:
+            parent = hiero.ui.mainWindow()
+        super(ConnectDialog, self).__init__(parent)
 
         settings = hiero.core.ApplicationSettings()
 

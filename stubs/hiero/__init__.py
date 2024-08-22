@@ -7,3 +7,5 @@ from . import FnRedirect, FnPythonFixes, ui, core
 # not the other
 if 'exports' in core.env['Features']:
     from . import exporters, importers
+elif 'otio_imports_only' in core.env['Features']:
+    from . import importers

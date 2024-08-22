@@ -1,4 +1,5 @@
 import os.path
+import traceback
 
 import hiero.ui
 import hiero.core

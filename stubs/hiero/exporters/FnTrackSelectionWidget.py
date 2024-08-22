@@ -37,7 +37,9 @@ class TrackSelectionWidget(QtWidgets.QWidget):
         be used for different sequences, but means things can get a bit confused if there are multiple
         tracks with the same name. """
 
-    def __init__(self, sequences, hiddenTrackNames, excludedTrackNames, excludedTrackIDs, parent=None):
+    def __init__(self, sequences, hiddenTrackNames, excludedTrackNames, excludedTrackIDs,
+                 allowAll=False,
+                 parent=None):
         QtWidgets.QWidget.__init__(self, parent)
 
         # Build the UI
@@ -109,13 +111,14 @@ class TrackSelectionWidget(QtWidgets.QWidget):
             # If tracks are disabled or empty we disable the checkbox and change
             # the tooltip to inform the user why they are disabled
             trackNotValid = False
-            if not track.isEnabled():
-                item.setToolTip('Track is Disabled')
-                trackNotValid = True
+            if not allowAll:
+                if not track.isEnabled():
+                    item.setToolTip('Track is Disabled')
+                    trackNotValid = True
 
-            if not self.trackHasTrackOrSubTrackItems(track):
-                item.setToolTip('Track is Empty')
-                trackNotValid = True
+                if track.isEmpty():
+                    item.setToolTip('Track is Empty')
+                    trackNotValid = True
 
             if trackNotValid:
                 if track not in excludedTracks:
@@ -151,17 +154,6 @@ class TrackSelectionWidget(QtWidgets.QWidget):
         elif isinstance(track, hiero.core.VideoTrack):
             trackIcon = QtGui.QIcon('icons:VideoOnly.png')
         return trackIcon
-
-    def trackHasTrackOrSubTrackItems(self, track):
-        """ Test if a track has any items or sub-track items. """
-        if (
-            len(list(track.items())) > 0 or
-            (isinstance(track, hiero.core.VideoTrack) and len(
-                [item for item in itertools.chain(*track.subTrackItems())]) > 0)
-        ):
-            return True
-        else:
-            return False
 
     def offlineTrackItems(self, track):
         """ Get a list offline track items for a track. """
@@ -209,7 +201,7 @@ class TrackSelectionWidget(QtWidgets.QWidget):
         else:
             for item in self._trackModelItems:
                 track = self.findTrackByGuid(item.data())
-                if not track.isEnabled():
+                if not item.isEnabled():
                     self._excludedTrackNames.append(track.name())
                     self._excludedTrackIDs.append(track.guid())
 

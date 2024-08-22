@@ -45,8 +45,10 @@ class SessionSetupDialog(QDialog):
     """ Dialog for setting up a new sync review session
     """
 
-    def __init__(self, connectionManager, project):
-        super(SessionSetupDialog, self).__init__()
+    def __init__(self, connectionManager, project, parent=None):
+        if not parent:
+            parent = hiero.ui.mainWindow()
+        super(SessionSetupDialog, self).__init__(parent)
 
         settings = ApplicationSettings()
         self._connectionManager = connectionManager

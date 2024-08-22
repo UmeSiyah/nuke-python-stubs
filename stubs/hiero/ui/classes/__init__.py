@@ -10,6 +10,7 @@ from .IProcessorUI import IProcessorUI
 from .ViewerCursor import ViewerCursor
 from .FormatChooser import FormatChooser
 from .VersionWidget import VersionWidget
+from .ViewerROITool import ViewerROITool
 from .WindowManager import WindowManager
 from .WipeToolState import WipeToolState
 from .TaskUIRegistry import TaskUIRegistry

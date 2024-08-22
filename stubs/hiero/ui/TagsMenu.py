@@ -29,7 +29,7 @@ def visibleShotAtTime(sequence, t):
         for track in reversed(vTracks):
             trackItems = list(track.items())
             for shotCandidate in trackItems:
-                if shotCandidate.timelineIn() <= t and shotCandidate.timelineOut() >= time:
+                if shotCandidate.timelineIn() <= t and shotCandidate.timelineOut() >= t:
                     if shotCandidate.isMediaPresent() and shotCandidate.isEnabled():
                         shot = shotCandidate
                         break

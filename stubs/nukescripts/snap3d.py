@@ -106,6 +106,22 @@ def translateRotatePivotToPoints(nodeToSnap):
     '''
     return translateRotatePivotSelectionToPoints(nodeToSnap, getSelection())
 
+
+def getAxisKnobPrefix():
+    """
+    Determine the correct knob name prefix for the Axis knob names
+    by checking the originating knob that triggered the snap menu action.
+    """
+    knobPrefix = ''
+    originKnob = nuke.thisKnob()
+    if originKnob is not None:
+        originKnobName = originKnob.name()
+        if originKnobName is not None:
+            i = originKnobName.rfind('snap_menu')
+            if i != -1:
+                knobPrefix = originKnobName[:i]
+    return knobPrefix
+
 # Verification wrappers
 
 
@@ -177,14 +193,15 @@ def translateRotatePivotSelectionToPoints(nodeToSnap, vertexSelection):
 def verifyNodeToSnap(nodeToSnap, knobList):
     # Check the knobs
     nodeKnobs = nodeToSnap.knobs()
+    knobPrefix = getAxisKnobPrefix()
     for knob in knobList:
-        if knob not in nodeKnobs:
+        if (knobPrefix + knob) not in nodeKnobs:
             raise ValueError('Snap requires "%s" knob' % knob)
     # Verify the transform order
-    verifyNodeOrder(nodeToSnap, 'xform_order', 'SRT')
+    verifyNodeOrder(nodeToSnap, knobPrefix + 'xform_order', 'SRT')
     # Verify the rotation order as necessary
     if 'rotate' in knobList:
-        verifyNodeOrder(nodeToSnap, 'rot_order', 'ZXY')
+        verifyNodeOrder(nodeToSnap, knobPrefix + 'rot_order', 'ZXY')
 
 
 def verifyNodeOrder(node, knobName, orderName):
@@ -365,7 +382,8 @@ def translateToPointsVerified(nodeToSnap, vertexSelection):
     # Find the average position
     centre = calcAveragePosition(vertexSelection)
     # Move the nodeToSnap to the average position
-    nodeToSnap['translate'].setValue(centre)
+    knobPrefix = getAxisKnobPrefix()
+    nodeToSnap[knobPrefix + 'translate'].setValue(centre)
     # Subtract this translation from the vertexSelection
     inverseTranslation = -centre
     vertexSelection.translate(inverseTranslation)
@@ -374,7 +392,8 @@ def translateToPointsVerified(nodeToSnap, vertexSelection):
 def scaleToPointsVerified(nodeToScale, vertexSelection):
     # Scale the nodeToScale to fit the bounding box of the selected points
     scale = calcBounds(vertexSelection)
-    nodeToScale['scaling'].setValue(scale)
+    knobPrefix = getAxisKnobPrefix()
+    nodeToScale[knobPrefix + 'scaling'].setValue(scale)
     # Apply the inverse scale to the points
     inverseScale = _nukemath.Vector3(1/scale[0], 1/scale[1], 1/scale[2])
     vertexSelection.scale(inverseScale)
@@ -389,7 +408,8 @@ def rotateToPointsVerified(nodeToSnap, vertexSelection):
     rotationDegrees = _nukemath.Vector3(math.degrees(
         rotationVec.x), math.degrees(rotationVec.y), math.degrees(rotationVec.z))
     # Set the node transform
-    nodeToSnap['rotate'].setValue(rotationDegrees)
+    knobPrefix = getAxisKnobPrefix()
+    nodeToSnap[knobPrefix + 'rotate'].setValue(rotationDegrees)
     # Apply the reverse rotation to the points
     vertexSelection.inverseRotate(rotationVec, 'YXZ')
 
@@ -409,19 +429,20 @@ def rotatePivotToPointsVerified(nodeToSnap, vertexSelection):
     # Calc rotation vector returns a global rotation vector, in order to transfer
     # it to object space as pivot rotation should be we need to remove the object
     # rotation from it and then extract the rotation in XYZ order.
-    R = rotateMatrixZXY(radians(nodeToSnap['rotate'].getValue()))
+    knobPrefix = getAxisKnobPrefix()
+    R = rotateMatrixZXY(radians(nodeToSnap[knobPrefix + 'rotate'].getValue()))
     pivotRotate = _nukemath.Vector3(*((R.inverse() * rotateMatrixZXY(pivotRotate)).rotationsXYZ()))
 
-    pt = nodeToSnap['pivot_translate'].getValue()
+    pt = nodeToSnap[knobPrefix + 'pivot_translate'].getValue()
     pivotTranslate = _nukemath.Vector3(pt[0], pt[1], pt[2])
     (geoTranslate, geoRotate) = translateRotatePivot(nodeToSnap, pivotTranslate,
                                                      pivotRotate)
     pivotRotationDegrees = _nukemath.Vector3(math.degrees(pivotRotate[0]),
                                              math.degrees(pivotRotate[1]),
                                              math.degrees(pivotRotate[2]))
-    nodeToSnap['pivot_rotate'].setValue(pivotRotationDegrees)
-    nodeToSnap['rotate'].setValue(geoRotate)
-    nodeToSnap['translate'].setValue(geoTranslate)
+    nodeToSnap[knobPrefix + 'pivot_rotate'].setValue(pivotRotationDegrees)
+    nodeToSnap[knobPrefix + 'rotate'].setValue(geoRotate)
+    nodeToSnap[knobPrefix + 'translate'].setValue(geoTranslate)
 
 
 def translateRotatePivotToPointsVerified(nodeToSnap, vertexSelection):
@@ -433,12 +454,13 @@ def translatePivotToPointsVerified(nodeToSnap, vertexSelection):
     globalPosition = calcAveragePosition(vertexSelection)
     transformations = transformMatrix(nodeToSnap)
     localPosition = transformations.inverse().transform(globalPosition)
-    pivotRotate = radians(nodeToSnap['pivot_rotate'].getValue())
+    knobPrefix = getAxisKnobPrefix()
+    pivotRotate = radians(nodeToSnap[knobPrefix + 'pivot_rotate'].getValue())
     (geoTranslate, geoRotate) = translateRotatePivot(nodeToSnap, localPosition,
                                                      pivotRotate)
-    nodeToSnap['translate'].setValue(geoTranslate)
-    nodeToSnap['rotate'].setValue(geoRotate)
-    nodeToSnap['pivot_translate'].setValue(localPosition)
+    nodeToSnap[knobPrefix + 'translate'].setValue(geoTranslate)
+    nodeToSnap[knobPrefix + 'rotate'].setValue(geoRotate)
+    nodeToSnap[knobPrefix + 'pivot_translate'].setValue(localPosition)
 
 
 def translateRotateToPointsVerified(nodeToSnap, vertexSelection):
@@ -706,6 +728,24 @@ def getSelection(selectionThreshold=0.5):
     return vertexSelection
 
 
+def _selectedVertexInfosFromNew3d(stage, selectionThreshold):
+    '''
+    Internal use only
+    '''
+    sel = nuke.getGeoSelection()
+    frame = nuke.frame()
+    for o, s in enumerate(sel):
+        vertexWeights = s.getVertexWeights()
+        points = s.getWorldPoints(stage, frame)
+        normals = s.getWorldNormals(stage, frame)  # We may not have normals, e.g. for point clouds
+        if len(vertexWeights) == len(points):
+            for p in range(len(vertexWeights)):
+                value = vertexWeights[p]
+                if value >= selectionThreshold:
+                    yield VertexInfo(o, p, value, points[p], normals[p] if p < len(normals) else _nukemath.Vector3(0, 0, 1))
+        break
+
+
 def selectedVertexInfos(selectionThreshold=0.5):
     '''
     selectedVertexInfos(selectionThreshold) -> iterator
@@ -723,19 +763,7 @@ def selectedVertexInfos(selectionThreshold=0.5):
     # New 3D system
     stage = nuke.activeViewer().node().getStage()
     if stage:
-        sel = nuke.getGeoSelection()
-        for o, s in enumerate(sel):
-            vertexWeights = s.getVertexWeights()
-            points = s.getWorldPoints(stage)
-            normals = s.getWorldNormals(stage)
-            if len(vertexWeights) == len(points) and len(vertexWeights) == len(normals):
-                points = [_nukemath.Vector3(p.x, p.y, p.z) for p in points]
-                normals = [_nukemath.Vector3(p.x, p.y, p.z) for p in normals]
-                for p in range(len(vertexWeights)):
-                    value = vertexWeights[p]
-                    if value >= selectionThreshold:
-                        yield VertexInfo(o, p, value, points[p], normals[p])
-            break
+        yield from _selectedVertexInfosFromNew3d(stage, selectionThreshold)
 
     # Old 3D system
     for n in allNodesWithGeoSelectKnob():
@@ -747,18 +775,17 @@ def selectedVertexInfos(selectionThreshold=0.5):
                 objSelection = sel[o]
                 objPoints = objs[o].points()
                 objTransform = objs[o].transform()
+                invTransform = objTransform.inverse()
+                objNormals = objs[o].constructNormals()
                 for p in range(len(objSelection)):
                     value = objSelection[p]
                     if value >= selectionThreshold:
-                        for prim in objs[o].primitives():
-                            for pt in prim.points():
-                                if pt == p:
-                                    n = prim.normal()
-                                    n = _nukemath.Vector3(n[0], n[1], n[2])
-                                    normal = objTransform.vtransform(n)
                         pos = objPoints[p]
                         tPos = objTransform * _nukemath.Vector4(pos.x, pos.y, pos.z, 1.0)
-                        yield VertexInfo(o, p, value, _nukemath.Vector3(tPos.x, tPos.y, tPos.z), normal)
+                        normal = objNormals[p] if (objNormals is not None and p < len(
+                            objNormals)) else _nukemath.Vector3(0, 0, 1)
+                        tNormal = invTransform.ntransform(normal)
+                        yield VertexInfo(o, p, value, _nukemath.Vector3(tPos.x, tPos.y, tPos.z), tNormal)
 
 
 def anySelectedVertexInfo(selectionThreshold=0.5):
@@ -772,29 +799,8 @@ def anySelectedVertexInfo(selectionThreshold=0.5):
     Only points with a selection level >= the selection threshold will be
     returned by this function.
     '''
-    if not nuke.activeViewer():
-        return None
-
-    for n in allNodesWithGeoSelectKnob():
-        geoSelectKnob = n['geo_select']
-        sel = geoSelectKnob.getSelection()
-        objs = geoSelectKnob.getGeometry()
-        for o in range(len(sel)):
-            objSelection = sel[o]
-            objPoints = objs[o].points()
-            objTransform = objs[o].transform()
-            for p in range(len(objSelection)):
-                value = objSelection[p]
-                if value >= selectionThreshold:
-                    for prim in objs[o].primitives():
-                        for pt in prim.points():
-                            if pt == p:
-                                n = prim.normal()
-                                n = _nukemath.Vector3(n[0], n[1], n[2])
-                                normal = objTransform.vtransform(n)
-                    pos = objPoints[p]
-                    tPos = objTransform * _nukemath.Vector4(pos.x, pos.y, pos.z, 1.0)
-                    return VertexInfo(o, p, value, _nukemath.Vector3(tPos.x, tPos.y, tPos.z), normal)
+    for v in selectedVertexInfos(selectionThreshold):
+        return v
     return None
 
 
@@ -1074,11 +1080,14 @@ def transformMatrix(nodeToSnap) -> _nukemath.Matrix4:
                        its transformation matrix.
     @return:           The matrix containg all node transformations.
     '''
-    T = translateMatrix(nodeToSnap['translate'].getValue())
-    R = rotateMatrixZXY(radians(nodeToSnap['rotate'].getValue()))
-    S = scalingMatrix(nodeToSnap['scaling'].getValue())
-    pT = translateMatrix(nodeToSnap['pivot_translate'].getValue())
-    pR = rotateMatrixXYZ(radians(nodeToSnap['pivot_rotate'].getValue()))
+    knobPrefix = getAxisKnobPrefix()
+    T = translateMatrix(nodeToSnap[knobPrefix + 'translate'].getValue())
+    R = rotateMatrixZXY(radians(nodeToSnap[knobPrefix + 'rotate'].getValue()))
+    scaling = nodeToSnap[knobPrefix + 'scaling'].getValue()
+    uniformScale = nodeToSnap[knobPrefix + 'uniform_scale'].getValue()
+    S = scalingMatrix([v * uniformScale for v in scaling])
+    pT = translateMatrix(nodeToSnap[knobPrefix + 'pivot_translate'].getValue())
+    pR = rotateMatrixXYZ(radians(nodeToSnap[knobPrefix + 'pivot_rotate'].getValue()))
     pTi = pT.inverse()
     pRi = pR.inverse()
     return pT * pR * T * R * S * pRi * pTi
@@ -1103,7 +1112,10 @@ def translateRotatePivot(nodeToSnap, translate, rotate) -> tuple:
     pTi = pT.inverse()
     pR = rotateMatrixXYZ(rotate)
     pRi = pR.inverse()
-    S = scalingMatrix(nodeToSnap['scaling'].getValue())
+    knobPrefix = getAxisKnobPrefix()
+    scaling = nodeToSnap[knobPrefix + 'scaling'].getValue()
+    uniformScale = nodeToSnap[knobPrefix + 'uniform_scale'].getValue()
+    S = scalingMatrix([v * uniformScale for v in scaling])
     Si = S.inverse()
     M = transformMatrix(nodeToSnap)
     compensatedM = pRi * pTi * M * pT * pR * Si

@@ -3,7 +3,8 @@ from hiero.core import Clip, Sequence, events, findItemByGuid
 from . import messages
 from .synctool import SyncTool, localCallback, remoteCallback
 
-messages.defineMessageType('InOutChange', ('sequenceGuid', str), ('inTime', int), ('outTime', int))
+messages.defineMessageType('InOutChange', ('sequenceGuid', str),
+                           ('inTime', int), ('outTime', int), ('playheadIndex', int))
 messages.defineMessageType('InOutLockEnabledChange',
                            ('sequenceGuid', str), ('enabled', messages.Bool))
 
@@ -24,21 +25,22 @@ class SyncInOutTool(SyncTool):
     def _onLocalInOutChanged(self, event):
         msg = messages.InOutChange(sequenceGuid=event.sequence.guid(),
                                    inTime=event.inTime,
-                                   outTime=event.outTime)
+                                   outTime=event.outTime,
+                                   playheadIndex=event.playheadIndex)
         self.messageDispatcher.sendMessage(msg)
 
     @remoteCallback
     def _onRemoteInOutChanged(self, msg):
         sequence = findItemByGuid(msg.sequenceGuid, filter=(Sequence, Clip))
         if (msg.inTime >= 0):
-            sequence.setInTime(msg.inTime)
+            sequence.setPlayheadInTime(msg.playheadIndex, msg.inTime)
         else:
-            sequence.clearInTime()
+            sequence.clearPlayheadInTime(msg.playheadIndex)
 
         if (msg.outTime >= 0):
-            sequence.setOutTime(msg.outTime)
+            sequence.setPlayheadOutTime(msg.playheadIndex, msg.outTime)
         else:
-            sequence.clearOutTime()
+            sequence.clearPlayheadOutTime(msg.playheadIndex)
 
     @localCallback
     def _onLocalInOutLockEnabledChanged(self, event):

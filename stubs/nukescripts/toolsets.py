@@ -108,7 +108,8 @@ def refreshToolsetsMenu():
 
 def createToolsetsMenu(toolbar):
     m = toolbar.addMenu('ToolSets', 'ToolbarToolsets.png')
-    m.addCommand('Create', 'nukescripts.toolsets.addToolsetsPanel()', '', icon='ToolsetCreate.png')
+    m.addCommand('Create', 'with nuke.lastHitGroup():\n  nukescripts.toolsets.addToolsetsPanel()',
+                 '', icon='ToolsetCreate.png')
     m.addCommand('-', '', '')
     if populateToolsetsMenu(m, False):
         m.addCommand('-', '', '')
@@ -204,13 +205,14 @@ def createToolsetMenuItems(m, rootPath, fullPath, delete, allToolsetsList, isLoc
                             subfilename = fullFileName[i:]
                         else:
                             # should never happen, but just in case ...
-                            subfilename = fullfilename
+                            subfilename = fullFileName
                         if isLocal and (subfilename in allToolsetsList):
                             # if we've already appended [user] to the menu name, don't need it on the filename
                             if (i != -1) and subfilename[len('ToolSets/'):].find('/') == -1:
                                 group = '[user] ' + group
                         elif not isLocal:
                             allToolsetsList.append(subfilename)
-                        m.addCommand(group, 'nuke.loadToolset("%s")' % fullFileName, '')
+                        m.addCommand(
+                            group, 'with nuke.lastHitGroup():\n  nuke.loadToolset("%s")' % fullFileName, '')
                         retval = True
     return retval

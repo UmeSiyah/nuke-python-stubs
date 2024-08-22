@@ -11,7 +11,7 @@ def camera_up():
     This script takes the render camera up one in selected iread/writes.
     Camera may be _c# or _p# for previs camera number"""
 
-    n = nuke.selectedNodes()
+    n = nuke.selectedNodes(recursive=True)
     for i in n:
         _class = i.Class()
         if _class == 'Read' or _class == 'Write':

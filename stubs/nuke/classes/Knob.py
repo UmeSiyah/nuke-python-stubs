@@ -397,3 +397,10 @@ class Knob(object):
         @return: PySide2.QtWidgets.QWidget.
         """
         ...
+
+    def notDefault(self,) -> bool:
+        """
+        self.notDefault() -> True if any of the values is not set to the default, False otherwise.
+        @return: True if any of the values is not set to the default, False otherwise.
+        """
+        ...

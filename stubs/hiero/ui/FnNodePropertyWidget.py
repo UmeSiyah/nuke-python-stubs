@@ -63,16 +63,30 @@ class NodePropertyWidget(QtWidgets.QWidget):
         knobName = self._linkKnobMap.get(knob.name(), knob.name())
         actualKnob = knob.getLinkedKnob() if isinstance(knob, nuke.Link_Knob) else knob
         notDefault = True
-        # Some knobs don't have notDefault() implemented in which case we always
-        # write the value into the dictionary
-        try:
-            notDefault = actualKnob.notDefault()
-        except Exception:
-            pass
+        if not knob.getFlag(nuke.ALWAYS_SAVE):
+            # Some knobs don't have notDefault() implemented in which case we always
+            # write the value into the dictionary
+            try:
+                notDefault = actualKnob.notDefault()
+            except Exception:
+                pass
+
         if knob.visible() and notDefault:
+            # If SAVE_MENU flag is set then clear it so the toScript() call returns
+            # just the id for the selected entry. Without doing this the nk
+            # script generated for the export will error.
+            isSaveMenuKnob = knob.getFlag(nuke.SAVE_MENU) and isinstance(
+                knob, nuke.Enumeration_Knob)
+            if isSaveMenuKnob:
+                knob.clearFlag(nuke.SAVE_MENU)
+
             isInt = knob.getFlag(nuke.STORE_INTEGER) and not isinstance(knob, nuke.Enumeration_Knob)
             self._presetDictionary[knobName] = int(
                 actualKnob.value()) if isInt else actualKnob.toScript()
+
+            if isSaveMenuKnob:
+                knob.setFlag(nuke.SAVE_MENU)
+
         else:
             # Remove key
             self._presetDictionary.pop(knobName, None)

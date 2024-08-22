@@ -314,7 +314,7 @@ class ShotProcessorUI(hiero.ui.ProcessorUIBase, QtCore.QObject):
                 for sequence in self._sequences:
                     currentTrack = [track for track in sequence if track.guid(
                     ) in [self.trackListModel.itemFromIndex(self.trackListModel.index(row, 0)).data()]][0]
-                    if currentTrack.isEnabled() and self._trackHasTrackOrSubTrackItems(track):
+                    if currentTrack.isEnabled() and self._trackHasTrackOrSubTrackItems(currentTrack):
                         self.trackListModel.itemFromIndex(self.trackListModel.index(
                             row, 0)).setCheckState(QtCore.Qt.Checked)
 

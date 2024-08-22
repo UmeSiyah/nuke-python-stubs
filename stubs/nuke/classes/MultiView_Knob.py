@@ -60,12 +60,6 @@ class MultiView_Knob(Knob):
         """
         ...
 
-    def notDefault(self,) -> bool:
-        """
-        notDefault() -> True if set to its default value, False otherwise.
-        """
-        ...
-
     def toScript(self, quote, context=None) -> str:
         """
         toScript(quote, context=current) -> string.

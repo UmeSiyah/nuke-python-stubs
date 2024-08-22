@@ -318,7 +318,7 @@ class TextProperty(UIPropertyBase):
         self.update()
 
         if self._addWidgetHandler != None:
-            self._addWidgetHandler(self._widget, editLayout, None)
+            self._addWidgetHandler(self._widget, layout, None)
         self._widget.textChanged.connect(self.lineditChanged)
 
         propertyType = type(self._value)

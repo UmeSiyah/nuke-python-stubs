@@ -25,7 +25,7 @@ PLUGINS_FILTER = [
     'REDR3D',
     'REDR3D-x64',
     'REDR3D-x86',
-    'SMDK-VC140-x64-4_21_0',
+    'SMDK',
     'SonyRawDev'
 ]
 

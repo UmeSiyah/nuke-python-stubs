@@ -475,7 +475,7 @@ class Node(object):
 
         @return: Dictionary of all knobs.
 
-        Note that this doesn't follow the links for Link_Knobs
+        Note that this doesn't follow the links for Link_Knobs/Obsolete_Knobs
         """
         ...
 
@@ -492,7 +492,7 @@ class Node(object):
 
         @return: List of all knobs.
 
-        Note that this doesn't follow the links for Link_Knobs
+        Note that this doesn't follow the links for Link_Knobs/Obsolete_Knobs
         """
         ...
 
@@ -908,15 +908,15 @@ class Node(object):
         """
         ...
 
-    def getStage(self, *args) -> None:
+    def helpUrl(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
-        self.getStage([OutputContext]) -> Runs the graph and returns the composed stage for geometry, Viewer or ScanlineRender nodes (if the latter two have geometry nodes connected, else None). Returns None for other node types.
+        @return The current documentation help URL for the node
         """
         ...
 
-    def getUsdStage(self, *args) -> None:
+    def getStage(self, *args) -> None:
         """
-        self.getUsdStage([OutputContext]) -> Runs the graph and returns the composed usd stage for geometry, Viewer or ScanlineRender nodes (if the latter two have geometry nodes connected, else None). Returns None for other node types.
+        self.getStage([OutputContext]) -> Runs the graph and returns the composed stage for geometry, Viewer or ScanlineRender nodes (if the latter two have geometry nodes connected, else None). Returns None for other node types.
         """
         ...
 

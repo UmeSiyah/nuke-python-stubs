@@ -84,7 +84,8 @@ class TimelineProcessorUI(hiero.ui.ProcessorUIBase, QtCore.QObject):
         trackWidget = TrackSelectionWidget(sequences,
                                            self._preset.nonPersistentProperties()['hiddenTracks'],
                                            self._preset.nonPersistentProperties()['excludedTracks'],
-                                           excludedTrackIDs=self._preset._excludedTrackIDs)
+                                           excludedTrackIDs=self._preset._excludedTrackIDs,
+                                           allowAll=True)
         hLayout.addWidget(trackWidget)
 
         # RANGE WIDGET

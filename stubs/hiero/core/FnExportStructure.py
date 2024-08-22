@@ -208,7 +208,7 @@ class ExportStructureElement (IExportStructureElement):
         """Return the number of children"""
         return len(self._children)
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         """ Implemented because otherwise the __len__ method is used for evaluation
         in boolean contexts. 'if element' should always succeed.
         """

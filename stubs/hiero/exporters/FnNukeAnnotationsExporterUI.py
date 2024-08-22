@@ -3,7 +3,7 @@ from PySide2 import QtGui, QtCore, QtWidgets
 from hiero.ui.FnUIProperty import UIPropertyFactory
 from hiero.ui.FnTaskUIFormLayout import TaskUIFormLayout
 
-from . import FnNukeAnnotationsExporter
+from . import FnAdditionalNodesDialog, FnNukeAnnotationsExporter
 from .FnNukeExporterWidgets import (TimelineWriteNodeWidget,
                                     NukeProjectNodeSelectionWidget)
 

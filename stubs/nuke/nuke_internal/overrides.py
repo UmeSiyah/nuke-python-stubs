@@ -128,9 +128,9 @@ def dependentNodes(what=_nuke.INPUTS | _nuke.HIDDEN_INPUTS | _nuke.EXPRESSIONS |
 
 
 def selectConnectedNodes():
-    """ Selects all nodes in the tree of the selected node. """
+    """ Selects all nodes in the tree of the selected nodes. """
     allDeps = set()
-    depsList = [_nuke.selectedNode()]
+    depsList = _nuke.selectedNodes(recursive=True)
     evaluateAll = True
     while depsList:
         deps = dependencies(depsList, _nuke.INPUTS | _nuke.HIDDEN_INPUTS)

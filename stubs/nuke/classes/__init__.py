@@ -21,6 +21,7 @@ from .ToolBar import ToolBar
 from .UV_Knob import UV_Knob
 from .WH_Knob import WH_Knob
 from .XY_Knob import XY_Knob
+from .Gsv_Knob import Gsv_Knob
 from .Int_Knob import Int_Knob
 from .KnobType import KnobType
 from .MenuItem import MenuItem

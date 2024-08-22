@@ -275,4 +275,10 @@ class TaskPresetBase(ITaskPreset):
         """
         ...
 
+    def exportsAllTracks(self) -> None:
+        """
+        Check if this preset can export all tracks, including ones which are empty or not enabled.
+        """
+        ...
+
     __hash__: Any = None

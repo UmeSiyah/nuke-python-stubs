@@ -43,6 +43,7 @@ class SyncClientCursor(SyncTool):
 
     def _setViewer(self, viewer):
         if self.cursorTool:
+            self.cursorTool.setCursors(list())
             self.cursorTool.cursorPositionChanged.disconnect(self._onCursorPositionChanged)
             self.cursorTool.cursorLeave.disconnect(self._onCursorLeave)
             self.cursorTool = None

@@ -618,7 +618,7 @@ def addAutoSaveFilter(filter):
 
 def removeAutoSaveFilter(filter):
     """Remove a previously-added callback with the same arguments."""
-    _removeCallback(autoSaveFilters, call, (), {}, 'Root')
+    _removeCallback(autoSaveFilters, filter, (), {}, 'Root')
 
 
 def autoSaveFilter(filename):

@@ -82,9 +82,6 @@ class TimelineProcessor(hiero.core.ProcessorBase):
 
             # walk the track items in the track, in reverse order
             for trackItem, trackItemCopy in reversed(list(zip(track, trackCopy))):
-                # if we dont unlink, the deletion of linked items may delete selected items
-                trackItemCopy.unlinkAll()
-
                 # Apply the filter function if given
                 itemFiltered = itemFilter(trackItem) if itemFilter else False
                 if itemFiltered:
@@ -136,6 +133,8 @@ class TimelineProcessor(hiero.core.ProcessorBase):
                 # Offset transitions by startFrameOffset
                 for transition, transitionCopy in reversed(list(zip(track.transitions(), trackCopy.transitions()))):
                     transitionCopy.move(offset)
+
+            trackCopy.setLocked(track.isLocked())
 
         return sequenceCopy
 
@@ -220,11 +219,25 @@ class TimelineProcessor(hiero.core.ProcessorBase):
 
         return sequence, sequenceCopy, sequence.project()
 
+    def _exportAllTracks(self):
+        """ Determine whether all tracks should be included in the export. """
+        for _, preset in self._exportTemplate.flatten():
+            if preset.exportsAllTracks():
+                return True
+        return False
+
+    def _getExcludedTracksForSequence(self, sequence):
+        """ Get a list of tracks to exclude from the export for a given sequence. """
+        if self._exportAllTracks():
+            return [track for track in sequence if track.guid() in self._preset._excludedTrackIDs]
+        else:
+            return [track for track in sequence if (track.guid() in self._preset._excludedTrackIDs
+                                                    or not track.isEnabled() or track.isEmpty())]
+
     def _processTrackItems(self, exportItems, preview):
         firstTrackItem = exportItems[0].trackItem()
         sequence = firstTrackItem.sequence()
-        excludedTracks = [track for track in sequence if track.guid()
-                          in self._preset._excludedTrackIDs]
+        excludedTracks = self._getExcludedTracksForSequence(sequence)
         sequenceData = []
         s = self.exportSequenceForTrackItem(firstTrackItem, exportItems, excludedTracks, preview)
         if not s[1]:
@@ -239,8 +252,7 @@ class TimelineProcessor(hiero.core.ProcessorBase):
             if not item.sequence():
                 continue
 
-            excludedTracks = [track for track in item.sequence() if track.guid()
-                              in self._preset._excludedTrackIDs]
+            excludedTracks = self._getExcludedTracksForSequence(item.sequence())
             s = self.exportSequenceForSequence(item.sequence(), excludedTracks, preview)
             if not s[1]:
                 raise Exception('TimelineProcessor.startProcessing no sequence given!')

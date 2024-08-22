@@ -192,7 +192,7 @@ def getProjectRootInteractive(project):
 
 # Built-in methods
 
-def Initialise() -> None:
+def Initialise(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
@@ -229,7 +229,7 @@ def browseForApplication(*args: typing.Any, **kwargs: typing.Any) -> str:
     ...
 
 
-def currentContextMenuView() -> object:
+def currentContextMenuView() -> int | float:
     """
     hiero.ui.currentContextMenuView() -> returns the current view for the context menu. Only valid during a kShowContextMenu event callback.
 
@@ -238,7 +238,7 @@ def currentContextMenuView() -> object:
     ...
 
 
-def currentViewer() -> hiero.ui.Viewer:
+def currentViewer() -> Viewer:
     """
     hiero.ui.currentViewer() -> returns the current viewer window.
 
@@ -274,14 +274,14 @@ def findRegisteredActions(pattern) -> list:
     ...
 
 
-def flushAllViewersCache() -> None:
+def flushAllViewersCache() -> Any:
     """
     self.flushAllViewersCache() -> flush the cache of all viewers and pause caching
     """
     ...
 
 
-def getFlipbook() -> hiero.ui.Viewer:
+def getFlipbook(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
@@ -299,14 +299,14 @@ def getTimelineEditor(sequence: hiero.core.Sequence, creationFlag: Optional[hier
     ...
 
 
-def isInAnyProject(arg__1: str) -> object:
+def isInAnyProject(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
     ...
 
 
-def isInAnyTimeline(arg__1: str) -> object:
+def isInAnyTimeline(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
@@ -331,7 +331,7 @@ def menuBar() -> Any:
     ...
 
 
-def monitorOutNode() -> object:
+def monitorOutNode(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
@@ -360,7 +360,7 @@ def openFileBrowser(caption='', mode=1, pattern='', initialPath='', forSave=Fals
     ...
 
 
-def openInNewViewer(*args: typing.Any, **kwargs: typing.Any) -> Viewer:
+def openInNewViewer(hiero.core.BinItem) -> Viewer:
     """
     hiero.ui.openInNewViewer( hiero.core.BinItem ) -> Opens a BinItem's activeItem (Clip/Sequence) in a new Viewer.
     hiero.ui.openInNewViewer( hiero.core.Sequence ) -> Opens a Sequence in a new Viewer.
@@ -370,14 +370,14 @@ def openInNewViewer(*args: typing.Any, **kwargs: typing.Any) -> Viewer:
     ...
 
 
-def openInOSShell(arg__1: str) -> object:
+def openInOSShell(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
     ...
 
 
-def openInSpreadsheet(sequence: hiero.core.Sequence) -> hiero.ui.SpreadsheetView:
+def openInSpreadsheet(hiero.core.Sequence) -> SpreadsheetView:
     """
     hiero.ui.openInSpreadsheet( hiero.core.Sequence ) -> Opens a Sequence in a Spreadsheet.
     @return: hiero.ui.SpreadsheetView object
@@ -385,7 +385,7 @@ def openInSpreadsheet(sequence: hiero.core.Sequence) -> hiero.ui.SpreadsheetView
     ...
 
 
-def openInTimeline(*args: typing.Any, **kwargs: typing.Any) -> int | float:
+def openInTimeline(hiero.core.BinItem) -> int | float:
     """
     hiero.ui.openInTimeline( hiero.core.BinItem ) -> Opens a BinItem's activeItem (Clip/Sequence) in a Timeline View.
     hiero.ui.openInTimeline( hiero.core.Sequence ) -> Opens a Sequence in a Timeline View.
@@ -397,7 +397,7 @@ def openInTimeline(*args: typing.Any, **kwargs: typing.Any) -> int | float:
     ...
 
 
-def openInViewer(*args: typing.Any, **kwargs: typing.Any) -> Viewer:
+def openInViewer(hiero.core.BinItem) -> Viewer:
     """
     hiero.ui.openInViewer( hiero.core.BinItem ) -> Opens a BinItem's activeItem (Clip/Sequence) in the Viewer.
     hiero.ui.openInViewer( hiero.core.Sequence ) -> Opens a Sequence in the Viewer.
@@ -407,7 +407,7 @@ def openInViewer(*args: typing.Any, **kwargs: typing.Any) -> Viewer:
     ...
 
 
-def openProject(path: str, flags: int = 'Hiero.Python.Project.kProjectOpenNoFlags') -> hiero.core.Project:
+def openProject(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
@@ -421,7 +421,7 @@ def registerAction(action) -> Any:
     ...
 
 
-def registerBinViewCustomMimeDataType(arg__1: str) -> object:
+def registerBinViewCustomMimeDataType(customMimeType) -> Any:
     """
     hiero.ui.registerBinViewCustomMimeDataType(customMimeType) -> registers a custom mime type so that Hiero passes on drag and drop events through the event system. For an example of how to use this method, see the bin_drop.py example.
     """
@@ -457,7 +457,7 @@ def saveWorkspace(name) -> None:
     ...
 
 
-def sendToViewerA(*args: typing.Any, **kwargs: typing.Any) -> Iterable:
+def sendToViewerA(hiero.core.BinItem) -> Iterable:
     """
     hiero.ui.sendToViewerA( hiero.core.BinItem ) -> Sends a BinItem's activeItem (Clip/Sequence) to the Viewer A.
     hiero.ui.sendToViewerA( hiero.core.Sequence ) -> Sends a Sequence to the Viewer A.
@@ -466,7 +466,7 @@ def sendToViewerA(*args: typing.Any, **kwargs: typing.Any) -> Iterable:
     ...
 
 
-def sendToViewerB(*args: typing.Any, **kwargs: typing.Any) -> Iterable:
+def sendToViewerB(hiero.core.BinItem) -> Iterable:
     """
     hiero.ui.sendToViewerB( hiero.core.BinItem ) -> Sends a BinItem's activeItem (Clip/Sequence) to the Viewer B.
     hiero.ui.sendToViewerB( hiero.core.Sequence ) -> Sends a Sequence to the Viewer B.
@@ -486,21 +486,21 @@ def setWorkspace(name) -> None:
     ...
 
 
-def unregisterBinViewCustomMimeDataType(arg__1: str) -> object:
+def unregisterBinViewCustomMimeDataType(customMimeType) -> Any:
     """
     hiero.ui.unregisterBinViewCustomMimeDataType(customMimeType) -> unregisters a custom mime type that was previously registered using hiero.ui.registerBinViewCustomMimeDataType().
     """
     ...
 
 
-def updateViewer(oldClip: hiero.core.Clip, newClip: hiero.core.Clip) -> None:
+def updateViewer(*args: typing.Any, **kwargs: typing.Any) -> None:
     """
 
     """
     ...
 
 
-def windowManager() -> object:
+def windowManager() -> WindowManager:
     """
     hiero.ui.windowManager() -> returns the single WindowManager object.
 

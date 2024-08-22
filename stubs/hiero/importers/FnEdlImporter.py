@@ -630,3 +630,6 @@ class EdlImporter:
             sys.stdout.flush()  # DM - On my system this seems to be necessary otherwise any output to console gets buffered indefinitely
 
         return True
+
+    def getWarningMessages(self):
+        return []

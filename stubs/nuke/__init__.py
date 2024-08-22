@@ -25,7 +25,7 @@ DONT_SAVE_TO_NODEPRESET = 549755813888
 DO_NOT_READ = 2251799813685248
 DO_NOT_WRITE = 512
 ENDLINE = 8192
-EXE_PATH = '/Applications/Nuke15.0v1/Nuke15.0v1.app/Contents/MacOS/Nuke15.0'
+EXE_PATH = '/Applications/Nuke15.1v1/Nuke15.1v1.app/Contents/MacOS/Nuke15.1'
 EXPAND_TO_WIDTH = 68719476736
 EXPRESSIONS = 1
 FLOAT = 5
@@ -63,13 +63,13 @@ NO_CHECKMARKS = 1
 NO_MULTIVIEW = 1073741824
 NO_POSTAGESTAMPS = False
 NO_UNDO = 524288
-NUKE_VERSION_DATE = 'Oct  3 2023'
+NUKE_VERSION_DATE = 'Jun  6 2024'
 NUKE_VERSION_MAJOR = 15
-NUKE_VERSION_MINOR = 0
+NUKE_VERSION_MINOR = 1
 NUKE_VERSION_PHASE = ''
-NUKE_VERSION_PHASENUMBER = 124535
+NUKE_VERSION_PHASENUMBER = 192065
 NUKE_VERSION_RELEASE = 1
-NUKE_VERSION_STRING = '15.0v1'
+NUKE_VERSION_STRING = '15.1v1'
 NUM_CPUS = 10
 NUM_INTERPOLATIONS = 5
 PLUGIN_EXT = 'dylib'
@@ -104,7 +104,7 @@ VIEW_NAMES = 'input/view_names'
 WRITE_ALL = 8
 WRITE_NON_DEFAULT_ONLY = 16
 WRITE_USER_KNOB_DEFS = 4
-env = {'64bit': '', 'ExecutablePath': '', 'ExternalPython': '', 'LINUX': '', 'MACOS': '', 'NukeLibraryPath': '', 'NukeVersionDate': '', 'NukeVersionMajor': '', 'NukeVersionMinor': '', 'NukeVersionPhase': '', 'NukeVersionPhaseNumber': '', 'NukeVersionRelease': '',
+env = {'64bit': '', 'ARCHITECTURE': '', 'ExecutablePath': '', 'ExternalPython': '', 'LINUX': '', 'MACOS': '', 'NukeLibraryPath': '', 'NukeVersionDate': '', 'NukeVersionMajor': '', 'NukeVersionMinor': '', 'NukeVersionPhase': '', 'NukeVersionPhaseNumber': '', 'NukeVersionRelease': '',
        'NukeVersionString': '', 'PluginExtension': '', 'PluginsVerbose': '', 'WIN32': '', 'assist': '', 'gui': '', 'hiero': '', 'hieroNuke': '', 'hieroStudio': '', 'indie': '', 'interactive': '', 'nc': '', 'nukex': '', 'numCPUs': '', 'ple': '', 'studio': '', 'threads': ''}
 
 # Built-in methods
@@ -881,7 +881,7 @@ def error(message: str) -> None:
 def execute(nameOrNode: Node | str, start: Optional[int] = None, end: Optional[int] = None, incr: Optional[int] = None, views: Optional[list[View]] = None, continueOnError=False) -> None:
     """
     execute(nameOrNode, start, end, incr, views, continueOnError = False) -> None.
-    execute(nameOrNode, frameRangeSet, views, continueOnError = False) -> None.\n
+    execute(nameOrNode, frameRangeSet, views, continueOnError = False) -> None.
 
     Execute the named Write node over the specified frames.
 
@@ -1553,6 +1553,17 @@ def knobTooltip(classknob: str, value: str) -> None:
     ...
 
 
+def lastHitGroup() -> Group:
+    """
+    lastHitGroup() -> Group
+
+    Returns the last clicked Group node. None if no group clicked.
+
+    :return: The group node.
+    """
+    ...
+
+
 def layers(node: Optional[Any] = None) -> list[str]:
     """
     layers(node=None) -> string list.
@@ -1729,7 +1740,7 @@ def nodeCopy(s: str) -> bool:
 
     Copy all selected nodes into a file or the clipboard.
 
-    :param s: The name of a clipboad to copy into. If s is the string '%clipboard%' this will copy into the operating systems clipboard.
+    :param s: The name of a clipboard to copy into. If s is the string '%clipboard%' this will copy into the operating systems clipboard.
     :return: True if any nodes were selected, False otherwise.
     """
     ...
@@ -2035,7 +2046,7 @@ def removeFavoriteDir(name: str, type: Optional[str] = None) -> None:
 def execute(nameOrNode: Node | str, start: Optional[int] = None, end: Optional[int] = None, incr: Optional[int] = None, views: Optional[list[View]] = None, continueOnError=False) -> None:
     """
     execute(nameOrNode, start, end, incr, views, continueOnError = False) -> None.
-    execute(nameOrNode, frameRangeSet, views, continueOnError = False) -> None.\n
+    execute(nameOrNode, frameRangeSet, views, continueOnError = False) -> None.
 
     Execute the named Write node over the specified frames.
 
@@ -2317,6 +2328,7 @@ def selectedNodes(filter: Optional[str] = None) -> list[Node]:
     where inputs are done before the final node, so commands applied to this list go from top-down.
 
     :param filter: Optional class of Node. Instructs the algorithm to apply only to a specific class of nodes.
+    :param recursive: Optional boolean. If True, the algorithm will search recursively for selected nodes.
     :return: The list of selected nodes.
     """
     ...

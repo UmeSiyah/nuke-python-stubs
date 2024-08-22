@@ -1,9 +1,14 @@
-from PySide2.QtCore import Signal, QObject, QThread
+import functools
+import threading
+
+from hiero.core import executeInMainThread
+from PySide2.QtCore import Signal, QObject
 
 from . import log, config, messages
 from .client import Client
 from .server import Server
 from .viewsync import SyncViewerTool
+from .eventloop import EventLoop
 from .inoutsync import SyncInOutTool
 from .clientsync import ClientSyncHost, ClientSyncGuest
 from .cursorsync import SyncClientCursor
@@ -11,8 +16,8 @@ from .binitemsync import SyncBinItemTool
 from .projectsync import (ProjectPushTool, HostProjectSyncTool,
                           ProjectSyncProgressTool)
 from .versionsync import SyncVersionsTool
+from .clipknobssync import SyncClipKnobsTool
 from .editorialsync import SyncSequenceEditsTool
-from .threadhelpers import callInObjectsThread
 from .annotationsync import SyncAnnotationsTool
 from .effectitemsync import SyncEffectItemKnobsTool
 from .itemstatussync import SyncItemStatusTool
@@ -25,9 +30,12 @@ class Session(QObject):
         super(Session, self).__init__()
         self._clientDataProvider = None
 
+        self._eventLoop = EventLoop()
+
         # Thread for running the socket communications
-        self._thread = QThread()
+        self._thread = threading.Thread(target=self._eventLoop.start)
         self._thread.start()
+        self._eventLoop.waitForStart()
 
     def clientDataProvider(self):
         """ Holds data about the current participants of a sync review session. """
@@ -36,8 +44,8 @@ class Session(QObject):
     def _stopThread(self):
         """ Stop the socket communication thread """
         if self._thread:
-            self._thread.quit()
-            self._thread.wait()
+            self._eventLoop.exit()
+            self._thread.join()
             self._thread = None
 
 
@@ -53,13 +61,11 @@ class ServerSession(Session):
         try:
             # Create the server object and bind to the port
             self.server = Server()
-            self.server.moveToThread(self._thread)
-            callInObjectsThread(self.server, self.server.bind, port)
+            self._eventLoop.callInThread(self.server.bind, port)
 
             # Create the internal client object with a special id
             self.client = Client(ConnectionState(), config.HOST_ID)
-            self.client.moveToThread(self._thread)
-            self.messageDispatcher = MessageDispatcher(self.client)
+            self.messageDispatcher = MessageDispatcher(self._eventLoop, self.client)
 
             # ClientSyncHost needs to receive the messages.Connect that will be sent when
             # self.client.connectToHost is called.
@@ -73,8 +79,7 @@ class ServerSession(Session):
             self.projectPushTool.addProjects(project)
 
             # Connect the client object to the local server.
-            callInObjectsThread(self.client, self.client.connectToHost,
-                                'localhost', port, clientData)
+            self._eventLoop.callInThread(self.client.connectToHost, 'localhost', port, clientData)
 
             self._clientDataProvider.addGuest(config.HOST_ID, clientData)
 
@@ -92,6 +97,7 @@ class ServerSession(Session):
                 SyncEffectItemKnobsTool(self.messageDispatcher),
                 SyncSequenceEditsTool(self.messageDispatcher, viewerSyncTool),
                 SyncBinItemTool(self.messageDispatcher),
+                SyncClipKnobsTool(self.messageDispatcher),
             ]
         except:
             self._stopThread()
@@ -101,8 +107,8 @@ class ServerSession(Session):
         for tool in self.syncTools:
             tool.shutdown()
         self.messageDispatcher.shutdown()
-        callInObjectsThread(self.client, self.client.disconnectFromHost)
-        callInObjectsThread(self.server, self.server.shutdown)
+        self._eventLoop.callInThread(self.client.disconnectFromHost)
+        self._eventLoop.callInThread(self.server.shutdown)
         self._stopThread()
 
 
@@ -116,10 +122,9 @@ class ClientSession(Session):
 
         try:
             self.client = Client(connectionState, config.MACHINE_ID)
-            self.client.moveToThread(self._thread)
-            callInObjectsThread(self.client, self.client.connectToHost, hostname, port, clientData)
+            self._eventLoop.callInThread(self.client.connectToHost, hostname, port, clientData)
 
-            self.messageDispatcher = MessageDispatcher(self.client)
+            self.messageDispatcher = MessageDispatcher(self._eventLoop, self.client)
 
             viewerSyncTool = SyncViewerTool(self.messageDispatcher)
 
@@ -140,6 +145,7 @@ class ClientSession(Session):
                 SyncEffectItemKnobsTool(self.messageDispatcher),
                 SyncSequenceEditsTool(self.messageDispatcher, viewerSyncTool),
                 SyncBinItemTool(self.messageDispatcher),
+                SyncClipKnobsTool(self.messageDispatcher),
             ]
         except:
             self._stopThread()
@@ -149,7 +155,7 @@ class ClientSession(Session):
         for tool in self.syncTools:
             tool.shutdown()
         self.messageDispatcher.shutdown()
-        callInObjectsThread(self.client, self.client.disconnectFromHost)
+        self._eventLoop.callInThread(self.client.disconnectFromHost)
         self._stopThread()
 
 
@@ -187,7 +193,8 @@ class ConnectionManager(QObject):
             log.initLogger('syncsessionhost')
             self.session = ServerSession(port, clientData, project)
             self.connectionState.setState(ConnectionState.SERVER_RUNNING)
-            self.session.client.numberOfClientsChanged.connect(self._onNumberOfClientsChanged)
+            self.session.client.setNumberOfClientsChangedCallback(
+                functools.partial(executeInMainThread, self._onNumberOfClientsChanged))
         except:
             log.logException()
             self.connectionState.setError(ConnectionState.ERROR_BIND_FAILURE)
@@ -211,7 +218,8 @@ class ConnectionManager(QObject):
         try:
             log.initLogger('syncsessionclient')
             self.session = ClientSession(hostname, port, self.connectionState, clientData)
-            self.session.client.numberOfClientsChanged.connect(self._onNumberOfClientsChanged)
+            self.session.client.setNumberOfClientsChangedCallback(
+                functools.partial(executeInMainThread, self._onNumberOfClientsChanged))
         except:
             log.logException()
 

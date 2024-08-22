@@ -49,7 +49,7 @@ def initPyQtRenderDialog(pyQtApp, appArgv=['pyQtRenderDialog']):
                 utils.executeInMainThread(i['Render'].execute)
 
     app = pyQtApp.getApplication(appArgv)
-    dialog = pyQtRenderDialog()
+    dialog = pyRenderDialog()
     app.exec_()
 
 

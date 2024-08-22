@@ -63,7 +63,7 @@ def version_up():
     """All new version_up that uses the version_get/set functions.
     This script takes the render version up one in selected iread/writes."""
 
-    n = nuke.selectedNodes()
+    n = nuke.selectedNodes(recursive=True)
     for i in n:
         _class = i.Class()
         # check to make sure this is a read or write op
@@ -92,7 +92,7 @@ def version_down():
     """All new version_down that uses the version_get/set functions.
     This script takes the render version up one in selected iread/writes."""
 
-    n = nuke.selectedNodes()
+    n = nuke.selectedNodes(recursive=True)
     for i in n:
         _class = i.Class()
         # check to make sure this is a read or write op
@@ -140,7 +140,7 @@ def version_latest():
                 except ValueError:
                     return
 
-    nodes = nuke.selectedNodes()
+    nodes = nuke.selectedNodes(recursive=True)
     if not nodes:
         nodes = nuke.allNodes()
     n = [i for i in nodes if i.Class() == 'Read']

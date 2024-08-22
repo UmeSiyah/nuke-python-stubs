@@ -9,6 +9,7 @@ import PySide2
 import nuke_internal as nuke
 
 from .usdhighlighter import UsdHighlighter
+from .pythonhighlighter import PythonHighlighter
 
 # Syntax highlighting colour definitions
 kwdsFgColour = PySide2.QtGui.QColor(122, 136, 53)
@@ -55,6 +56,8 @@ class ScriptInputArea(PySide2.QtWidgets.QPlainTextEdit, PySide2.QtCore.QObject):
         # Add highlighter
         if language == 'usd':
             self._highlighterInput = UsdHighlighter(self.document(), parent=self)
+        elif language == 'python':
+            self._highlighterInput = PythonHighlighter(self.document(), parent=self)
         else:
             self._highlighterInput = InputHighlighter(self.document(), parent=self)
 

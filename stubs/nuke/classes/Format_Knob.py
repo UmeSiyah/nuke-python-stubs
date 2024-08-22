@@ -81,9 +81,3 @@ class Format_Knob(Knob):
         Pass None for context to get results for all views and key times (as stored in a .nk file).
         """
         ...
-
-    def notDefault(self,) -> bool:
-        """
-        notDefault() -> True if set to its default value, False otherwise.
-        """
-        ...

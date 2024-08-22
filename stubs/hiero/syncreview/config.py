@@ -2,18 +2,17 @@
 Constants etc. used in the sync client-server code.
 """
 
+import datetime
+
 import nuke_internal as nuke
 
 # Note: the heartbeat values are somewhat arbitrary and will probably need tuning
 
 # Interval at which the client will send pings to the server
-HEARTBEAT_INTERVAL = 1000
+HEARTBEAT_INTERVAL = datetime.timedelta(seconds=1)
 
 # Time after which the client or server will assume a connection to have been lost
-HEARTBEAT_TIMEOUT = 10000
-
-# Interval for polling sockets
-SOCKET_POLL_INTERVAL = 1000
+HEARTBEAT_TIMEOUT = datetime.timedelta(seconds=10)
 
 # Versioning for the sync protocol which at some point will be used to determine
 # connection compatibility

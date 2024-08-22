@@ -269,8 +269,8 @@ def AddDefaultPresets(overwrite):
                                             'exportTemplate': edltemplate})
         processorPresets['Final Cut Pro 7 XML'] = (FnTimelineProcessor.TimelineProcessorPreset, {
                                                    'exportTemplate': xmltemplate})
-        processorPresets['OTIO (Beta)'] = (FnTimelineProcessor.TimelineProcessorPreset, {
-            'exportTemplate': otiotemplate})
+        processorPresets['OTIO'] = (FnTimelineProcessor.TimelineProcessorPreset, {
+                                    'exportTemplate': otiotemplate})
 
     localpresets = [preset.name() for preset in registry.localPresets()]
     for name, preset in processorPresets.items():

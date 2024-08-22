@@ -31,8 +31,8 @@ def __ReplaceKnobValue(searchstr, replacestr, knob):
 
 def search_replace():
     """ Search/Replace in Reads and Writes. """
-    fileKnobNodes = [i for i in nuke.selectedNodes() if __NodeHasFileKnob(i)]
-    proxyKnobNodes = [i for i in nuke.selectedNodes() if __NodeHasProxyKnob(i)]
+    fileKnobNodes = [i for i in nuke.selectedNodes(recursive=True) if __NodeHasFileKnob(i)]
+    proxyKnobNodes = [i for i in nuke.selectedNodes(recursive=True) if __NodeHasProxyKnob(i)]
     if not fileKnobNodes and not proxyKnobNodes:
         raise ValueError('No nodes selected')
 

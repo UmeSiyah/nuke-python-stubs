@@ -190,8 +190,7 @@ class HardwareInfo:
             handle = winreg.OpenKey(key, subkey)
             return winreg.QueryInfoKey(handle)[0]
         except:
-            self.gLogStr += 'Failed to find ' + \
-                str(key) + ', ' + str(subkey) + ', ' + str(value) + '\n'
+            self.gLogStr += 'Failed to find ' + str(key) + ', ' + str(subkey) + '\n'
             return 'Unknown'
 
     def getRegistryValue(self, key, subkey, value):
@@ -229,7 +228,7 @@ class HardwareInfo:
         return output
 
     def getWindowsL2Cache(self):
-        output = RunCmdWin('wmic cpu get L2CacheSize')
+        output = self.RunCmdWin('wmic cpu get L2CacheSize')
         return output.split('\n')[-1]
 
     def getWindowsOSVersion(self):
@@ -295,8 +294,7 @@ class HardwareInfo:
         self._standardDict[gCPUSpeed] = ConvertSpeedUnitsToMhZ(self._standardDict[gCPUSpeed])
         self._standardDict[gL2Cache] = ConvertMemSizeToKb(self._standardDict[gL2Cache])
         self._standardDict[gRAM] = ConvertMemSizeToKb(self._standardDict[gRAM])
-        extendedMapping = [['boot_rom_version', gBootROMVersion],
-                           ['machine_model', gMachineName]]
+        extendedMapping = [['machine_model', gMachineName]]
         self.MapDictionaries(itemDicts, self._extendedDict, extendedMapping, 'SPHardwareDataType')
 
     def initMacSoftware(self, itemDicts):
@@ -315,7 +313,7 @@ class HardwareInfo:
             handle.write('  ' * indentLevel)
             if type(elem) == dict:  # nest
                 handle.write('<%s>\n' % key)
-                self.printDict(elem, handle, indentLevel + 1, isEnv=True)
+                self.printDict(elem, handle, indentLevel + 1)
                 handle.write('  ' * indentLevel)
                 handle.write('</%s>' % key)
             else:  # bottom level, just write the value of the key

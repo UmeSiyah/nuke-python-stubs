@@ -837,6 +837,7 @@ class BuildTrackActionBase(QtWidgets.QAction):
 
         # Begin undo group
         project.beginUndo('Build external media track')
+        returnValue = True
 
         try:
             # Get the track to build on.  findTrack() may filter items out of the selection if they collide with items on
@@ -846,7 +847,7 @@ class BuildTrackActionBase(QtWidgets.QAction):
             # If there's nothing to do, stop doing things.
             if len(selection) == 0:
                 project.endUndo()
-                return True
+                return returnValue
 
             # TODO: Allow the user to choose a destination in the bin
             bin = BuildTrack.FindOrCreateBin(project, track.name())
@@ -882,14 +883,16 @@ class BuildTrackActionBase(QtWidgets.QAction):
             # Remove collided transitions
             for item in collidedTransitions:
                 track.removeTransition(item)
-
-            return True
+        # If we encountered an exception we should return false as we were unable to fully build the track.
+        except:
+            returnValue = False
         # Ensure the undo gets closed even if there's an exception
         finally:
             # End undo group (this does the actual editing, hence BEFORE sequence.editFinished())
             project.endUndo()
             # Send signal to update viewers (TimelineEditor, SpreadsheetView, Viewer)
             sequence.editFinished(selection)
+            return returnValue
 
     def _buildTrackItem(self, name, clip, originalTrackItem, expectedStartTime, expectedDuration, expectedStartHandle, expectedEndHandle, expectedOffset):
         # Create track item

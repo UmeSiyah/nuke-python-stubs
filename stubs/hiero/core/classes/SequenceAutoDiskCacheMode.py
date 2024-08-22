@@ -120,7 +120,7 @@ class SequenceAutoDiskCacheMode(object):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """

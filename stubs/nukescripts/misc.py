@@ -9,61 +9,48 @@ import nuke_internal as nuke
 
 
 def copy_knobs(args):
-    thisGroup = nuke.thisGroup()
+    for node in nuke.selectedNodes(recursive=True):
+        thisGroup = node.parent()
+        if (thisGroup is not nuke.root() and (thisGroup.locked() or thisGroup.subgraphLocked())):
+            raise RuntimeError("Can't paste knob values because " + thisGroup.name() + ' is locked')
 
-    if (thisGroup is not nuke.root() and (thisGroup.locked() or thisGroup.subgraphLocked())):
-        raise RuntimeError("Can't paste knob values because " + thisGroup.name() + ' is locked')
+    for node in nuke.selectedNodes(recursive=True):
+        thisGroup = node.parent()
+        selNodes = thisGroup.selectedNodes()
 
-    selNodes = thisGroup.selectedNodes()
+        groupCopy = nuke.nodes.Group(name='____tempcopyknobgroup__')
+        with groupCopy:
+            nuke.nodePaste(nukescripts.cut_paste_file())
 
-    groupCopy = nuke.nodes.Group(name='____tempcopyknobgroup__')
-    with groupCopy:
-        nuke.nodePaste(nukescripts.cut_paste_file())
+        excludedKnobs = ['name', 'xpos', 'ypos']
 
-    excludedKnobs = ['name', 'xpos', 'ypos']
-
-    try:
-        nodes = groupCopy.nodes()
-        for i in groupCopy.nodes():
-            for j in selNodes:
-                k1 = i.knobs()
-                k2 = j.knobs()
-                intersection = dict([(item, k1[item]) for item in list(
-                    k1.keys()) if item not in excludedKnobs and item in k2])
-                for k in list(intersection.keys()):
-                    x1 = i[k]
-                    x2 = j[k]
-                    x2.fromScript(x1.toScript())
-    except Exception as e:
+        try:
+            for i in groupCopy.nodes():
+                for j in selNodes:
+                    k1 = i.knobs()
+                    k2 = j.knobs()
+                    intersection = dict([(item, k1[item]) for item in list(
+                        k1.keys()) if item not in excludedKnobs and item in k2])
+                    for k in list(intersection.keys()):
+                        x1 = i[k]
+                        x2 = j[k]
+                        x2.fromScript(x1.toScript())
+        except Exception as e:
+            nuke.delete(groupCopy)
+            raise e
         nuke.delete(groupCopy)
-        raise e
-    nuke.delete(groupCopy)
 
 
 def connect_selected_to_viewer(inputIndex):
     """Connects the selected node to the given viewer input index, ignoring errors if no node is selected."""
 
     selection = None
-    try:
-        selection = nuke.selectedNode()
-    except ValueError:  # no node selected
-        pass
-
-    if selection is not None and selection.Class() == 'Viewer':
-        selection = None
+    for node in nuke.selectedNodes(recursive=True):
+        if node.Class() != 'Viewer':
+            selection = node
+            break
 
     nuke.connectViewer(inputIndex, selection)
-
-
-def toggle_monitor_out():
-    """Toggles monitor out (switches it on if it's off, or vice versa) for the currently active viewer."""
-
-    viewerWindow = nuke.activeViewer()
-    if viewerWindow is not None:
-        viewerNode = viewerWindow.node()
-        monitorOutEnableKnob = viewerNode['monitorOutEnable']
-        enabled = monitorOutEnableKnob.value()
-        monitorOutEnableKnob.setValue(not enabled)
 
 
 def clear_selection_recursive(group=nuke.root()):
@@ -108,7 +95,8 @@ def declone(node):
         return
     args = node.writeKnobs(nuke.WRITE_ALL | nuke.WRITE_USER_KNOB_DEFS |
                            nuke.WRITE_NON_DEFAULT_ONLY | nuke.TO_SCRIPT)
-    newnode = nuke.createNode(node.Class(), knobs=args)
+    with node.parent():
+        newnode = nuke.createNode(node.Class(), knobs=args)
     nuke.inputs(newnode, nuke.inputs(node))
     num_inputs = nuke.inputs(node)
     for i in range(num_inputs):
@@ -127,21 +115,20 @@ def showname():
     # look if there is a selected node
     # if not, output the script only
     p = nuke.Panel('Current Info', 500)
-    try:
-        n = nuke.selectedNode()
-        if n.Class() == 'Read' or n.Class() == 'Write':
-            a = nuke.value(n.name()+'.first', nuke.value('root.first_frame'))
-            b = nuke.value(n.name()+'.last', nuke.value('root.last_frame'))
-            curfile = n.knob('file').value()+' '+str(a)+'-'+str(b)
+    nodes = nuke.selectedNodes(recursive=True)
+    if nodes:
+        selectedNode = nodes[0]
+        if selectedNode.Class() == 'Read' or selectedNode.Class() == 'Write':
+            a = nuke.value(selectedNode.name()+'.first', nuke.value('root.first_frame'))
+            b = nuke.value(selectedNode.name()+'.last', nuke.value('root.last_frame'))
+            curfile = selectedNode.knob('file').value()+' '+str(a)+'-'+str(b)
             p.addSingleLineInput('Filename', curfile)
             p.addSingleLineInput('Script', nukescript)
             p.show()
-        else:
-            p.addSingleLineInput('Script', nukescript)
-            p.show()
-    except:
-        p.addSingleLineInput('Script', nukescript)
-        p.show()
+            return
+
+    p.addSingleLineInput('Script', nukescript)
+    p.show()
 
 
 def swapAB(n):

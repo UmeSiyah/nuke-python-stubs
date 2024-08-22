@@ -5,7 +5,6 @@ import traceback
 import hiero.ui
 import hiero.core
 from hiero.core import Clip, Sequence, Annotation, events
-from PySide2.QtCore import QTimer
 from hiero.core.util import asBytes, asUnicode
 
 from . import messages

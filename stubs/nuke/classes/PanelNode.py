@@ -91,7 +91,7 @@ class PanelNode(object):
 
         @return: Dictionary of all knobs.
 
-        Note that this doesn't follow the links for Link_Knobs
+        Note that this doesn't follow the links for Link_Knobs/Obsolete_Knobs
         """
         ...
 

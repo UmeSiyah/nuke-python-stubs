@@ -334,7 +334,7 @@ class TaskRegistry (IExporterRegistry):
                         # Don't log an error
                         pass
                     else:
-                        hiero.core.log.exception('Failed to delete preset file')
+                        log.exception('Failed to delete preset file')
 
                 continue
 

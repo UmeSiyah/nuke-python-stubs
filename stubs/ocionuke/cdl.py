@@ -234,7 +234,7 @@ def select_cccid_for_filetransform(node=None, fileknob='file', cccidknob='cccid'
     if node is None:
         node = nuke.thisNode()
 
-    filename = node[fileknob].value()
+    filename = node[fileknob].getEvaluatedValue()
 
     allcc = _file_to_cdl_transform_list(filename)
 

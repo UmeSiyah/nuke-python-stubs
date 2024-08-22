@@ -57,6 +57,18 @@ class ViewerProcess(object):
         """
         ...
 
+    def nodeMonitorOut(self, name: Optional[str] = None, viewer: Optional[str] = None) -> Node:
+        """
+        nuke.ViewerProcess.nodeMonitorOut(name, viewer) -> Node.
+
+        Returns a ViewerProcess node for Monitor Out. If a viewer has not been specified, returns the current selected one. This is a class method.
+
+        :param name: Optional ViewerProcess name.
+        :param viewer: Optional viewer name.
+        :return: Node.
+        """
+        ...
+
     def registeredNames(self,) -> list:
         """
         nuke.ViewerProcess.registeredNames() -> List.

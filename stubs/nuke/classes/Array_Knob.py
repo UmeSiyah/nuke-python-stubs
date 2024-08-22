@@ -103,13 +103,6 @@ class Array_Knob(Knob):
         """
         ...
 
-    def notDefault(self,) -> bool:
-        """
-        self.notDefault() -> True if any of the values is not set to the default, False otherwise.
-        @return: True if any of the values is not set to the default, False otherwise.
-        """
-        ...
-
     def defaultValue(self,) -> Any:
         """
         self.defaultValue() -> Default value.

@@ -3,6 +3,15 @@
 import nuke_internal as nuke
 
 
+def get_fully_qualified_name(node):
+    if node.Class() == 'Root':
+        return ''
+    parent_name = get_fully_qualified_name(node.parent())
+    if parent_name == '':
+        return node.name()
+    return parent_name + '.' + node.name()
+
+
 def toggle(knob):
     """ "Inverts" some flags on the selected nodes.
 
@@ -10,7 +19,7 @@ def toggle(knob):
     majority value and using the inverse of that."""
 
     value = 0
-    n = nuke.selectedNodes()
+    n = nuke.selectedNodes(recursive=True)
     for i in n:
         try:
             val = i.knob(knob).value()
@@ -23,10 +32,10 @@ def toggle(knob):
 
     status = value < 0
     for i in n:
-        if not nuke.exists(i.name()+'.'+knob):
+        knobbie_str = get_fully_qualified_name(i) + '.' + knob
+        if not nuke.exists(knobbie_str):
             continue
         knobbie = i.knob(knob)
-        knobbie_str = i.name()+'.'+knob
         size = nuke.animation(knobbie_str, 'size')
         if size is not None and int(size) > 0:
             knobbie.setKeyAt(nuke.frame())

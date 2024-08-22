@@ -5,7 +5,6 @@ import math
 import os.path
 import subprocess
 import collections
-from typing import Any
 
 import hiero.core
 
@@ -176,7 +175,7 @@ class Node(object):
         else:
             return True
 
-    def setKnob(self, knobName: str, knobValue: Any):
+    def setKnob(self, knobName, knobValue):
         """ Set a knob value. """
         self._knobValues[str(knobName)] = knobValue
 
@@ -204,7 +203,7 @@ class Node(object):
         """ Add raw knob text to the node.  This is written directly to the script with no formatting. """
         self._rawKnobs.append(text)
 
-    def knob(self, knobName: str):
+    def knob(self, knobName):
         """ Get a knob value.  An exception is raised if no knob of that name exists. """
         return self._knobValues[str(knobName)]
 
@@ -227,7 +226,7 @@ class Node(object):
             return '%i %i 0 0 %i %i %f' % (width, height, width, height, pixelAspect)
         return str(width) + ' ' + str(height)
 
-    def setName(self, name: str):
+    def setName(self, name):
         """ Set the node name. """
         self.setKnob('name', name.replace(' ', '_'))
 

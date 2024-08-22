@@ -31,4 +31,4 @@ def update_plugin_menu(menuname):
     for plugin in pluginList:
         s = plugin.upper()
         p = n.addMenu(s[0])
-        p.addCommand(plugin, "nuke.createNode('"+plugin+"')")
+        p.addCommand(plugin, "with nuke.lastHitGroup():\n  nuke.createNode('"+plugin+"')")

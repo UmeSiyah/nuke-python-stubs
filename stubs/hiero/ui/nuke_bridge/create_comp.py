@@ -989,7 +989,7 @@ class CreateCompActionBase(BuildTrackFromExportTagAction):
             finally:
                 self._progressTask = None
 
-    def getExportPreset(self):
+    def getExportPreset(self, project):
         """ Get the export preset to be used as the basis for creating the comp.  To be implemented by sub-classes. """
         raise NotImplementedError
 

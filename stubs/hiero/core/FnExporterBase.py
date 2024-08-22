@@ -1160,28 +1160,14 @@ class TaskPresetBase(ITaskPreset):
     def isDeprecated(self):
         """Determines whether the preset is deprecated. Any configuration that is deprecated
         should be tested here."""
-        # Get the properties from the export template.
-        # In the cases we're interested in the preset properties should be contained within the layout
-        # as used below, if that is invalid then we return False
-        try:
-            properties = self._properties['exportTemplate'][0][1]._properties
-        except:
-            return False
-
-        if 'file_type' not in properties:
-            return False
-
-        # Add deprecated types here
-        # fileType = properties["file_type"]
-        # if "encoder" in properties[fileType]:
-        #  if properties[fileType]["encoder"] == "mov32":
-        #    return True
-
         return False
 
+    def exportsAllTracks(self):
+        """ Check if this preset can export all tracks, including ones which are empty or not enabled. """
+        return False
+
+
 # Added for legacy support
-
-
 class TaskPreset(TaskPresetBase):
     """Deprecated - Use TaskPresetBase"""
 

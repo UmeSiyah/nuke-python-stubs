@@ -22,13 +22,14 @@ def node_copypaste():
 
 
 def remove_inputs():
-    thisGroup = nuke.thisGroup()
-    if thisGroup is not nuke.root() and (thisGroup.locked() or thisGroup.subgraphLocked()):
-        lockedReason = 'published' if thisGroup.subgraphLocked() else 'locked'
-        raise RuntimeError("Can't remove input because " + thisGroup.name() + ' is ' + lockedReason)
+    for node in nuke.selectedNodes(recursive=True):
+        thisGroup = node.parent()
+        if thisGroup is not nuke.root() and (thisGroup.locked() or thisGroup.subgraphLocked()):
+            lockedReason = 'published' if thisGroup.subgraphLocked() else 'locked'
+            raise RuntimeError("Can't remove input because " +
+                               thisGroup.name() + ' is ' + lockedReason)
 
-    nodes = nuke.selectedNodes()
-    for i in nodes:
+    for i in nuke.selectedNodes(recursive=True):
         for j in range(i.inputs()):
             i.setInput(j, None)
 

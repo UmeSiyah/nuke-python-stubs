@@ -179,6 +179,14 @@ class EndOfStringException(Exception):
     pass
 
 
+class EmptyStackException(Exception):
+    """
+    Exception used internally by the InputReader to signal the end of
+    the input string.
+    """
+    pass
+
+
 class ParseResult(object):
     """
     The class representing the result of a parser run. An object of

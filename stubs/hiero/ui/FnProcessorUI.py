@@ -432,7 +432,8 @@ class ProcessorUIBase(IProcessorUI):
         widget.setLayout(layout)
 
         # Version custom versionSpinBox widget - allows user to specify padding
-        versionToolTip = 'Set the version number for files/scripts which include the {version} token in the path.\nThis box sets the version number string (#) in the form: v#, e.g. 01 > v01.\nUse the +/- to control padding e.g. v01 / v0001.'
+        versionToolTip = 'Set the version number for files/scripts which include the {version} token in the path.\n' \
+            'This box sets the version number string (#) in the form: v#, e.g. 01 > v01.'
 
         versionLayout = QtWidgets.QHBoxLayout()
 

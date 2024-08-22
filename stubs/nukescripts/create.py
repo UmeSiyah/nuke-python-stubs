@@ -5,6 +5,20 @@ import os
 import nuke_internal as nuke
 
 
+def createNodeLocal(node, knobs='', inpanel=True):
+    '''Create a node within the context of the last hit group,
+    normally determined by clicking into a group window or group view.'''
+    with nuke.lastHitGroup():
+        # If nuke.createNode() is called without the optional argument for 'knobs',
+        # 'knobs' is not initialised or parsed. Some plugins (GeoSphere and
+        # GeoCylinder), when created with no 'knobs' argument, error if 'knobs' is
+        # initialised to an empty string. To handle this case, if 'knobs' is the
+        # default empty string, call nuke.createNode() without initialising it.
+        if knobs == '':
+            return nuke.createNode(node, inpanel=inpanel)
+        return nuke.createNode(node, knobs, inpanel)
+
+
 def create_curve():
     root = nuke.toNode('root')
     curve_name = nuke.getInput('New curve name', 'f')

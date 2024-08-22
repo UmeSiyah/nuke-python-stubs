@@ -138,6 +138,7 @@ ICONS = {
     'denoising': 'CatteryDeNoising.png',
     'segmentation': 'CatterySegmentation.png',
     'stylisation': 'CatteryStylisation.png',
+    'inpainting': 'CatteryInPainting.png',
     'other': 'CatteryOther.png',
     'default': 'CatteryDefault.png',
 }

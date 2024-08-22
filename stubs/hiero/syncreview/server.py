@@ -1,13 +1,12 @@
-from PySide2.QtCore import QTimer, QObject
-
 from . import config, messages
 from .log import logDebug, logMessage
 from .client import allowClientTimeout
 from .socket import ServerSocket
+from .eventloop import Timer
 from .connectionstate import ConnectionState
 
 
-class ClientConnection(object):
+class ClientConnection:
     """
     Per-client state for the server
     """
@@ -16,7 +15,7 @@ class ClientConnection(object):
         self.socketId = socketId
         self.allowTimeout = allowTimeout
         if self.allowTimeout:
-            self.heartbeatTimer = QTimer()
+            self.heartbeatTimer = Timer()
             self.heartbeatTimer.setSingleShot(True)
             self.heartbeatTimer.setInterval(config.HEARTBEAT_TIMEOUT)
 
@@ -29,20 +28,19 @@ class ClientConnection(object):
             self.heartbeatTimer.start()
 
 
-class Server(QObject):
+class Server:
     """
     A server listening on connections from clients and routing messages.
     """
 
     def __init__(self):
-        super(Server, self).__init__()
         self._socket = None
         self._clients = {}
         self._exception = None
 
     def bind(self, port):
         self._socket = ServerSocket()
-        self._socket.dataReceived.connect(self._onDataReceived)
+        self._socket.setDataReceivedCallback(self._onDataReceived)
         self._socket.bind('tcp://*:{}'.format(port))
         logDebug('Server: listening on port {}'.format(port))
 
@@ -114,7 +112,7 @@ class Server(QObject):
         connection = ClientConnection(clientSocketId, allowClientTimeout(clientId))
         self._clients[clientId] = connection
         if connection.allowTimeout:
-            connection.heartbeatTimer.timeout.connect(lambda: self._onClientTimeout(clientId))
+            connection.heartbeatTimer.setCallback(lambda: self._onClientTimeout(clientId))
             connection.resetHeartbeatTimer()
 
     def _processInterClientMessage(self, clientId, msg):

@@ -260,6 +260,13 @@ def _calculateScaleHelper(inFormat, outFormat, resizeType, scale):
         raise RuntimeError('unhandled resize type %s', resizeType)
 
 
+def reformatStateToDict(reformatState):
+    """ Helper to convert hiero.core.ReformatState to dict. """
+    return {'type': reformatState.type(),
+            'resize_type': reformatState.resizeType(),
+            'resize_center': reformatState.resizeCenter()}
+
+
 class FormatChange(object):
     """ Helper class for calculating the changes between two formats. """
 
@@ -271,9 +278,7 @@ class FormatChange(object):
         # Allow reformatState to be either a hiero.core.ReformatState object or a
         # dict. If it's the former, put it into a dict.
         if isinstance(reformatState, ReformatState):
-            self.reformatState = {'type': reformatState.type(),
-                                  'resizeType': reformatState.resizeType(),
-                                  'resizeCenter': reformatState.resizeCenter()}
+            self.reformatState = reformatStateToDict(reformatState)
         else:
             self.reformatState = reformatState
 
@@ -281,10 +286,10 @@ class FormatChange(object):
         return self.reformatState['type'] if self.reformatState else None
 
     def reformatStateResizeType(self):
-        return self.reformatState['resizeType'] if self.reformatState else None
+        return self.reformatState['resize_type'] if self.reformatState else None
 
     def reformatStateResizeCenter(self):
-        return self.reformatState['resizeCenter'] if self.reformatState else None
+        return self.reformatState['resize_center'] if self.reformatState else None
 
     def newWidth(self):
         return float(self.newFormat.width())
@@ -460,7 +465,7 @@ def effectInputSourceCoods(effectItem):
     """
     from hiero.core.nuke import ReformatNode
 
-    sequenceFormat = effectItem.sequence().format()
+    sequenceFormat = effectItem.parentSequence().format()
     linkedTrackItem = findLinkedTrackItem(effectItem)
     if not linkedTrackItem:
         return (0, 0, sequenceFormat.width(), sequenceFormat.height())

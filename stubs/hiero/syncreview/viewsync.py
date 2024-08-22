@@ -13,7 +13,8 @@ Classes for syncing the view state between connected clients.
 """
 
 messages.defineMessageType('SyncViewerSequence', ('sequenceAGuid', str), ('sequenceBGuid', str))
-messages.defineMessageType('SyncViewerTime', ('time', int))
+messages.defineMessageType('SyncViewerTime', ('time', int), ('playheadIndex', int))
+messages.defineMessageType('SyncViewerActivePlayhead', ('index', int), ('state', int))
 messages.defineMessageType('SyncViewerPlaybackSpeed', ('speed', int))
 messages.defineMessageType('SyncViewerTargetFrameRate', ('numerator', int), ('denominator', int))
 messages.defineMessageType('SyncViewerShuttleTargetFPS', ('fps', float))
@@ -84,19 +85,21 @@ class SyncViewerInOutTool(SyncViewerSubTool):
         if viewer:
             sequence = viewer.player().sequence()
             if sequence and sequence.inOutEnabled():
-
+                activePlayheadIndex = sequence.activePlayhead()
                 # Someone made the unfortunate decision that trying to get the sequence
                 # in or out time when they're not set should cause an exception.
                 # Handle this and return an invalid value
+
                 def _getTime(func):
                     try:
-                        return func()
+                        return func(activePlayheadIndex)
                     except:
                         return -1
 
                 inOutMsg = messages.InOutChange(sequenceGuid=sequence.guid(),
-                                                inTime=_getTime(sequence.inTime),
-                                                outTime=_getTime(sequence.outTime))
+                                                inTime=_getTime(sequence.playheadInTime),
+                                                outTime=_getTime(sequence.playheadOutTime),
+                                                playheadIndex=activePlayheadIndex)
                 self._syncViewerTool.sendMessage(inOutMsg)
 
 
@@ -201,6 +204,38 @@ class SyncViewerGainTool(SyncViewerSubTool):
         viewer = self.viewer()
         if viewer:
             viewer.setGain(gain)
+
+
+messages.defineMessageType('SyncViewerSaturation', ('saturation', float))
+
+
+class SyncViewerSaturationTool(SyncViewerSubTool):
+    """ Tool for syncing the saturation in the viewer """
+
+    def __init__(self, syncViewerTool):
+        super(SyncViewerSaturationTool, self).__init__(syncViewerTool)
+        self.messageDispatcher._registerCallback(
+            messages.SyncViewerSaturation, self._onRemoteSaturationChanged)
+
+    def viewerChanged(self, viewer, oldViewer):
+        if oldViewer:
+            oldViewer.saturationChanged.disconnect(self.pushState)
+        if viewer:
+            viewer.saturationChanged.connect(self.pushState)
+
+    @localCallback
+    def pushState(self):
+        viewer = self.viewer()
+        if viewer:
+            saturation = viewer.saturation()
+            msg = messages.SyncViewerSaturation(saturation=saturation)
+            self._syncViewerTool.sendMessage(msg)
+
+    @remoteCallback
+    def _onRemoteSaturationChanged(self, msg):
+        viewer = self.viewer()
+        if viewer:
+            viewer.setSaturation(msg.saturation)
 
 
 messages.defineMessageType('SyncViewerCompareMode', ('mode', str))
@@ -666,6 +701,7 @@ class SyncViewerTool(SyncTool):
             SyncViewerPlaybackModeTool(self),
             SyncViewerGammaTool(self),
             SyncViewerGainTool(self),
+            SyncViewerSaturationTool(self),
             SyncViewerCompareModeTool(self),
             SyncViewerLayoutModeTool(self),
             SyncViewerBufferTool(self),
@@ -681,6 +717,8 @@ class SyncViewerTool(SyncTool):
 
         self.messageDispatcher._registerCallback(messages.SyncViewerSequence, self._onSyncSequence)
         self.messageDispatcher._registerCallback(messages.SyncViewerTime, self._onSyncTime)
+        self.messageDispatcher._registerCallback(
+            messages.SyncViewerActivePlayhead, self._onSyncActivePlayhead)
         self.messageDispatcher._registerCallback(
             messages.SyncViewerPlaybackSpeed, self._onSyncPlaybackSpeed)
         self.messageDispatcher._registerCallback(
@@ -770,6 +808,11 @@ class SyncViewerTool(SyncTool):
         be changed while the viewer is being stopped, so if in this state we need
         to schedule a time change after recieving notification the viewer has stopped
         """
+        activeSequence = self.currentViewer.player(0).sequence()
+        activePlayheadIndex = activeSequence.activePlayhead() if activeSequence else -1
+        if msg.playheadIndex != activePlayheadIndex:
+            return
+
         self.currentTime = msg.time
         if self.syncState == SyncViewerTool.SYNC_NONE:
             self.syncState = SyncViewerTool.SYNC_TIME
@@ -786,9 +829,27 @@ class SyncViewerTool(SyncTool):
                                    (isPlaying or self.currentTime != time))
         if shouldSync:
             self.currentTime = time
-            msg = messages.SyncViewerTime(time=time)
+            activeSequence = self.currentViewer.player(0).sequence()
+            activePlayheadIndex = activeSequence.activePlayhead() if activeSequence else -1
+            msg = messages.SyncViewerTime(time=time, playheadIndex=activePlayheadIndex)
             self.sendMessage(msg)
         self.syncState = SyncViewerTool.SYNC_NONE
+
+    def _onSyncActivePlayhead(self, msg):
+        self._messageSendBlockCounter += 1
+        if msg.state == hiero.core.SequenceBase.ePlayheadActive:
+            self.currentViewer.player(0).sequence().setActivePlayhead(msg.index)
+        elif msg.state != hiero.core.SequenceBase.ePlayheadInvalid:
+            isEnabled = msg.state == hiero.core.SequenceBase.ePlayheadEnabled
+            self.currentViewer.player(0).sequence().setPlayheadEnabled(msg.index, isEnabled)
+        self._messageSendBlockCounter -= 1
+
+    def _onActivePlayheadChanged(self, index, state, forceSync=False):
+        """
+        Callback when the playhead state changes. Send a message to sync other participants.
+        """
+        msg = messages.SyncViewerActivePlayhead(index=index, state=state)
+        self.sendMessage(msg)
 
     def _onSyncPlaybackSpeed(self, msg):
         """ Handle a message to set the playback speed in the viewer. Note that this
@@ -800,10 +861,12 @@ class SyncViewerTool(SyncTool):
             self.currentPlaybackSpeed = msg.speed
             self.currentViewer.setPlaybackSpeed(msg.speed)
 
+    @remoteCallback
     def _onSyncTargetFrameRate(self, msg):
         """ Handle a message to change the viewer target frame rate. """
         self.currentViewer.syncTargetFrameRate(msg.numerator, msg.denominator)
 
+    @remoteCallback
     def _onSyncViewerShuttleTargetFPS(self, msg):
         self.currentViewer.syncShuttleTargetFPS(msg.fps)
 
@@ -831,11 +894,13 @@ class SyncViewerTool(SyncTool):
                 self.pendingSyncTime = False
                 self.currentViewer.setTime(self.currentTime)
 
+    @localCallback
     def _onTargetFrameRateChanged(self, numerator, denominator):
         """ Callback executed when the target frame rate of the current viewer changes. """
         msg = messages.SyncViewerTargetFrameRate(numerator=numerator, denominator=denominator)
         self.sendMessage(msg)
 
+    @localCallback
     def _onShuttleTargetFPS(self, fps):
         self.sendMessage(messages.SyncViewerShuttleTargetFPS(fps=fps))
 
@@ -885,6 +950,7 @@ class SyncViewerTool(SyncTool):
             try:
                 oldViewer.sequenceChanged.disconnect(self._onSequenceChanged)
                 oldViewer.timeChanged.disconnect(self._onTimeChanged)
+                oldViewer.playheadStateChanged.disconnect(self._onActivePlayheadChanged)
                 oldViewer.playbackSpeedChanged.disconnect(self._onPlaybackSpeedChanged)
                 oldViewer.targetFrameRateChanged.disconnect(self._onTargetFrameRateChanged)
                 oldViewer.shuttleTargetFPSChanged.disconnect(self._onShuttleTargetFPS)
@@ -903,6 +969,7 @@ class SyncViewerTool(SyncTool):
         if self.currentViewer:
             self.currentViewer.sequenceChanged.connect(self._onSequenceChanged)
             self.currentViewer.timeChanged.connect(self._onTimeChanged)
+            self.currentViewer.playheadStateChanged.connect(self._onActivePlayheadChanged)
             self.currentViewer.playbackSpeedChanged.connect(self._onPlaybackSpeedChanged)
             self.currentViewer.targetFrameRateChanged.connect(self._onTargetFrameRateChanged)
             self.currentViewer.shuttleTargetFPSChanged.connect(self._onShuttleTargetFPS)

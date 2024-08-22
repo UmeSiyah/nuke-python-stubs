@@ -1,37 +1,44 @@
 import random
+import asyncio
+import collections
 from datetime import datetime
 
 import foundry.zmq as zmq
-from PySide2.QtCore import QTimer, Signal, QObject, QSocketNotifier
 from hiero.core.util import asBytes
 
-from . import config
 from .log import logDebug
 
 
-class Socket(QObject):
+class Socket:
     """
-    Class which wraps around a zmq socket and allows for integration into a
-    Qt event loop with QSocketNotifier.
+    Class which wraps around a zmq socket and allows for integration into an asyncio event loop.
     """
 
-    def __init__(self, parent=None):
-        super(Socket, self).__init__(parent)
+    def __init__(self):
         self._socket = None
-        self._readNotifier = None
-        self._pollTimer = None
+        self._dataReceivedCallback = None
+        self._eventLoop = asyncio.get_event_loop()
+        self._sendQueue = collections.deque()
 
     def close(self):
         """ Close the socket and reset its state """
         if not self._socket:
             return
-        self._pollTimer.stop()
-        self._pollTimer.timeout.disconnect(self._pollSocket)
-        self._pollTimer = None
-        self._readNotifier.activated.disconnect(self._onReadActivated)
-        self._readNotifier = None
-        self._socket.close()
+        socket = self._socket
         self._socket = None
+        self._eventLoop.remove_writer(socket.FD)
+        self._eventLoop.remove_reader(socket.FD)
+
+        # Send any remaining messages left in the queue
+        while socket.EVENTS & zmq.POLLOUT and self._sendQueue:
+            data = self._sendQueue.popleft()
+            socket.send_multipart(data)
+
+        while self._sendQueue:
+            data = self._sendQueue.popleft()
+            logDebug(f"Socket.close failed to send message: {data[0]}")
+
+        socket.close()
 
     def socketId(self):
         """ Get the zmq socket id. If the socket was not yet created returns an
@@ -41,12 +48,6 @@ class Socket(QObject):
 
     def _createSocket(self, type_):
         """ Create socket with specified type.
-        Creates a QSocketNotifier which emits signals when there is data ready to read.
-        Unfortunately this is not entirely reliable. When a lot of user interaction
-        is happening and lots of messages are being sent (such as when moving a
-        slider on a soft effect knob), the notifier can get into a state where the
-        activated() signal stops being emitted, which leads to lost messages and timeouts.
-        Polling the socket for read data on a timer seems to fix this.
         """
         self._socket = zmq.Context.instance().socket(type_)
         # The last part of the ID is the time elapsed since the day started in UTC.
@@ -55,55 +56,42 @@ class Socket(QObject):
                                  datetime.utcnow().strftime('%H:%M:%S.%f')[:-3])
         self._socket.setsockopt_string(zmq.IDENTITY, strId)
 
-        # Create the socket notifier
-        fd = self._socket.getsockopt(zmq.FD)
-        self._readNotifier = QSocketNotifier(fd, QSocketNotifier.Read, self)
-        self._readNotifier.activated.connect(self._onReadActivated)
+        self._eventLoop.add_reader(self._socket.FD, self._handleSocketEvents)
+        self._eventLoop.add_writer(self._socket.FD, self._handleSocketEvents)
 
-        # Create a timer for polling the socket
-        self._pollTimer = QTimer(self)
-        self._pollTimer.setObjectName('SyncSocket.{}'.format(type_))
-        self._pollTimer.setInterval(config.SOCKET_POLL_INTERVAL)
-        self._pollTimer.timeout.connect(self._pollSocket)
-        self._pollTimer.start()
-
-    def _onReadActivated(self):
-        """ Callback from socket notifier. """
-        self._pollSocket()
-
-    def _pollSocket(self):
-        """ Polls the socket, and calls self._onDataReceived() with all the data read
-        (which will be a list of a list of frames). This should be implemented by sub-classes.
-        """
+    def _handleSocketEvents(self):
         if not self._socket:
             return
 
-        logDebug('{}._pollSocket {}'.format(type(self), self.socketId()))
+        if self._socket.EVENTS & zmq.POLLIN:
+            try:
+                data = self._socket.recv_multipart(zmq.NOBLOCK)
+                self._onDataReceived(data)
+            except zmq.ZMQError as e:
+                if e.errno == zmq.EAGAIN:
+                    pass
+            if not self._socket:
+                return
 
-        # Disable the notifier while reading data to avoid recursion
-        self._readNotifier.setEnabled(False)
+        if self._socket.EVENTS & zmq.POLLOUT and self._sendQueue:
+            data = self._sendQueue.popleft()
+            self._socket.send_multipart(data)
+            if not self._socket:
+                return
 
-        # Read all available data into a list, then send it to _onDataReceived
-        data = []
-        while self._isReadAvailable():
-            data.append(self._socket.recv_multipart())
-        if data:
-            self._onDataReceived(data)
-
-        # Receiving the data can result in the socket being closed, check the notifier
-        # still exists.
-        if self._readNotifier:
-            self._readNotifier.setEnabled(True)
-
-    def _isReadAvailable(self):
-        """ Check if there's a message ready to read on the socket.
-        """
-        return self._socket and (self._socket.getsockopt(zmq.EVENTS) & zmq.POLLIN)
+        # Trigger another callback if there is more data to handle
+        if self._socket.EVENTS & (zmq.POLLIN | zmq.POLLOUT):
+            self._eventLoop.call_soon(self._handleSocketEvents)
 
     def _send(self, data):
         """ Send a list of data frames to the ZMQ socket.
         """
-        self._socket.send_multipart(data)
+        if not self._socket:
+            return
+        self._sendQueue.append(data)
+
+    def setDataReceivedCallback(self, callback):
+        self._dataReceivedCallback = callback
 
 
 class ServerSocket(Socket):
@@ -112,11 +100,8 @@ class ServerSocket(Socket):
     to multiple clients.
     """
 
-    # Signal emitted when a message is available, containing (sender_id, data)
-    dataReceived = Signal(object, object)
-
-    def __init__(self, parent=None):
-        super(ServerSocket, self).__init__(parent)
+    def __init__(self):
+        super(ServerSocket, self).__init__()
 
     def bind(self, url):
         """ Create the socket and bind on the specified url.
@@ -125,11 +110,11 @@ class ServerSocket(Socket):
         self._socket.bind(url)
 
     def _onDataReceived(self, data):
-        # Emit the dataReceived signal for each message received
-        for msgData in data:
-            sender = msgData[0]
-            payload = msgData[2:]  # Strip the sender and empty frame
-            self.dataReceived.emit(sender, payload)
+        # Call the dataReceived callback for each message received
+        sender = data[0]
+        payload = data[2:]  # Strip the sender and empty frame
+        if self._dataReceivedCallback:
+            self._dataReceivedCallback(sender, payload)
 
     def send(self, receiver, frames):
         """ Send message frames to a given receiver. """
@@ -144,11 +129,8 @@ class ClientSocket(Socket):
     with a server.
     """
 
-    # Signal emitted when a message is available, containing the message data
-    dataReceived = Signal(object)
-
-    def __init__(self, parent=None):
-        super(ClientSocket, self).__init__(parent)
+    def __init__(self):
+        super(ClientSocket, self).__init__()
 
     def connectToHost(self, url):
         self._createSocket(zmq.DEALER)
@@ -158,8 +140,9 @@ class ClientSocket(Socket):
         # Emit all the received data, which may contain multiple messages
         # Our messages follow the zmq REQ/REP pattern of each address being followed by an empty frame.
         # DEALER sockets (unlike REQ) don't remove this when you receive, so we need to do it here.
-        data = [d[1:] for d in data]
-        self.dataReceived.emit(data)
+        data = data[1:]
+        if self._dataReceivedCallback:
+            self._dataReceivedCallback(data)
 
     def send(self, frames):
         logDebug('{}.send {}'.format(type(self), frames[0]))

@@ -98,6 +98,7 @@ def addNewScriptVersionToBinRec(bin, previousFileName, newFileName):
     for subbin in bin.bins():
         if addNewScriptVersionToBinRec(subbin, previousFileName, newFileName):
             return True
+    return False
 
 
 def addNewScriptVersionToBin(previousFileName, newFileName):

@@ -123,7 +123,7 @@ def sgVersionFind(shotcode, projectname, sgTaskName, sgVersion):
         shot = sgShotFind(shotcode, projectname)
         filters = [['entity', 'is', {'type': 'Shot', 'id': shot['id']}]]
         for v in sg.find('Version', filters=filters, fields=['code', 'id']):
-            clipVersion = int(re.search('_v(\d{2,5})', a).group(1))
+            clipVersion = int(re.search('_v(\d{2,5})', v).group(1))
             if sgVersion == clipVersion and sgTaskName in str(v['code']):
                 result = v
     if result != -999:

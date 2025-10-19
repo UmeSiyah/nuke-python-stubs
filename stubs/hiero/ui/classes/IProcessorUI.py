@@ -44,7 +44,7 @@ class IProcessorUI:
         """
         ...
 
-    def displayName(self) -> str:
+    def displayName(self,) -> str:
         """
         self.displayName() -> called by Hiero to get the Display name of a task for displaying in UI.
 
@@ -52,7 +52,7 @@ class IProcessorUI:
         """
         ...
 
-    def populateUI(self, processorUIWidget: PySide2.QtWidgets.QWidget, taskUIWidget: PySide2.QtWidgets.QWidget, items: typing.List[core.ItemWrapper]) -> None:
+    def populateUI(self, ) -> IProcessorUI:
         """
         self.populateUI() -> called by Hiero to allow the IProcessorUI to populate a QWidget with the ui widgets neccessary to reflect the current preset.
         The EditMode is used to instruct the UI generation code to build in ReadOnly mode
@@ -64,7 +64,7 @@ class IProcessorUI:
         """
         ...
 
-    def preset(self) -> hiero.core.ITaskPreset:
+    def preset(self,) -> ITaskPreset:
         """
         self.preset() -> called by Hiero to get the TaskPreset which this TaskUI is currently reflecting.
 
@@ -72,19 +72,19 @@ class IProcessorUI:
         """
         ...
 
-    def refreshContent(self) -> None:
+    def refreshContent(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def savePreset(self) -> None:
+    def savePreset(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setPreset(self, preset: hiero.core.ITaskPreset) -> None:
+    def setPreset(self, ) -> TaskPreset:
         """
         self.setPreset() -> called by Hiero to set the TaskPreset which this TaskUI will reflect.
 
@@ -92,7 +92,7 @@ class IProcessorUI:
         """
         ...
 
-    def toolTip(self) -> str:
+    def toolTip(self,) -> str:
         """
         self.toolTip() -> called by Hiero to get the desciption of a task for displaying in UI as a tooltip.
 
@@ -100,7 +100,7 @@ class IProcessorUI:
         """
         ...
 
-    def validate(self, selection: typing.List[core.ItemWrapper]) -> bool:
+    def validate(self,) -> bool:
         """
         self.validate() -> called by Hiero to get .
 
@@ -109,13 +109,13 @@ class IProcessorUI:
         """
         ...
 
-    def validateSelection(self, selection: typing.List[core.ItemWrapper]) -> bool:
+    def validateSelection(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

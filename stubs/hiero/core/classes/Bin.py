@@ -24,7 +24,7 @@ class Bin:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -90,7 +90,7 @@ class Bin:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
@@ -114,7 +114,7 @@ class Bin:
         """
         ...
 
-    def addItem(self, *args: typing.Any, **kwargs: typing.Any) -> Any:
+    def addItem(self, object: Bin) -> Any:
         """
         self.addItem(object) -> adds the item to the bin object.
 
@@ -131,7 +131,7 @@ class Bin:
         """
         ...
 
-    def clips(self) -> tuple[hiero.core.BinItem, ...]:
+    def clips(self,) -> tuple:
         """
         self.clips() -> returns a tuple with all of the BinItem's containing clips contained by this bin.
 
@@ -139,7 +139,7 @@ class Bin:
         """
         ...
 
-    def color(self) -> PySide2.QtGui.QColor:
+    def color(self,) -> Any:
         """
         self.color() -> Get the bin display color, or an invalid QColor if not set.
 
@@ -157,13 +157,13 @@ class Bin:
         """
         ...
 
-    def deserializeChildItem(self, data: str, index: int) -> None:
+    def deserializeChildItem(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def displayColor(self) -> PySide2.QtGui.QColor:
+    def displayColor(self,) -> Any:
         """
         self.displayColor() -> Returns the bin's color if one is set, otherwise returns the preference color associated with this bin.
 
@@ -171,13 +171,13 @@ class Bin:
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def importFolder(self, arg__1: str) -> hiero.core.Bin:
+    def importFolder(self, path: str) -> str:
         """
         self.importFolder(path) -> imports the media in the path into this bin (needs a project).
 
@@ -186,7 +186,7 @@ class Bin:
         """
         ...
 
-    def importSequence(self, filename: str, timeBase: hiero.core.TimeBase = None, frameRate: float = 0.0, dropFrame: bool = False) -> hiero.core.Sequence:
+    def importSequence(self, filename: str, timeBase: Optional[hiero.core.TimeBase] = None, frameRate: float = 0.0, dropFrame: bool = False) -> hiero.core.Sequence:
         """
         self.importSequence(filename, timeBase=None, frameRate=None, dropFrame=False) -> imports the sequence stored in filename into this bin (needs a project).  If the timebase/frame rate for the sequence isnot specified, the project defaults will be used.
 
@@ -197,7 +197,7 @@ class Bin:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the object is invalid.
 
@@ -205,7 +205,7 @@ class Bin:
         """
         ...
 
-    def items(self, *args: typing.Any, **kwargs: typing.Any) -> tuple[hiero.core.BinItem, ...]:
+    def items(self, *args, **kwargs) -> tuple[hiero.core.BinItem, ...]:
         """
         self.items(typeFilter) -> returns a tuple with all of the objects contained by this bin, filtered by the typeFilter argument, if supplied.
 
@@ -220,7 +220,7 @@ class Bin:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> Union[True, False]:
         """
         self.name() -> returns the name of the bin.
 
@@ -228,7 +228,7 @@ class Bin:
         """
         ...
 
-    def numChildren(self) -> int:
+    def numChildren(self,) -> int:
         """
         self.numChildren() -> returns the number of child objects contained by this bin.
 
@@ -236,7 +236,7 @@ class Bin:
         """
         ...
 
-    def parentBin(self) -> object:
+    def parentBin(self,) -> Bin:
         """
         self.parentBin() -> returns the bin that contains this object.
 
@@ -244,7 +244,7 @@ class Bin:
         """
         ...
 
-    def project(self) -> object:
+    def project(self,) -> Project:
         """
         self.project() -> returns the Project object that this is attached to, or None if the object is not attached to a project.
 
@@ -252,7 +252,7 @@ class Bin:
         """
         ...
 
-    def reconnectMedia(self, path: str) -> None:
+    def reconnectMedia(self, path: str) -> str:
         """
         self.reconnectMedia(path) -> For any Clips or Sequences in the bin, reconnects media found in the specified path.
 
@@ -260,7 +260,7 @@ class Bin:
         """
         ...
 
-    def removeItem(self, *args: typing.Any, **kwargs: typing.Any) -> Any:
+    def removeItem(self, object: Bin) -> Any:
         """
         self.removeItem(object) -> removes the item from the bin object. If the object is not a child item of the bin object, throws an exception.
 
@@ -268,7 +268,7 @@ class Bin:
         """
         ...
 
-    def sequences(self) -> object:
+    def sequences(self,) -> tuple:
         """
         self.sequences() -> returns a tuple with all of the BinItem's containing sequences contained by this bin.
 
@@ -276,13 +276,13 @@ class Bin:
         """
         ...
 
-    def serialize(self) -> str:
+    def serialize(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setColor(self, arg__1: PySide2.QtGui.QColor) -> None:
+    def setColor(self, color: int) -> Any:
         """
         self.setColor(color) -> Set the bin display color.
 
@@ -290,19 +290,19 @@ class Bin:
         """
         ...
 
-    def setName(self, name: str) -> None:
+    def setName(self, name) -> str:
         """
         self.setName(name) -> set the name of the bin.
         """
         ...
 
-    def syncName(self, name: str) -> None:
+    def syncName(self, name) -> str:
         """
         self.syncName(name) -> set the name of the bin without sending additional notifications.
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -310,7 +310,7 @@ class Bin:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

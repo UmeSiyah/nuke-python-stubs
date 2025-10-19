@@ -24,7 +24,7 @@ class TrackItemBase:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -90,7 +90,7 @@ class TrackItemBase:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
@@ -107,13 +107,13 @@ class TrackItemBase:
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> Any:
         """
         self.copy() -> returns a deep copy of this object.
         """
         ...
 
-    def duration(self) -> int:
+    def duration(self,) -> int | float:
         """
         self.duration() -> returns the timeline duration value for the item.
 
@@ -121,13 +121,13 @@ class TrackItemBase:
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def isEnabled(self) -> bool:
+    def isEnabled(self,) -> Union[True, False]:
         """
         self.isEnabled() -> returns True if the track item is enabled.
 
@@ -135,7 +135,7 @@ class TrackItemBase:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the track item is invalid.
 
@@ -143,7 +143,7 @@ class TrackItemBase:
         """
         ...
 
-    def linkedItems(self) -> object:
+    def linkedItems(self,) -> tuple:
         """
         self.linkedItems() -> returns a tuple of track item objects linked to this one.
 
@@ -151,7 +151,7 @@ class TrackItemBase:
         """
         ...
 
-    def move(self, frames: int) -> None:
+    def move(self, time: int) -> Iterable:
         """
         self.move(time) -> moves the item in the sequence. This will keep the duration.
 
@@ -159,7 +159,7 @@ class TrackItemBase:
         """
         ...
 
-    def moveTrackItems(self, trackItems: typing.List[core.TrackItemBase], frames: int) -> None:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -182,7 +182,7 @@ class TrackItemBase:
         """
         ...
 
-    def parent(self) -> object:
+    def parent(self,) -> AudioTrack:
         """
         self.parent() -> returns the AudioTrack or VideoTrack that contains this item.
 
@@ -190,13 +190,13 @@ class TrackItemBase:
         """
         ...
 
-    def parentSequence(self) -> object:
+    def parentSequence(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def parentTrack(self) -> object:
+    def parentTrack(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
@@ -210,7 +210,7 @@ class TrackItemBase:
         """
         ...
 
-    def sequence(self) -> hiero.core.Sequence:
+    def sequence(self,) -> Project:
         """
         self.sequence() -> returns the Sequence object that this is attached to, or None if the object is not attached to a project.
 
@@ -218,15 +218,15 @@ class TrackItemBase:
         """
         ...
 
-    def setEnabled(self, enable: bool) -> None:
+    def setEnabled(self, enabled) -> Union[None, None]:
         """
         self.setEnabled(enabled) -> enables or disables the track item.
 
-        @return: True or False
+        @param enabled: Enabled state
         """
         ...
 
-    def setTimelineIn(self, time: int) -> None:
+    def setTimelineIn(self, inTime: int) -> int | float:
         """
         self.setTimelineIn(inTime) -> sets the timeline in value. Shrinks or grows the timeline duration, as appropriate.
 
@@ -234,7 +234,7 @@ class TrackItemBase:
         """
         ...
 
-    def setTimelineOut(self, time: int) -> None:
+    def setTimelineOut(self, outTime: int) -> int | float:
         """
         self.setTimelineOut(outTime) -> sets the timeline out value. Shrinks or grows the timeline duration, as appropriate.
 
@@ -242,7 +242,7 @@ class TrackItemBase:
         """
         ...
 
-    def timelineIn(self) -> int:
+    def timelineIn(self,) -> int | float:
         """
         self.timelineIn() -> returns the timeline in value for the track item.
 
@@ -250,15 +250,15 @@ class TrackItemBase:
         """
         ...
 
-    def timelineOut(self) -> int:
+    def timelineOut(self,) -> int | float:
         """
-        self.timelineOut() -> returns the timeline in value for the track item.
+        self.timelineOut() -> returns the timeline out value for the track item.
 
         @return: frames
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -266,7 +266,7 @@ class TrackItemBase:
         """
         ...
 
-    def trimIn(self, t: int) -> None:
+    def trimIn(self, time: int) -> Any:
         """
         self.trimIn(time) -> trims the left end of the item. This will grow or shrink the duration and the sourceDuration, but keep the playback speed.
 
@@ -274,7 +274,7 @@ class TrackItemBase:
         """
         ...
 
-    def trimOut(self, t: int) -> None:
+    def trimOut(self, time: int) -> Any:
         """
         self.trimOut(time) -> trims the right end of the item. This will grow or shrink the duration and the sourceDuration, but keep the playback speed.
 
@@ -282,7 +282,7 @@ class TrackItemBase:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

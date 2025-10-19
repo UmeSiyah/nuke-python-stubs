@@ -44,7 +44,7 @@ class IExporterUIRegistry:
         """
         ...
 
-    def aquireProcessorUI(self, preset: hiero.core.ITaskPreset) -> hiero.ui.IProcessorUI:
+    def aquireProcessorUI(self, ) -> TaskPreset:
         """
         self.aquireProcessorUI() -> Called from Hiero Application to aquire a reference to an instance of the ProcessorUI object related to the specified hiero.core.TaskPreset.
 
@@ -52,49 +52,49 @@ class IExporterUIRegistry:
         """
         ...
 
-    def getProcessorUI(self, index: int) -> hiero.ui.IProcessorUI:
+    def getProcessorUI(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def getProcessorUIForPreset(self, preset: hiero.core.ITaskPreset) -> hiero.ui.IProcessorUI:
+    def getProcessorUIForPreset(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def getTaskUI(self, index: int) -> hiero.ui.ITaskUI:
+    def getTaskUI(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def getTaskUIForPreset(self, preset: hiero.core.ITaskPreset) -> hiero.ui.ITaskUI:
+    def getTaskUIForPreset(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def numProcessorUIs(self) -> int:
+    def numProcessorUIs(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def numTaskUIs(self) -> int:
+    def numTaskUIs(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def registerme(self) -> None:
+    def registerme(self,) -> TaskUIRegistry:
         """
         self.registerme() -> Called from python implimentation of TaskUIRegistry to register instance as the Application TaskUI Registry.
         """
         ...
 
-    def releaseProcessorUI(self, processorUI: hiero.ui.IProcessorUI) -> None:
+    def releaseProcessorUI(self, ) -> IProcessorUI:
         """
         self.releaseProcessorUI() -> Called from Hiero Application to release the reference to a IProcessorUI object previously aquired using IExporterUIRegistry.aquireProcessorUI.
 
@@ -102,7 +102,7 @@ class IExporterUIRegistry:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

@@ -42,73 +42,73 @@ class ExportStructureViewer(QWidget):
         """
         ...
 
-    def addFile(self) -> None:
+    def addFile(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def addFolder(self) -> None:
+    def addFolder(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def allowNodeDelete(self) -> bool:
+    def allowNodeDelete(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def clearResolveEntries(self) -> None:
+    def clearResolveEntries(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def copy(self) -> None:
+    def copy(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def cut(self) -> None:
+    def cut(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def exportRootChanged(self) -> None:
+    def exportRootChanged(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def filenameField(self) -> PySide2.QtWidgets.QWidget:
+    def filenameField(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def getWidget(self) -> PySide2.QtWidgets.QWidget:
+    def getWidget(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def handleSelectionChanged(self, selection: PySide2.QtCore.QItemSelection) -> None:
+    def handleSelectionChanged(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def initUI(self) -> None:
+    def initUI(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def itemTypes(self) -> hiero.core.ITaskPreset.ItemTypes:
+    def itemTypes(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
@@ -120,85 +120,85 @@ class ExportStructureViewer(QWidget):
         """
         ...
 
-    def paste(self) -> None:
+    def paste(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def refresh(self) -> None:
+    def refresh(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def refreshContentField(self, element: hiero.core.IExportStructureElement) -> None:
+    def refreshContentField(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def removeNode(self) -> None:
+    def removeNode(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def selectFileIfOnlyOne(self) -> None:
+    def selectFileIfOnlyOne(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def selectFirstFile(self) -> None:
+    def selectFirstFile(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def selection(self) -> hiero.core.IExportStructureElement:
+    def selection(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def selectionAnchor(self) -> PySide2.QtCore.QPoint:
+    def selectionAnchor(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def selectionRect(self) -> PySide2.QtCore.QRect:
+    def selectionRect(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setAllowNodeDelete(self, allow: bool) -> None:
+    def setAllowNodeDelete(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setExportStructure(self, exportStructure: hiero.core.IExportStructure) -> None:
+    def setExportStructure(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setItemTypes(self, types: hiero.core.ITaskPreset.ItemTypes) -> None:
+    def setItemTypes(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setProject(self, project: hiero.core.Project) -> None:
+    def setProject(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setResolveEntry(self, name: str, value: str, description: str) -> None:
+    def setResolveEntry(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

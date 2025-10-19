@@ -24,7 +24,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -48,7 +48,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
@@ -66,7 +66,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def addSubTrackItem(self, subTrackItem: hiero.core.SubTrackItem, subTrackIndex: int) -> hiero.core.SubTrackItem:
+    def addSubTrackItem(self, subTrackItem: SubTrackItem, subTrackIndex: int) -> int:
         """
         self.addSubTrackItem(subTrackItem, subTrackIndex) -> Add a subtrack item to the track on the given sub-track index.
         This method will cut or delete sub-track items that overlap with the one being added.
@@ -74,14 +74,6 @@ class VideoTrack(TrackBase):
         @param subTrackItem: a hiero.core.SubTrackItem object to add.
         @param subTrackIndex: the index of the sub-track to add to.
         @return: the added item
-        """
-        ...
-
-    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
-        """
-        self.addTag(tag) -> adds a tag to the video track item.
-
-        @param tag: the hiero.core.Tag to add to the video track.
         """
         ...
 
@@ -98,7 +90,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def blendMode(self) -> str:
+    def blendMode(self,) -> str:
         """
         self.blendMode() -> returns a string representing the blend-mode as it appears in the Nuke Merge Node, if the VideoTrack object has blending enabled.
 
@@ -117,7 +109,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> VideoTrack:
         """
         self.copy() -> returns a deep copy of this object.
 
@@ -125,7 +117,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def createTrackItem(self, name: str) -> hiero.core.TrackItem:
+    def createTrackItem(self, name: str) -> TrackItem:
         """
         self.createTrackItem(name) -> creates a new track item.
 
@@ -134,15 +126,15 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def isBlendEnabled(self) -> bool:
+    def isBlendEnabled(self,) -> Union[True, False]:
         """
-        self.isEnabled() -> returns True if the VideoTrack object has blending enabled.
+        self.isBlendEnabled() -> returns True if the VideoTrack object has blending enabled.
 
         @return: True or False
         """
         ...
 
-    def isBlendMaskEnabled(self) -> bool:
+    def isBlendMaskEnabled(self,) -> Union[True, False]:
         """
         self.isBlendMaskEnabled() -> returns True if the VideoTrack object has blend-masking enabled.
 
@@ -158,7 +150,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def parent(self) -> object:
+    def parent(self,) -> Iterable:
         """
         self.parent() -> returns the sequence that contains this track.
 
@@ -166,7 +158,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def removeSubTrackItem(self, subTrackItem: hiero.core.SubTrackItem, option: int = 'eRemoveLinkedItems') -> None:
+    def removeSubTrackItem(self, subTrackItem: SubTrackItem, option=None) -> Any:
         """
         self.removeSubTrackItem(subTrackItem, option=eRemoveLinkedItems) -> removes a sub-track item from this track.
 
@@ -175,57 +167,49 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def removeTag(self, tag: hiero.core.Tag) -> None:
-        """
-        self.removeTag(tag) -> removes the tag from the video track.
-
-        @param tag: hiero.core.Tag object
-        """
-        ...
-
-    def setAllViews(self) -> None:
+    def setAllViews(self,) -> str:
         """
         self.setAllViews() -> assigns all views to a VideoTrack in the form of an empty string since that represents all views.
         An error is raised if the track doesn't have a project with multiple views.
         """
         ...
 
-    def setBlendEnabled(self, blendEnabled: bool) -> None:
+    def setBlendEnabled(self,) -> Union[VideoTrack, VideoTrack]:
         """
-        self.setEnabled() -> enables or disables blending on the VideoTrack, if it is not locked or restricted.
+        self.setBlendEnabled() -> enables or disables blending on the VideoTrack, if it is not locked or restricted.
         An error is raised if the track is locked or restricted.
         """
         ...
 
-    def setBlendMaskEnabled(self, enabled: bool) -> None:
+    def setBlendMaskEnabled(self,) -> Any:
         """
         self.setBlendMaskEnabled() -> sets whether blend-masking is enabled or not, if it is not locked or restricted.
         An error is raised if the track is locked or restricted.
         """
         ...
 
-    def setBlendMode(self, blendMode: str) -> None:
+    def setBlendMode(self,) -> Node:
         """
         self.setBlendMode() -> sets the blend mode to be used, if it is not locked or restricted. Expected strings are NUKE Merge Node operations.
         An error is raised if the track is locked or restricted.
         """
         ...
 
-    def setView(self, view: str) -> None:
+    def setView(self,) -> VideoTrack:
         """
         self.setView() -> assigns a view on a VideoTrack.
         An error is raised if the track doesn't have a project with multiple views, or the specified view is invalid.
         """
         ...
 
-    def splitViewsToTracks(self) -> None:
+    def splitViewsToTracks(self,) -> int | float:
         """
         self.splitViewsToTracks() -> split the views to separate tracks on the Timeline.
         An error is raised if the track doesn't have a project with multiple views.
         """
         ...
 
-    def subTrackItems(self) -> object:
+    def subTrackItems(self,) -> tuple:
         """
         self.subTrackItems() -> returns a tuple with an entry for each sub track in this track, each entry being a tuple of items
         on the corresponding sub track.
@@ -234,7 +218,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -242,13 +226,13 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def trackIndex(self) -> int:
+    def trackIndex(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def view(self) -> str:
+    def view(self,) -> str:
         """
         self.view() -> returns a string representing the view assigned to the VideoTrack. An empty string is returned if the track has multiple views assigned.
 
@@ -256,7 +240,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

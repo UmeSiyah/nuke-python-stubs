@@ -24,7 +24,7 @@ class BinItem:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -78,7 +78,7 @@ class BinItem:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
@@ -96,7 +96,7 @@ class BinItem:
         """
         ...
 
-    def activeItem(self) -> hiero.core.Clip | hiero.core.Sequence:
+    def activeItem(self,) -> Iterable:
         """
         self.activeItem() -> returns the item contained by this bin item.
 
@@ -104,7 +104,7 @@ class BinItem:
         """
         ...
 
-    def activeVersion(self) -> hiero.core.Version:
+    def activeVersion(self,) -> Version:
         """
         self.activeVersion() -> gets the currently active Version object of the bin item.
 
@@ -112,7 +112,7 @@ class BinItem:
         """
         ...
 
-    def addSnapshot(self, *args: typing.Any, **kwargs: typing.Any) -> Snapshot:
+    def addSnapshot(self, comment: str) -> Snapshot:
         """
         self.addSnapshot(comment) -> adds a new snapshot for the object, with a comment.
         self.addSnapshot(sequence, comment) -> adds a new snapshot for the object, using the sequence as the new snapshot, setting the comment.
@@ -123,7 +123,7 @@ class BinItem:
         """
         ...
 
-    def addVersion(self, version: hiero.core.Version, position: int = -1) -> hiero.core.Version:
+    def addVersion(self, version: Version) -> Version:
         """
         self.addVersion(version) -> adds the version parameter to the bin item.
 
@@ -144,7 +144,7 @@ class BinItem:
         """
         ...
 
-    def color(self) -> PySide2.QtGui.QColor:
+    def color(self,) -> Any:
         """
         self.color() -> Get the bin item display color, or an invalid QColor if not set.
 
@@ -152,7 +152,7 @@ class BinItem:
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> BinItem:
         """
         self.copy() -> returns a deep copy of this object.
 
@@ -171,13 +171,13 @@ class BinItem:
         """
         ...
 
-    def deserializeChildItem(self, data: str, index: int) -> None:
+    def deserializeChildItem(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def displayColor(self) -> PySide2.QtGui.QColor:
+    def displayColor(self,) -> Any:
         """
         self.displayColor() -> Returns the item's color if one is set, otherwise returns the preference color associated with this item type.
 
@@ -185,13 +185,13 @@ class BinItem:
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def hasVersion(self, *args: typing.Any, **kwargs: typing.Any) -> Union[True, False]:
+    def hasVersion(self, index: int) -> Union[True, False]:
         """
         self.hasVersion(index) -> checks if a given version exists and is valid.
 
@@ -200,7 +200,7 @@ class BinItem:
         """
         ...
 
-    def isClipVersion(self, clip: hiero.core.Clip) -> bool:
+    def isClipVersion(self, index) -> Union[True, False]:
         """
         self.isClipVersion(index) -> checks if a given clip belongs to this BinItem as a version.
 
@@ -209,7 +209,7 @@ class BinItem:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the object contains a invalid hiero.core.Sequence or hiero.core.Clip object.
 
@@ -217,7 +217,7 @@ class BinItem:
         """
         ...
 
-    def items(self) -> object:
+    def items(self,) -> tuple:
         """
         self.items() -> returns a tuple containing all of the different versions of this object.
 
@@ -225,7 +225,7 @@ class BinItem:
         """
         ...
 
-    def maxVersion(self) -> hiero.core.Version:
+    def maxVersion(self,) -> Version:
         """
         self.maxVersion() -> finds the maximum (last) version and sets it as the active version on this bin item and any linked TrackItems. Offline versions and hidden versions will be ignored during the search.
 
@@ -233,7 +233,7 @@ class BinItem:
         """
         ...
 
-    def minVersion(self) -> hiero.core.Version:
+    def minVersion(self,) -> Version:
         """
         self.minVersion() -> finds the minimum (first) version and sets it as the active version on this bin item and any linked TrackItems. Offline versions and hidden versions will be ignored during the search.
 
@@ -241,7 +241,7 @@ class BinItem:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of the item.
 
@@ -249,7 +249,7 @@ class BinItem:
         """
         ...
 
-    def nextVersion(self) -> hiero.core.Version:
+    def nextVersion(self,) -> Version:
         """
         self.nextVersion() -> finds the next version and sets it as the active version on this bin item and any linked TrackItems. Offline versions and hidden versions will be ignored during the search.
 
@@ -257,7 +257,7 @@ class BinItem:
         """
         ...
 
-    def numSnapshots(self) -> int:
+    def numSnapshots(self,) -> int:
         """
         self.numSnapshots() -> returns the number of snapshots that this bin item has.
 
@@ -265,7 +265,7 @@ class BinItem:
         """
         ...
 
-    def numVersions(self) -> int:
+    def numVersions(self,) -> int:
         """
         self.numVersions() -> returns the number of versions for this bin item.
 
@@ -273,7 +273,7 @@ class BinItem:
         """
         ...
 
-    def parentBin(self) -> object:
+    def parentBin(self,) -> Bin:
         """
         self.parentBin() -> returns the bin object that contains this bin item.
 
@@ -281,7 +281,7 @@ class BinItem:
         """
         ...
 
-    def prevVersion(self) -> hiero.core.Version:
+    def prevVersion(self,) -> Version:
         """
         self.prevVersion() -> finds the previous version and sets it as the active version on this bin item and any linked TrackItems. Offline versions and hidden versions will be ignored during the search.
 
@@ -289,7 +289,7 @@ class BinItem:
         """
         ...
 
-    def project(self) -> object:
+    def project(self,) -> Project:
         """
         self.project() -> returns the Project object that this object is attached to, or None if the object is not attached to a project.
 
@@ -297,7 +297,7 @@ class BinItem:
         """
         ...
 
-    def removeVersion(self, version: hiero.core.Version) -> None:
+    def removeVersion(self, version: Version) -> BinItem:
         """
         self.removeVersion(version) -> remove a version from the BinItem. The version must not currently be in use in the project.
 
@@ -305,7 +305,7 @@ class BinItem:
         """
         ...
 
-    def restoreToSnapshot(self, index: int) -> None:
+    def restoreToSnapshot(self, index: int) -> Any:
         """
         self.restoreToSnapshot(index) -> adds a new snapshot for the object, with a comment.
 
@@ -313,13 +313,13 @@ class BinItem:
         """
         ...
 
-    def serialize(self) -> str:
+    def serialize(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setActiveVersion(self, version: hiero.core.Version) -> hiero.core.Version:
+    def setActiveVersion(self, version) -> Version:
         """
         self.setActiveVersion(version) -> sets the active version to the version parameter.
         @return: hiero.core.Version object
@@ -338,7 +338,7 @@ class BinItem:
         """
         ...
 
-    def setColor(self, arg__1: PySide2.QtGui.QColor) -> None:
+    def setColor(self, color: int) -> Any:
         """
         self.setColor(color) -> Set the bin item display color.
 
@@ -346,13 +346,13 @@ class BinItem:
         """
         ...
 
-    def setName(self, name: str) -> None:
+    def setName(self, name) -> str:
         """
         self.setName(name) -> set the name of the item.
         """
         ...
 
-    def snapshots(self) -> object:
+    def snapshots(self,) -> tuple:
         """
         self.snapshots() -> returns a tuple of all of the snapshots contained by this object.
 
@@ -360,13 +360,13 @@ class BinItem:
         """
         ...
 
-    def syncName(self, name: str) -> None:
+    def syncName(self, name) -> str:
         """
         self.syncName(name) -> set the name of the item without sending additional notifications.
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -374,7 +374,7 @@ class BinItem:
         """
         ...
 
-    def version(self, *args: typing.Any, **kwargs: typing.Any) -> Version:
+    def version(self, index: int) -> Version:
         """
         self.version(index) -> gets a Version object for the version of the bin item specified by the index.
 
@@ -449,7 +449,7 @@ class BinItem:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

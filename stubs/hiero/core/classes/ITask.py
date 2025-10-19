@@ -44,67 +44,67 @@ class ITask:
         """
         ...
 
-    def addToQueue(self) -> None:
+    def addToQueue(self,) -> Any:
         """
         self.addToQueue() -> adds this task into the task queue.
         """
         ...
 
-    def children(self) -> typing.List[core.ITask]:
+    def children(self,) -> list:
         """
         self.children() -> get a list of child tasks.  Note that this list should not change after addToQueue() has been called.
         """
         ...
 
-    def clearError(self) -> None:
+    def clearError(self,) -> str:
         """
         self.clearError() -> clears the error or warning string for this task.
         """
         ...
 
-    def destinationDescription(self) -> str:
+    def destinationDescription(self,) -> Any:
         """
         self.destinationDescription() -> Get the destination description.
         """
         ...
 
-    def error(self) -> str:
+    def error(self,) -> str:
         """
         self.error() -> Get the error string if one has been set.
         """
         ...
 
-    def finishTask(self) -> None:
+    def finishTask(self,) -> str:
         """
         self.finishTask() -> called by Hiero to tell the Task to that it's finished. Subclasses should finish processing in their override of this method (close files, clean up).
         """
         ...
 
-    def forcedAbort(self) -> None:
+    def forcedAbort(self,) -> Any:
         """
         self.forcedAbort() -> called by Hiero when the user presses the Abort button. Subclasses should do any clean up in their override of this method.
         """
         ...
 
-    def formatDescription(self) -> str:
+    def formatDescription(self,) -> Any:
         """
         self.formatDescription() -> Get a description of the format that this task writes to.
         """
         ...
 
-    def getExportDuration(self) -> float:
+    def getExportDuration(self,) -> int:
         """
         self.getExportDuration() -> Return the time this task took to export in milliseconds. Will return 0 until the task has finished exporting.
         """
         ...
 
-    def ident(self) -> str:
+    def ident(self,) -> Any:
         """
         self.ident() -> called by Hiero to get a unique identifier for this task.
         """
         ...
 
-    def progress(self) -> float:
+    def progress(self,) -> int:
         """
         self.progress() -> called by Hiero to find out from the task what it's progress is, between 0.0 and 1.0.
         """
@@ -118,13 +118,13 @@ class ITask:
         """
         ...
 
-    def setDuplicate(self) -> None:
+    def setDuplicate(self,) -> Any:
         """
         self.setDuplicate() -> Sets the flag cancelling this task and marking as duplicate.
         """
         ...
 
-    def setError(self, desc: str) -> None:
+    def setError(self, desc: str) -> str:
         """
         self.setError(desc) -> sets the error string displayed to the user in the task dialog. Error strings display in red.
 
@@ -132,13 +132,13 @@ class ITask:
         """
         ...
 
-    def setExportDuration(self, duration: float) -> None:
+    def setExportDuration(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
         For internal use only. Do not use.
         """
         ...
 
-    def setFormatDescription(self, desc: str) -> None:
+    def setFormatDescription(self, desc) -> Any:
         """
         self.setFormatDescription(desc) -> tells Hiero a description of the format that this task writes to.
 
@@ -146,13 +146,13 @@ class ITask:
         """
         ...
 
-    def setSynchronous(self) -> None:
+    def setSynchronous(self,) -> Any:
         """
         self.setSynchronous() -> Flags this task as synchronous. When added to the queue, this task will be executed imediately on the current thread. The Flag must be set prior to adding to queue
         """
         ...
 
-    def setTaskDescription(self, desc: str) -> None:
+    def setTaskDescription(self, description) -> str:
         """
         self.setTaskDescription(description) -> tells Hiero a descriptive string for the task that it can use to show the user through the user interface and/or store it for reference. Helpful when debugging.
 
@@ -160,7 +160,7 @@ class ITask:
         """
         ...
 
-    def setWarning(self, desc: str) -> None:
+    def setWarning(self, desc: str) -> str:
         """
         self.setWarning(desc) -> sets the warning string displayed to the user in the task dialog. Warning strings display in orange.
 
@@ -168,25 +168,25 @@ class ITask:
         """
         ...
 
-    def startTask(self) -> None:
+    def startTask(self,) -> Any:
         """
         self.startTask() -> called by Hiero to tell the Task to start. Subclasses should start processing in their override of this method.
         """
         ...
 
-    def synchronous(self) -> bool:
+    def synchronous(self,) -> bool:
         """
         self.synchronous() -> Returns the state of the Synchronous flag. If True, wheb added to the queue, this task will be executed imediately on the current thread.
         """
         ...
 
-    def taskDescription(self) -> str:
+    def taskDescription(self,) -> Any:
         """
         self.taskDescription() -> Get a description of the task.
         """
         ...
 
-    def taskStep(self) -> bool:
+    def taskStep(self,) -> int:
         """
         self.taskStep() -> called by Hiero repeatedly until the progress method returns 1.0 or greater. Step based processing should occur in this method by subclasses of Task.
         """

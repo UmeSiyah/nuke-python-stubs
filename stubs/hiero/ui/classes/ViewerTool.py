@@ -36,13 +36,13 @@ class ViewerTool(QObject):
         """
         ...
 
-    def isActive(self) -> bool:
+    def isActive(self,) -> Any:
         """
         self.isActive() -> get the tool's active state
         """
         ...
 
-    def setActive(self, active: bool) -> None:
+    def setActive(self, active) -> Any:
         """
         self.setActive(active) -> set the tool's active state
         """

@@ -43,13 +43,13 @@ class AnnotationElement:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def color(self) -> object:
+    def color(self,) -> tuple:
         """
         self.color() -> returns a tuple containing the color for this annotation element in the form (red, green, blue, alpha),
         with the components represented as floating point values in the range [0, 1].
@@ -58,13 +58,13 @@ class AnnotationElement:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setColor(self, red: float, green: float, blue: float, alpha: float) -> None:
+    def setColor(self, ) -> None:
         """
         self.setColor() -> None
 
@@ -78,7 +78,7 @@ class AnnotationElement:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> string
 
@@ -88,7 +88,7 @@ class AnnotationElement:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

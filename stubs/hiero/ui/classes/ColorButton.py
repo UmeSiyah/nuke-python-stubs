@@ -44,13 +44,13 @@ class ColorButton(QPushButton):
         """
         ...
 
-    def canBeInvalid(self) -> bool:
+    def canBeInvalid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def color(self) -> PySide2.QtGui.QColor:
+    def color(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
@@ -68,49 +68,49 @@ class ColorButton(QPushButton):
         """
         ...
 
-    def mouseMoveEvent(self, event: PySide2.QtGui.QMouseEvent) -> None:
+    def mouseMoveEvent(self, e: PySide2.QtGui.QMouseEvent) -> None:
         """
         mouseMoveEvent(self, e: PySide2.QtGui.QMouseEvent) -> None
         """
         ...
 
-    def mousePressEvent(self, event: PySide2.QtGui.QMouseEvent) -> None:
+    def mousePressEvent(self, e: PySide2.QtGui.QMouseEvent) -> None:
         """
         mousePressEvent(self, e: PySide2.QtGui.QMouseEvent) -> None
         """
         ...
 
-    def paintEvent(self, event: PySide2.QtGui.QPaintEvent) -> None:
+    def paintEvent(self, arg__1: PySide2.QtGui.QPaintEvent) -> None:
         """
         paintEvent(self, arg__1: PySide2.QtGui.QPaintEvent) -> None
         """
         ...
 
-    def setCanBeInvalid(self, v: bool) -> None:
+    def setCanBeInvalid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setColor(self, color: PySide2.QtGui.QColor) -> None:
+    def setColor(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setValidColor(self, validColor: bool) -> None:
+    def setValidColor(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def sizeHint(self) -> PySide2.QtCore.QSize:
+    def sizeHint(self) -> Any:
         """
         sizeHint(self) -> PySide2.QtCore.QSize
         """
         ...
 
-    def validColor(self) -> bool:
+    def validColor(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

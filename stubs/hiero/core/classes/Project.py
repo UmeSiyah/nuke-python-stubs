@@ -26,7 +26,7 @@ class Project:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -92,13 +92,13 @@ class Project:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def addView(self, name: str, color: str = '') -> bool:
+    def addView(self, name: str, color: Optional[list] = None) -> Union[True, False]:
         """
         addView(name, color) -> Appends a view to this project's list of views. Returns False if name is empty or a view already exists with the same name.
 
@@ -108,13 +108,13 @@ class Project:
         """
         ...
 
-    def autosave(self) -> None:
+    def autosave(self,) -> str:
         """
         self.autosave() -> if the project has been modified create an autosave file
         """
         ...
 
-    def beginUndo(self, arg__1: str) -> hiero.core.UndoGroup:
+    def beginUndo(self, name) -> UndoGroup:
         """
         self.beginUndo(name) -> starts a new undo action, which will group all other undo actions until self.endUndo() is called. Be aware that this method only works on the main thread, and will throw an exception otherwise.
         Note that for operations inside the undo to work Project.endUndo() must be called.  It is recommended that you use this in a with block to ensure that this happens.  For example:
@@ -125,25 +125,25 @@ class Project:
         """
         ...
 
-    def buildTrackName(self) -> str:
+    def buildTrackName(self,) -> str:
         """
         buildTrackName() -> get default track name used when building vfx trackthis can be configured in the project settings dialog
         """
         ...
 
-    def cancelUndo(self) -> None:
+    def cancelUndo(self,) -> Any:
         """
         self.cancelUndo() -> cancels an undo action started previously by a call to self.beginUndo().
         """
         ...
 
-    def clearUnusedLocalFiles(self) -> None:
+    def clearUnusedLocalFiles(self,) -> str:
         """
         clearUnusedLocalFiles() -> clear all localised files that are not in any currently open project. This requires localisation to be enabled
         """
         ...
 
-    def clipsBin(self) -> hiero.core.Bin:
+    def clipsBin(self,) -> Bin:
         """
         self.clipsBin() -> returns the bin object containing the top level clips, sequences and bins for this project.
 
@@ -151,19 +151,19 @@ class Project:
         """
         ...
 
-    def close(self) -> None:
+    def close(self,) -> Any:
         """
         self.close() -> closes the project. Be aware that this method will not save the project, even if changes have been made since the last save of the project.
         """
         ...
 
-    def createExportWriteNode(self) -> object:
+    def createExportWriteNode(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def customExportDirectory(self) -> str:
+    def customExportDirectory(self,) -> str:
         """
         self.customExportDirectory() -> Get the custom directory used for exports if useCustomExportDirectory() is set to True.
 
@@ -171,7 +171,7 @@ class Project:
         """
         ...
 
-    def deletable(self) -> bool:
+    def deletable(self,) -> Union[True, False]:
         """
         self.deletable() -> returns True if the project can be deleted.
 
@@ -179,7 +179,7 @@ class Project:
         """
         ...
 
-    def deleteView(self, name: str) -> bool:
+    def deleteView(self, name: str) -> Union[True, False]:
         """
         deleteView(name) -> Removes the view with the matching name from this project's list of views. Returns False if no matching view is found or if the view to be deleted is the only view in the project.
         @param name: string
@@ -187,7 +187,7 @@ class Project:
         """
         ...
 
-    def editable(self) -> bool:
+    def editable(self,) -> Union[True, False]:
         """
         self.editable() -> returns True if the project can be edited.
 
@@ -195,13 +195,13 @@ class Project:
         """
         ...
 
-    def endUndo(self) -> None:
+    def endUndo(self,) -> Undo:
         """
         self.endUndo() -> ends an undo action started previously by a call to self.beginUndo(). This will put a new item into the Edit > Undo/Redo menu items.
         """
         ...
 
-    def exportRootDirectory(self) -> str:
+    def exportRootDirectory(self,) -> str:
         """
         self.exportRootDirectory() -> The root directory to use for exports. This will return either self.projectDirectory(True) or self.customExportDirectory() depending on the self.useCustomExportDirectory() setting.
 
@@ -209,7 +209,7 @@ class Project:
         """
         ...
 
-    def framerate(self) -> hiero.core.TimeBase:
+    def framerate(self,) -> int | float:
         """
         framerate() -> project's default framerate for new sequences
 
@@ -217,20 +217,20 @@ class Project:
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def heroView(self) -> str:
+    def heroView(self,) -> str:
         """
         heroView() -> Get the name of the hero view set on the project
         @return: str
         """
         ...
 
-    def isLocalisationEnabled(self) -> bool:
+    def isLocalisationEnabled(self,) -> Any:
         """
         isLocalisationEnabled() -> return whether localisation is enabled
 
@@ -238,7 +238,7 @@ class Project:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns False if this is a valid Project object, True otherwise.
 
@@ -246,7 +246,7 @@ class Project:
         """
         ...
 
-    def isRestricted(self) -> bool:
+    def isRestricted(self,) -> Union[True, False]:
         """
         self.isRestricted() -> returns whether or not access to the project is restricted.
 
@@ -254,7 +254,7 @@ class Project:
         """
         ...
 
-    def lutSetting16Bit(self) -> str:
+    def lutSetting16Bit(self,) -> str:
         """
         self.lutSetting16Bit() -> returns the project's 16 bit lut setting name.
 
@@ -262,7 +262,7 @@ class Project:
         """
         ...
 
-    def lutSetting8Bit(self) -> str:
+    def lutSetting8Bit(self,) -> str:
         """
         self.lutSetting8Bit() -> returns the project's 8 bit lut setting name.
 
@@ -270,7 +270,7 @@ class Project:
         """
         ...
 
-    def lutSettingFloat(self) -> str:
+    def lutSettingFloat(self,) -> str:
         """
         self.lutSettingFloat() -> returns the project's float lut setting name.
 
@@ -278,7 +278,7 @@ class Project:
         """
         ...
 
-    def lutSettingLog(self) -> str:
+    def lutSettingLog(self,) -> str:
         """
         self.lutSettingLog() -> returns the project's log lut setting name.
 
@@ -286,7 +286,7 @@ class Project:
         """
         ...
 
-    def lutSettingMonitorOut(self) -> str:
+    def lutSettingMonitorOut(self,) -> str:
         """
         self.lutSettingMonitorOut() -> returns the project's Monitor Out lut setting name.
 
@@ -294,7 +294,7 @@ class Project:
         """
         ...
 
-    def lutSettingThumbnail(self) -> str:
+    def lutSettingThumbnail(self,) -> str:
         """
         self.lutSettingThumbnail() -> returns the project's Thumbnail lut setting name.
 
@@ -302,7 +302,7 @@ class Project:
         """
         ...
 
-    def lutSettingViewer(self) -> str:
+    def lutSettingsViewer(self,) -> str:
         """
         self.lutSettingsViewer() -> returns the project's viewer lut setting name.
 
@@ -310,7 +310,7 @@ class Project:
         """
         ...
 
-    def lutSettingWorkingSpace(self) -> str:
+    def lutSettingWorkingSpace(self,) -> str:
         """
         self.lutSettingWorkingSpace() -> returns the project's Working Space lut setting name.
 
@@ -318,7 +318,7 @@ class Project:
         """
         ...
 
-    def lutUseOCIOForExport(self) -> bool:
+    def lutUseOCIOForExport(self,) -> bool:
         """
         self.lutUseOCIOForExport() -> returns the project setting for using OCIO in nuke script export.
 
@@ -326,13 +326,13 @@ class Project:
         """
         ...
 
-    def modifiedSinceLastSave(self) -> bool:
+    def modifiedSinceLastSave(self,) -> Any:
         """
         self.modifiedSinceLastSave() -> Check if the project has been modified since it was last saved
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of the project.
 
@@ -340,7 +340,7 @@ class Project:
         """
         ...
 
-    def ocioConfigName(self) -> str:
+    def ocioConfigName(self,) -> str:
         """
         self.ocioConfigName() -> returns the ocio config name loaded by NukeStudio. When using a custom ocio config an empty string is returned.
 
@@ -348,7 +348,7 @@ class Project:
         """
         ...
 
-    def ocioConfigPath(self) -> str:
+    def ocioConfigPath(self,) -> str:
         """
         self.ocioConfigPath() -> returns the project settings for the ocio config path.
 
@@ -356,7 +356,7 @@ class Project:
         """
         ...
 
-    def outputFormat(self) -> hiero.core.Format:
+    def outputFormat(self,) -> Format:
         """
         outputFormat() -> gets project's default outputFormat for new sequences.
 
@@ -364,7 +364,7 @@ class Project:
         """
         ...
 
-    def path(self) -> str:
+    def path(self,) -> str:
         """
         self.path() -> returns the path to the project.
 
@@ -372,14 +372,14 @@ class Project:
         """
         ...
 
-    def posterFrameSettings(self) -> typing.Tuple[hiero.core.Project.PosterFrameSetting, int]:
+    def posterFrameSettings(self,) -> tuple:
         """
         posterFrameSettings() -> Get the poster frame settings used for clips added to the project.
         @return: tuple of poster frame setting and custom frame number
         """
         ...
 
-    def projectDirectory(self, expanded: bool) -> str:
+    def projectDirectory(self, ) -> str:
         """
         self.projectDirectory() -> Get the project directory used for resolving relative paths and the exportRootDirectory() (if useCustomExportDirectory() is False).
 
@@ -388,13 +388,13 @@ class Project:
         """
         ...
 
-    def redo(self) -> None:
+    def redo(self,) -> Any:
         """
         self.redo() -> triggers a redo of the next item in the redo stack. Only works on the main thread. If called from any other thread, throws an exception.
         """
         ...
 
-    def redoItemText(self) -> str:
+    def redoItemText(self,) -> str:
         """
         self.redoItemText() -> returns the text of the next item on the redo stack. Only works on the main thread. Can be useful for testing that undo/redo works.
 
@@ -402,13 +402,13 @@ class Project:
         """
         ...
 
-    def save(self) -> None:
+    def save(self,) -> Any:
         """
         self.save() -> saves a previously saved project to disk.
         """
         ...
 
-    def saveAs(self, filename: str, saveFlags: int = 'kProjectSaveNoFlags') -> None:
+    def saveAs(self, filename: str) -> str:
         """
         self.saveAs(filename) -> saves the project to the path specified by the filename parameter. Throws an exception if the project couldn't be saved for any reason.
 
@@ -416,7 +416,7 @@ class Project:
         """
         ...
 
-    def setCustomExportDirectory(self, path: str) -> None:
+    def setCustomExportDirectory(self, ) -> bool:
         """
         self.setCustomExportDirectory() -> Set the custom directory used for exports if useCustomExportDirectory() is set to True.
 
@@ -424,7 +424,7 @@ class Project:
         """
         ...
 
-    def setDeletable(self, deletable: bool) -> None:
+    def setDeletable(self, deletable: Union[True, False]) -> Any:
         """
         self.setDeletable(deletable) -> sets whether or not a project can be deleted.
 
@@ -432,7 +432,7 @@ class Project:
         """
         ...
 
-    def setEditable(self, editable: bool) -> None:
+    def setEditable(self, editable: Union[True, False]) -> Any:
         """
         self.setEditable(editable) -> sets whether or not a project can be edited.
 
@@ -440,7 +440,7 @@ class Project:
         """
         ...
 
-    def setFramerate(self, framerate: hiero.core.TimeBase) -> None:
+    def setFramerate(self, TimeBase) -> Iterable:
         """
         setFramerate(TimeBase) -> sets project's default framerate for new sequences.This will persist when the application is restarted
 
@@ -448,13 +448,13 @@ class Project:
         """
         ...
 
-    def setHasMigratedSequenceProperties(self) -> None:
+    def setHasMigratedSequenceProperties(self,) -> Iterable:
         """
         setHasMigratedSequenceProperties() -> Mark the project as having had deprecated sequence properties converted into soft effects.
         """
         ...
 
-    def setLocalisationEnabled(self, isEnabled: bool) -> None:
+    def setLocalisationEnabled(self, ) -> Any:
         """
         setLocalisationEnabled() -> set whether localisation is enabled. This will persist when the application is restarted.
 
@@ -462,13 +462,13 @@ class Project:
         """
         ...
 
-    def setModified(self) -> None:
+    def setModified(self,) -> Any:
         """
         self.setModified() -> Set the project as modified even if just saved or loaded
         """
         ...
 
-    def setOcioConfigPath(self, path: str) -> None:
+    def setOcioConfigPath(self, path) -> Any:
         """
         self.setOcioConfigPath(path) -> set the ocio config for the project
         """
@@ -486,13 +486,13 @@ class Project:
         """
         ...
 
-    def setPath(self, path: str) -> None:
+    def setPath(self, path) -> str:
         """
         self.setPath(path) -> set the path a project saves to without saving it
         """
         ...
 
-    def setPosterFrameSettings(self, mode: hiero.core.Project.PosterFrameSetting, customFrame: int = 0) -> None:
+    def setPosterFrameSettings(self, ) -> int:
         """
         setPosterFrameSettings() -> Set the poster frame settings used for clips added to the project.
         @param setting: the mode for setting poster frames
@@ -500,7 +500,7 @@ class Project:
         """
         ...
 
-    def setProjectDirectory(self, path: str) -> None:
+    def setProjectDirectory(self, string) -> bool:
         """
         self.setProjectDirectory(string) -> Set the project directory used for resolving relative paths and the exportRootDirectory() (if useCustomExportDirectory() is False).
 
@@ -508,7 +508,7 @@ class Project:
         """
         ...
 
-    def setShotPresetName(self, path: str) -> None:
+    def setShotPresetName(self,) -> str:
         """
         self.setShotPresetName() -> set the name of Shot Preset which is usedwhen sending to nuke or creating a comp.
 
@@ -516,13 +516,13 @@ class Project:
         """
         ...
 
-    def setShowViewColors(self, show: bool) -> None:
+    def setShowViewColors(self,) -> Any:
         """
         setShowViewColors() -> Set if colors set for views are shown in the UI.
         """
         ...
 
-    def setStartTimecode(self, timecode: int) -> None:
+    def setStartTimecode(self, Time) -> Iterable:
         """
         setStartTimecode(Time) -> sets project's default start timecode for new sequences. This will persist when the application is restarted
 
@@ -530,7 +530,7 @@ class Project:
         """
         ...
 
-    def setTimeDisplayFormat(self, displayType: hiero.core.Timecode.DisplayType) -> None:
+    def setTimeDisplayFormat(self, ) -> Iterable:
         """
         setTimeDisplayFormat() -> sets project's default displayType for new sequences.  This will persist when the application is restarted
 
@@ -538,13 +538,19 @@ class Project:
         """
         ...
 
-    def setTrackItemVersionsLinkedToBin(self, linked: bool) -> None:
+    def setTrackItemReformatState(self,) -> ReformatState:
+        """
+        setTrackItemReformatState() -> Set the default ReformatState for new TrackItems created in this project
+        """
+        ...
+
+    def setTrackItemVersionsLinkedToBin(self, linked) -> Any:
         """
         setTrackItemVersionsLinkedToBin(linked) -> Set whether track item versions are linked by default
         """
         ...
 
-    def setUseCustomExportDirectory(self, arg__1: bool) -> None:
+    def setUseCustomExportDirectory(self,) -> Any:
         """
         self.setUseCustomExportDirectory() -> Set if the export root directory should be a custom directory, or use the project directory.
 
@@ -552,20 +558,20 @@ class Project:
         """
         ...
 
-    def setViews(self, *args: typing.Any, **kwargs: typing.Any) -> Any:
+    def setViews(self, views: list) -> Any:
         """
         setViews(views) -> Set the project's views.
         @param views: this can be either a list of view names, or a list of tuples with (name, color)
         """
         ...
 
-    def setViewsForStereo(self) -> None:
+    def setViewsForStereo(self,) -> Any:
         """
         setViewsForStereo() -> Replaces the project's views with two views named "left" and "right".
         """
         ...
 
-    def shotPresetName(self) -> str:
+    def shotPresetName(self,) -> str:
         """
         self.shotPresetName() -> get the name of Shot Preset which is usedwhen sending to nuke or creating a comp.
 
@@ -573,13 +579,13 @@ class Project:
         """
         ...
 
-    def showViewColors(self) -> bool:
+    def showViewColors(self,) -> Any:
         """
         showViewColors() -> Get if colors set for views are shown in the UI.
         """
         ...
 
-    def startTimecode(self) -> int:
+    def startTimecode(self,) -> int | float:
         """
         startTimecode() -> gets project's default start frame for new sequences.
 
@@ -587,7 +593,7 @@ class Project:
         """
         ...
 
-    def tagsBin(self) -> hiero.core.Bin:
+    def tagsBin(self,) -> Bin:
         """
         self.tagsBin() -> returns the bin object containing the top level tags for this project.
 
@@ -595,13 +601,13 @@ class Project:
         """
         ...
 
-    def timeDisplayFormat(self) -> hiero.core.Timecode.DisplayType:
+    def timeDisplayFormat(self,) -> Iterable:
         """
         timeDisplayFormat() -> gets project's default displayType for new sequences. @return: DisplayType
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -609,19 +615,25 @@ class Project:
         """
         ...
 
-    def trackItemVersionsLinkedToBin(self) -> bool:
+    def trackItemReformatState(self,) -> ReformatState:
+        """
+        trackItemReformatState() -> Get default ReformatState for new TrackItems created in this project
+        """
+        ...
+
+    def trackItemVersionsLinkedToBin(self,) -> Any:
         """
         trackItemVersionsLinkedToBin() -> Get whether track item versions are linked by default
         """
         ...
 
-    def undo(self) -> None:
+    def undo(self,) -> Any:
         """
         self.undo() -> triggers an undo on the last item previously added to the undo stack. Only works on the main thread. If called from any other thread, throws an exception.
         """
         ...
 
-    def undoItemText(self) -> str:
+    def undoItemText(self,) -> str:
         """
         self.undoItemText() -> returns the text of the last item on the undo stack. Only works on the main thread. Can be useful for testing that undo/redo works.
 
@@ -629,7 +641,7 @@ class Project:
         """
         ...
 
-    def useCustomExportDirectory(self) -> bool:
+    def useCustomExportDirectory(self,) -> bool:
         """
         self.useCustomExportDirectory() -> Get if the export root directory should be a custom directory, or use the project directory.
 
@@ -637,7 +649,7 @@ class Project:
         """
         ...
 
-    def useOCIOEnvironmentOverride(self,) -> bool:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -660,21 +672,21 @@ class Project:
         """
         ...
 
-    def views(self) -> typing.List[str]:
+    def views(self,) -> list:
         """
         views() -> Returns a list of this project's views.
         @return: list of strings
         """
         ...
 
-    def viewsAndColors(self) -> typing.List[typing.Tuple[str, PySide2.QtGui.QColor]]:
+    def viewsAndColors(self,) -> list:
         """
         viewsAndColors() -> Returns a list of this project's views and corresponding colors.
         @return: list of (str, PySide2.QtGui.QColor) tuples
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
@@ -706,7 +718,7 @@ class Project:
         """
         ...
 
-    def sequences(self, partialNam: Optional[str] = None) -> list[hiero.core.Sequence]:
+    def sequences(self, partialNam: Optional[str] = None) -> list[core.Sequence]:
         """
         self.sequences(partialName) -> returns all sequences in a project. User can filter by by partial name.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -718,7 +730,7 @@ class Project:
         """
         ...
 
-    def bins(self, partialName: Optional[str] = None) -> list[hiero.core.Bin]:
+    def bins(self, partialName: Optional[str] = None) -> list[core.Bin]:
         """
         self.bins(partialName) -> returns all bins in a project. Searches recursively, so will return bins within other bins in the list.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -731,7 +743,7 @@ class Project:
         """
         ...
 
-    def clips(self, partialName: Optional[str] = None) -> list[hiero.core.Clip]:
+    def clips(self, partialName: Optional[str] = None) -> list[core.Clip]:
         """
         self.clips(partialName) -> returns all clips in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -744,7 +756,7 @@ class Project:
         """
         ...
 
-    def tracks(self, partialName: Optional[str] = None) -> list[hiero.core.Track]:
+    def tracks(self, partialName: Optional[str] = None) -> list[core.Track]:
         """
         self.tracks(partialName) -> returns all tracks in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -757,7 +769,7 @@ class Project:
         """
         ...
 
-    def videoTracks(self, partialName: Optional[str] = None) -> list[hiero.core.VideoTrack]:
+    def videoTracks(self, partialName: Optional[str] = None) -> list[core.VideoTrack]:
         """
         self.videoTracks(partialName) -> returns all video tracks in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -770,7 +782,7 @@ class Project:
         """
         ...
 
-    def audioTracks(self, partialName: Optional[str] = None) -> list[hiero.core.AudioTrack]:
+    def audioTracks(self, partialName: Optional[str] = None) -> list[core.AudioTrack]:
         """
         self.audioTracks(partialName) -> returns all audio tracks in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -783,7 +795,7 @@ class Project:
         """
         ...
 
-    def trackItems(self, partialName: Optional[str] = None) -> list[hiero.core.TrackItem]:
+    def trackItems(self, partialName: Optional[str] = None) -> list[core.TrackItem]:
         """
         self.trackItems(partialName) -> returns all track items in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -796,7 +808,7 @@ class Project:
         """
         ...
 
-    def videoTrackItems(self, partialName: Optional[str] = None) -> list[hiero.core.TrackItem]:
+    def videoTrackItems(self, partialName: Optional[str] = None) -> list[core.TrackItem]:
         """
         self.videoTrackItems(partialName) -> returns all video track items in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.
@@ -809,7 +821,7 @@ class Project:
         """
         ...
 
-    def audioTrackItems(self, partialName: Optional[str] = None) -> list[hiero.core.TrackItem]:
+    def audioTrackItems(self, partialName: Optional[str] = None) -> list[core.TrackItem]:
         """
         self.audioTrackItems(partialName) -> returns all audio track items in a project.
         @param partialName: optional string with partial name to match against. Will match if this string is anywhere in the name.

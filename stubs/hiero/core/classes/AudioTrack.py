@@ -24,7 +24,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -48,7 +48,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
@@ -66,16 +66,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
-        """
-        self.addTag(tag) -> adds a tag to the audio track item.
-
-        @param tag: the hiero.core.Tag to add to the audio track
-        @return: hiero.core.Tag object
-        """
-        ...
-
-    def addTrackItem(self, *args: typing.Any, **kwargs: typing.Any) -> TrackItem:
+    def addTrackItem(self, clip: TrackItem, audioChannel: int, position: int) -> TrackItem:
         """
         self.addTrackItem(clip, audioChannel, position) -> if the first parameter is a Clip object, the second and third parameters must be specified and this method creates a new track item with the specified audio channel and adds it to this audio track at the given position.
         If the first parameter is a TrackItem, then this method just adds the track item specified.
@@ -86,6 +77,14 @@ class AudioTrack(TrackBase):
         @param audioChannel: int; audio channel that will be associated with the track item. Do not specify if clip is a TrackItem.
         @param position: int; insert position. Do not specify if clip is a TrackItem.
         @return: hiero.core.TrackItem object
+        """
+        ...
+
+    def channel(self,) -> str:
+        """
+        self.channel() -> returns the channel of the audio track.
+
+        @return: String
         """
         ...
 
@@ -100,7 +99,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> AudioTrack:
         """
         self.copy() -> returns a deep copy of this object.
 
@@ -108,7 +107,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def createTrackItem(self, name: str) -> hiero.core.TrackItem:
+    def createTrackItem(self, name: str) -> TrackItem:
         """
         self.createTrackItem(name) -> creates a new track item.
 
@@ -117,7 +116,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def items(self) -> object:
+    def items(self,) -> tuple:
         """
         self.items() -> returns a tuple with all of the track items contained by this track.
 
@@ -125,7 +124,7 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def parent(self) -> object:
+    def parent(self,) -> Iterable:
         """
         self.parent() -> returns the sequence that contains this track.
 
@@ -133,15 +132,23 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def removeTag(self, tag: hiero.core.Tag) -> None:
+    def setChannel(self, ) -> Any:
         """
-        self.removeTag(tag) -> removes the tag from the audio track.
+        self.setChannel() -> Sets the channel of an audio track.
 
-        @param tag: hiero.core.Tag object
+        @param: channel to set
         """
         ...
 
-    def toString(self) -> str:
+    def setVolume(self, ) -> int:
+        """
+        self.setVolume() -> Sets the volume of an audio track (0 - 1).
+
+        @param: volume to set
+        """
+        ...
+
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -149,14 +156,34 @@ class AudioTrack(TrackBase):
         """
         ...
 
-    def trackIndex(self) -> int:
+    def trackIndex(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def __copy__(self,) -> None:
+    def volume(self,) -> Any:
+        """
+        self.volume() -> returns the volume of the audio track.
+
+        @return: double
+        """
+        ...
+
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
+
+    Channel: Any = None
+    kUnknown: Any = None
+    kMono: Any = None
+    kFrontLeft: Any = None
+    kFrontRight: Any = None
+    kCentre: Any = None
+    kSub: Any = None
+    kSideLeft: Any = None
+    kSideRight: Any = None
+    kRearLeft: Any = None
+    kRearRight: Any = None

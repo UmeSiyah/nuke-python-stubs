@@ -30,7 +30,7 @@ class NamingScheme:
         """
         ...
 
-    def clipName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -53,7 +53,7 @@ class NamingScheme:
         """
         ...
 
-    def default_clipName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -76,7 +76,7 @@ class NamingScheme:
         """
         ...
 
-    def default_rootName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -99,7 +99,7 @@ class NamingScheme:
         """
         ...
 
-    def default_trackItemName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -122,7 +122,7 @@ class NamingScheme:
         """
         ...
 
-    def default_versionName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -145,7 +145,7 @@ class NamingScheme:
         """
         ...
 
-    def rootName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -168,7 +168,7 @@ class NamingScheme:
         """
         ...
 
-    def trackItemName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -191,7 +191,7 @@ class NamingScheme:
         """
         ...
 
-    def versionName(self, clip: hiero.core.Clip) -> str:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -214,7 +214,7 @@ class NamingScheme:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

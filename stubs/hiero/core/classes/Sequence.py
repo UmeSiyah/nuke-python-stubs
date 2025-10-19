@@ -24,7 +24,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -48,7 +48,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
@@ -66,13 +66,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def activePlayhead(self) -> int:
-        """
-        activePlayhead() -> Returns the index of the active playhead.
-        """
-        ...
-
-    def addTrack(self, *args: typing.Any, **kwargs: typing.Any) -> Iterable:
+    def addTrack(self, track: Union[None, None]) -> Iterable:
         """
         self.addTrack(track) -> adds a video or audio track to the Sequence.
 
@@ -80,7 +74,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def audioTrack(self, index: int) -> hiero.core.AudioTrack:
+    def audioTrack(self, index: int) -> AudioTrack:
         """
         self.audioTrack(index) -> returns the audio track for the specified index.
 
@@ -89,7 +83,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def audioTracks(self) -> object:
+    def audioTracks(self,) -> tuple:
         """
         self.audioTracks() -> returns a tuple with all of the audio tracks.
 
@@ -97,7 +91,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def changeFramerateKeepFrames(self, toTimebase: hiero.core.TimeBase) -> None:
+    def changeFramerateKeepFrames(self, toTimebase: int | float) -> Iterable:
         """
         self.changeFramerateKeepFrames(toTimebase) -> changes the timebase of the sequence, keeping frames of track items the same
 
@@ -105,7 +99,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def changeFramerateKeepTimecodes(self, toTimebase: hiero.core.TimeBase, roundingMode: hiero.core.TimeBase.RoundingMode) -> None:
+    def changeFramerateKeepTimecodes(self, toTimebase: int | float, roundingMode: int | float) -> Iterable:
         """
         self.changeFramerateKeepTimecodes(toTimebase, roundingMode) -> changes the timebase of the sequence, keeping timecodes of track items the same, according to the specified rounding mode
 
@@ -125,7 +119,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> Iterable:
         """
         self.copy() -> returns a deep copy of this object.
 
@@ -133,7 +127,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def deserialize(self, data: str, rangeMin: int, rangeMax: int) -> None:
+    def deserialize(self, ) -> Iterable:
         """
         self.deserialize() -> restore the sequence state from XML data
 
@@ -142,13 +136,13 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def importTracks(self, path: str) -> typing.List[core.TrackBase]:
+    def importTracks(self, filePath: str) -> str:
         """
         self.importTracks(filePath) -> imports all of the tracks from the file specified by the filePath argument.
 
@@ -157,7 +151,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def importTracksFromTimeBaseKeepFrames(self, path: str, toTimebase: hiero.core.TimeBase) -> typing.List[core.TrackBase]:
+    def importTracksFromTimeBaseKeepFrames(self, filePath: str, srcTimebase: str) -> str:
         """
         self.importTracksFromTimeBaseKeepFrames(filePath, srcTimebase) -> imports all of the tracks from the file specified by the filePath argument using the specified timebase.
 
@@ -167,7 +161,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def importTracksFromTimeBaseKeepTimecodes(self, path: str, toTimebase: hiero.core.TimeBase, roundingMode: hiero.core.TimeBase.RoundingMode) -> typing.List[core.TrackBase]:
+    def importTracksFromTimeBaseKeepTimecodes(self, filePath: str, srcTimebase: str, roundingMode: int | float) -> str:
         """
         self.importTracksFromTimeBaseKeepTimecodes(filePath, srcTimebase, roundingMode) -> imports all of the tracks from the file specified by the filePath argument using the specified timebase.
 
@@ -186,7 +180,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def matchMedia(self, path: str) -> None:
+    def matchMedia(self, path: str) -> Any:
         """
         self.matchMedia(path) -> match media using the current rule configuration in hiero.core.conformer().
 
@@ -194,7 +188,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def numAudioTracks(self) -> int:
+    def numAudioTracks(self,) -> int:
         """
         self.numAudioTracks() -> returns number of audio tracks contained by this sequence.
 
@@ -202,7 +196,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def numVideoTracks(self) -> int:
+    def numVideoTracks(self,) -> int:
         """
         self.numVideoTracks() -> returns number of video tracks contained by this sequence.
 
@@ -210,30 +204,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def playheadCount(self) -> int:
-        """
-        playheadCount(index) -> Returns the number of playheads in the sequence.
-        """
-        ...
-
-    def playheadState(self, index: int) -> hiero.core.Sequence.PlayheadState:
-        """
-        playheadState(index) -> The state of the given playhead index.
-        The available states are:  ePlayheadActive : is the active playhead
-          ePlayheadEnabled : is not the active playhead but is editable
-          ePlayheadDisabled : has been removed.
-          ePlayheadInvalid : index does not reference a valid playhead.@param index: The index of the playhead to be queried.
-        """
-        ...
-
-    def playheadTime(self, index: int) -> int:
-        """
-        playheadTime(index) -> Returns the time position of the playhead in the sequence.
-        @param index: The index of the playhead.
-        """
-        ...
-
-    def reconnectMedia(self, path: str) -> None:
+    def reconnectMedia(self, path: str) -> str:
         """
         self.reconnectMedia(path) -> For each of the Clips used by this Sequence, reconnects media found in the specified path.
 
@@ -241,7 +212,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def removeTrack(self, *args: typing.Any, **kwargs: typing.Any) -> Iterable:
+    def removeTrack(self, track: AudioTrack) -> Iterable:
         """
         self.removeTrack(track) -> removes the track from the Sequence.
 
@@ -249,7 +220,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def replaceClips(self, path: str) -> None:
+    def replaceClips(self, path: str) -> str:
         """
         self.replaceClips(path) -> For each of the TrackItems in this sequence, replace it's Clip with media found in the specified path.
 
@@ -257,38 +228,13 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def serialize(self) -> str:
+    def serialize(self,) -> Iterable:
         """
         self.serialize() -> serialize the sequence object to XML
         """
         ...
 
-    def setActivePlayhead(self, index: int) -> None:
-        """
-        setActivePlayhead(index) -> The given playhead index is made active.
-        There can only be one active playhead, the previous playhead will be made inactive.
-        @param index: The index of the playhead to be made active.
-        """
-        ...
-
-    def setPlayheadEnabled(self, index: int, enabled: bool) -> None:
-        """
-        setPlayheadEnabled(index, enabled) -> Put the given playhead into the enabled state. The playheadis not active but is visible and editable in the UI. Otherwise the playhead will be disabled, which means thatit will not be visible in the UI.
-        The current active playhead cannot be changed by this function.
-        @param index: The index of the playhead to be changed.
-        @param enabled: True if the playhead is enabled.
-        """
-        ...
-
-    def setPlayheadTime(self, index: int, time: int) -> None:
-        """
-        setPlayheadTime(index, time) -> Set the time position for the given playhead index.
-        @param index: The index of the playhead to be changed.
-        @param time: The new time position to be set.
-        """
-        ...
-
-    def trackItemAt(self, t: int) -> hiero.core.TrackItem:
+    def trackItemAt(self, time: int) -> TrackItem:
         """
         self.trackItemAt(time) -> returns the top-most video track item for the specified time that is enabled and has media.
 
@@ -297,7 +243,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def trackItemsAt(self, *args: typing.Any, **kwargs: typing.Any) -> tuple:
+    def trackItemsAt(self, time: int, mediaType: TrackItem) -> tuple:
         """
         self.trackItemsAt(time, mediaType) -> finds enabled track items for the specified time, ordered from top-track to bottom-track (or for audio, min channel to max channel).
 
@@ -307,7 +253,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def videoTrack(self, index: int) -> hiero.core.VideoTrack:
+    def videoTrack(self, index: int) -> VideoTrack:
         """
         self.videoTrack(index) -> returns the video track for the specified index.
 
@@ -324,17 +270,11 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
-
-    PlayheadState: Any = None
-    ePlayheadActive: Any = None
-    ePlayheadEnabled: Any = None
-    ePlayheadDisabled: Any = None
-    ePlayheadInvalid: Any = None
 
     def addClip(self, clip: Clip, time: int | float, videoTrackIndex=0, audioTrackIndex=-1) -> list[core.TrackItem]:
         """

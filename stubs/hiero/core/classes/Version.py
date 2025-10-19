@@ -24,7 +24,7 @@ class Version:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -78,25 +78,25 @@ class Version:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def isHidden(self) -> bool:
+    def isHidden(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the object is invalid, False otherwise.
 
@@ -104,7 +104,7 @@ class Version:
         """
         ...
 
-    def item(self) -> None:
+    def item(self,) -> Iterable:
         """
         self.item() -> returns the clip or sequence stored with this version.
 
@@ -112,7 +112,7 @@ class Version:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of this version.
 
@@ -120,7 +120,7 @@ class Version:
         """
         ...
 
-    def parent(self) -> hiero.core.BinItem:
+    def parent(self,) -> BinItem:
         """
         self.parent() -> returns the bin item that contains this version.
 
@@ -128,19 +128,19 @@ class Version:
         """
         ...
 
-    def serialize(self) -> str:
+    def serialize(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setHidden(self, hidden: bool) -> None:
+    def setHidden(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -159,7 +159,7 @@ class Version:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

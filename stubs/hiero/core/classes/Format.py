@@ -38,7 +38,7 @@ class Format:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -86,7 +86,7 @@ class Format:
         """
         ...
 
-    def aspect(self) -> float:
+    def aspect(self,) -> float:
         """
         self.aspect() -> returns the aspect ratio of this format.
 
@@ -94,7 +94,7 @@ class Format:
         """
         ...
 
-    def cleanAperture(self) -> object:
+    def cleanAperture(self,) -> tuple:
         """
         self.cleanAperture() -> returns a 4 element tuple with the rectangle (x1, y1, x2, y2) of the clean aperture.
 
@@ -102,7 +102,7 @@ class Format:
         """
         ...
 
-    def height(self) -> int:
+    def height(self,) -> int:
         """
         self.height() -> returns the height of this format.
 
@@ -110,7 +110,7 @@ class Format:
         """
         ...
 
-    def isValid(self) -> bool:
+    def isValid(self,) -> Union[True, False]:
         """
         self.isValid() -> returns whether or not this format object has valid data.
 
@@ -118,7 +118,7 @@ class Format:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of this format.
 
@@ -126,7 +126,7 @@ class Format:
         """
         ...
 
-    def pixelAspect(self) -> float:
+    def pixelAspect(self,) -> float:
         """
         self.pixelAspect() -> returns the pixel aspect ratio of this format.
 
@@ -134,7 +134,7 @@ class Format:
         """
         ...
 
-    def productionAperture(self) -> object:
+    def productionAperture(self,) -> tuple:
         """
         self.productionAperture() -> returns a 4 element tuple with the rectangle (x1, y1, x2, y2) of the production aperture.
 
@@ -142,7 +142,7 @@ class Format:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -150,7 +150,7 @@ class Format:
         """
         ...
 
-    def width(self) -> int:
+    def width(self,) -> int:
         """
         self.width() -> returns the width of this format
 
@@ -158,7 +158,7 @@ class Format:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

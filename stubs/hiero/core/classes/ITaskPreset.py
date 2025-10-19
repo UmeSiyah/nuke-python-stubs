@@ -44,19 +44,19 @@ class ITaskPreset:
         """
         ...
 
-    def getResolveEntryCount(self) -> int:
+    def getResolveEntryCount(self,) -> int | float:
         """
         self.getResolveEntryCount() -> called by Hiero to get the number of resolve tokens available on this TaskPreset.
         """
         ...
 
-    def ident(self) -> str:
+    def ident(self,) -> TaskPreset:
         """
         self.ident() -> called by Hiero to get a unique identifier for the Task related to this TaskPreset.
         """
         ...
 
-    def isDeprecated(self) -> bool:
+    def isDeprecated(self,) -> Union[True, False]:
         """
         self.isDeprecated() -> returns whether or not this task preset is using a deprecated configuration.
 
@@ -64,73 +64,73 @@ class ITaskPreset:
         """
         ...
 
-    def markedForDeletion(self) -> bool:
+    def markedForDeletion(self,) -> Any:
         """
         self.markedForDeletion() -> called by Hiero to check if the preset is marked for deletion.
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> called by Hiero to get the preset name.
         """
         ...
 
-    def project(self) -> hiero.core.Project:
+    def project(self,) -> Project:
         """
         self.project() -> called by Hiero to discover which Project (if any), this preset is assigned to
         """
         ...
 
-    def readOnly(self) -> bool:
+    def readOnly(self,) -> Any:
         """
         self.readOnly() -> called by Hiero to discover if this preset is marked ReadOnly.
         """
         ...
 
-    def resolveEntryDescription(self, index: int) -> str:
+    def resolveEntryDescription(self,) -> int:
         """
         self.resolveEntryDescription() -> called by Hiero to get a resolve token description by index.
         """
         ...
 
-    def resolveEntryName(self, index: int) -> str:
+    def resolveEntryName(self,) -> int:
         """
         self.resolveEntryName() -> called by Hiero to get a resolve token ({shot}) by index.
         """
         ...
 
-    def setMarkedForDeletion(self, markedForDeletion: bool = True) -> None:
+    def setMarkedForDeletion(self,) -> Any:
         """
         self.setMarkedForDeletion() -> called by Hiero to mark this preset for deletion. The delete is not performed until presets are saved.
         """
         ...
 
-    def setProject(self, project: hiero.core.Project) -> None:
+    def setProject(self,) -> Project:
         """
         self.setProject() -> called by Hiero to assign a preset to a Project.
         """
         ...
 
-    def setReadOnly(self, readOnly: bool) -> None:
+    def setReadOnly(self,) -> Any:
         """
         self.setReadOnly() -> called by Hiero to mark this preset as ReadOnly.
         """
         ...
 
-    def summary(self) -> str:
+    def summary(self,) -> Any:
         """
         self.summary() -> called by Hiero to get the preset description.
         """
         ...
 
-    def supportedItems(self) -> int:
+    def supportedItems(self,) -> Iterable:
         """
         self.supportedItems() -> called by Hiero to establish what types of object this export task operates on (Clips, Sequences, TrackItems).
         """
         ...
 
-    def supportsAudio(self) -> bool:
+    def supportsAudio(self,) -> Union[True, False]:
         """
         self.supportsAudio() -> returns whether or not this task preset supports audio.
 

@@ -120,7 +120,7 @@ class ExportStructureElement(IExportStructureElement):
         """
         ...
 
-    def __bool__(self) -> None:
+    def __bool__(self) -> bool:
         """
         Implemented because otherwise the __len__ method is used for evaluation
         in boolean contexts. 'if element' should always succeed.
@@ -171,15 +171,21 @@ class ExportStructureElement(IExportStructureElement):
         """
         ...
 
-    def createChildFolder(self, path) -> None:
+    def createChildFolder(self, path: str) -> IExportStructureElement:
         """
+        self.createChildFolder(path) -> create a child folder, including any needed intermediate folders, for the given path. If the named folder already exists, returns it.
 
+        @param path: the path to the new folder
+        @return: hiero.core.IExportStructureElement object
         """
         ...
 
-    def createChildTask(self, path) -> None:
+    def createChildTask(self, path: str) -> IExportStructureElement:
         """
+        self.createChildTask(path) -> create a child task, including any needed intermediate folders, for the given path.
 
+        @param path: the path to the new element
+        @return: hiero.core.IExportStructureElement object
         """
         ...
 

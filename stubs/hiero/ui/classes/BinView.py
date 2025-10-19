@@ -30,7 +30,7 @@ class BinView:
         """
         ...
 
-    def getSelection(self) -> object:
+    def getSelection(self, *args: typing.Any, **kwargs: typing.Any) -> tuple:
         """
         Deprecated; please use the selection method instead.
 
@@ -38,7 +38,7 @@ class BinView:
         """
         ...
 
-    def selection(self) -> object:
+    def selection(self,) -> tuple:
         """
         self.selection() -> returns a tuple with the currently selected items.
 
@@ -46,13 +46,13 @@ class BinView:
         """
         ...
 
-    def window(self) -> PySide2.QtWidgets.QWidget:
+    def window(self,) -> Any:
         """
         self.window() -> Return the bin view window
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

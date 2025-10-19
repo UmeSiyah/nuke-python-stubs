@@ -36,13 +36,19 @@ class Viewer(QObject):
         """
         ...
 
-    def annotationTool(self) -> hiero.ui.ViewerTool:
+    def ROITool(self,) -> Any:
+        """
+        self.ROITool() -> return the ROI tool for this viewer
+        """
+        ...
+
+    def annotationTool(self,) -> Any:
         """
         self.annotationTool() -> return the annotation tool for this viewer.
         """
         ...
 
-    def availableGuideOverlayNames(self) -> typing.Set[str]:
+    def availableGuideOverlayNames(self,) -> Any:
         """
         self.availableGuideOverlayNames() -> returns the names of all the guide overlays available in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -50,7 +56,7 @@ class Viewer(QObject):
         """
         ...
 
-    def cachedFrames(self) -> typing.Set[int]:
+    def cachedFrames(self,) -> Any:
         """
         self.cachedFrames() -> get the frames which are currently cached in the viewer.
 
@@ -58,7 +64,7 @@ class Viewer(QObject):
         """
         ...
 
-    def channels(self) -> hiero.ui.Player.Channels:
+    def channels(self,) -> Viewer:
         """
         self.channels() -> returns the current channels in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -66,7 +72,7 @@ class Viewer(QObject):
         """
         ...
 
-    def compareMode(self) -> hiero.ui.Viewer.CompareMode:
+    def compareMode(self,) -> Viewer:
         """
         self.compareMode() -> returns the compare mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -74,7 +80,7 @@ class Viewer(QObject):
         """
         ...
 
-    def currentLayerName(self) -> str:
+    def currentLayerName(self,) -> str:
         """
         self.currentLayerName() -> returns the name of the current channels layer the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -82,13 +88,13 @@ class Viewer(QObject):
         """
         ...
 
-    def cursorTool(self) -> hiero.ui.ViewerCursorTool:
+    def cursorTool(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def displayDropFrames(self) -> bool:
+    def displayDropFrames(self,) -> bool:
         """
         self.displayDropFrames() -> True if the drop frames are beingdisplayed on the time format (when timecode is displayed)
 
@@ -96,7 +102,7 @@ class Viewer(QObject):
         """
         ...
 
-    def displayTimecode(self) -> bool:
+    def displayTimecode(self,) -> bool:
         """
         self.displayTimecode() -> True if the timecode is being displayed on the time format
 
@@ -104,25 +110,25 @@ class Viewer(QObject):
         """
         ...
 
-    def enterFullScreen(self) -> None:
+    def enterFullScreen(self,) -> Any:
         """
         self.enterFullScreen() -> puts the viewer into full screen mode. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def exitFullScreen(self) -> None:
+    def exitFullScreen(self,) -> Any:
         """
         self.exitFullScreen() -> takes the viewer out of full screen mode. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def flushCache(self) -> None:
+    def flushCache(self,) -> Any:
         """
         self.flushCache() -> flush the cache on the viewer and pause caching.
         """
         ...
 
-    def frameIncrement(self) -> int:
+    def frameIncrement(self,) -> int | float:
         """
         self.frameIncrement() -> returns the frame increment for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -130,7 +136,7 @@ class Viewer(QObject):
         """
         ...
 
-    def gain(self) -> float:
+    def gain(self,) -> Viewer:
         """
         self.gain() -> returns the gain value for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -138,7 +144,7 @@ class Viewer(QObject):
         """
         ...
 
-    def gamma(self) -> float:
+    def gamma(self,) -> Viewer:
         """
         self.gamma() -> returns the gamma value for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -146,7 +152,7 @@ class Viewer(QObject):
         """
         ...
 
-    def getAchievedFPS(self) -> float:
+    def getAchievedFPS(self,) -> float:
         """
         self.getAchievedFPS() -> returns the average fps achieved by the viewer.
 
@@ -154,31 +160,31 @@ class Viewer(QObject):
         """
         ...
 
-    def goToNextEdit(self) -> None:
+    def goToNextEdit(self,) -> Any:
         """
         self.goToNextEdit() -> Move playhead to next edit. Can only be called from the user interface thread.
         """
         ...
 
-    def goToNextTag(self) -> None:
+    def goToNextTag(self,) -> Any:
         """
         self.goToNextTag() -> Move playhead to next tag. Can only be called from the user interface thread.
         """
         ...
 
-    def goToPrevEdit(self) -> None:
+    def goToPrevEdit(self,) -> Any:
         """
         self.goToPrevEdit() -> Move playhead to previous edit. Can only be called from the user interface thread.
         """
         ...
 
-    def goToPrevTag(self) -> None:
+    def goToPrevTag(self,) -> Any:
         """
         self.goToPrevTag() -> Move playhead to previous tag. Can only be called from the user interface thread.
         """
         ...
 
-    def image(self) -> PySide2.QtGui.QImage:
+    def image(self,) -> Any:
         """
         self.image() -> returns the contents of the viewer as an image, including all overlays. Can only be called from the user interface thread.
 
@@ -186,7 +192,7 @@ class Viewer(QObject):
         """
         ...
 
-    def isCachingPaused(self) -> bool:
+    def isCachingPaused(self,) -> bool:
         """
         self.isCachingPaused() -> get whether caching is paused.
 
@@ -194,7 +200,7 @@ class Viewer(QObject):
         """
         ...
 
-    def layoutMode(self) -> hiero.ui.Viewer.LayoutMode:
+    def layoutMode(self,) -> Viewer:
         """
         self.layoutMode() -> returns the layout mode the viewer is currently in.
 
@@ -202,7 +208,7 @@ class Viewer(QObject):
         """
         ...
 
-    def maskOverlayName(self) -> str:
+    def maskOverlayName(self,) -> str:
         """
         self.maskOverlayName() -> returns the name of the current mask overlay in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -210,7 +216,7 @@ class Viewer(QObject):
         """
         ...
 
-    def maskOverlayStyle(self) -> hiero.ui.Player.MaskOverlayStyle:
+    def maskOverlayStyle(self,) -> Any:
         """
         self.maskOverlayStyle() -> returns the current mask overlay style set in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -218,7 +224,7 @@ class Viewer(QObject):
         """
         ...
 
-    def overlaysShown(self) -> bool:
+    def overlaysShown(self,) -> bool:
         """
         self.overlaysShown() -> get whether overlays are shown in the viewer.
 
@@ -226,31 +232,31 @@ class Viewer(QObject):
         """
         ...
 
-    def pauseCaching(self) -> None:
+    def pauseCaching(self,) -> Any:
         """
         self.pauseCaching() -> pause caching on the viewer.
         """
         ...
 
-    def play(self) -> None:
+    def play(self,) -> Any:
         """
         self.play() -> starts playback in the viewer in the forward direction. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def playBackwards(self) -> None:
+    def playBackwards(self,) -> Any:
         """
         self.playBackwards() -> starts playback in the viewer in the backwards direction. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def playForwards(self) -> None:
+    def playForwards(self,) -> Any:
         """
         self.playForwards() -> starts playback in the viewer in the forward direction. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def playbackMode(self) -> hiero.ui.Viewer.PlaybackMode:
+    def playbackMode(self,) -> Viewer:
         """
         self.playbackMode() -> returns the compare mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -258,13 +264,13 @@ class Viewer(QObject):
         """
         ...
 
-    def playbackSpeed(self) -> int:
+    def playbackSpeed(self,) -> int:
         """
         self.playbackSpeed() -> Get the current playback speed, which will be 0 if playback is not currently in progress.
         """
         ...
 
-    def player(self, index: int = 0) -> hiero.ui.Player:
+    def player(self, index: int) -> Player:
         """
         self.player(index) -> returns the player object attached to this viewer, based on the input index.
 
@@ -273,13 +279,21 @@ class Viewer(QObject):
         """
         ...
 
-    def resumeCaching(self) -> None:
+    def resumeCaching(self,) -> Any:
         """
         self.resumeCaching() -> resume caching on the viewer.
         """
         ...
 
-    def selectedGuideOverlayNames(self) -> typing.Set[str]:
+    def saturation(self,) -> Viewer:
+        """
+        self.saturation() -> returns the saturation value for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
+
+        @return: a Viewer clip player's saturation value
+        """
+        ...
+
+    def selectedGuideOverlayNames(self,) -> Any:
         """
         self.selectedGuideOverlayNames() -> returns the names of the current guide overlays in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -287,7 +301,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setChannels(self, channels: hiero.ui.Player.Channels) -> None:
+    def setChannels(self, channels) -> Any:
         """
         self.setChannels(channels) -> Sets the channels in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -295,7 +309,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setCompareMode(self, mode: hiero.ui.Viewer.CompareMode) -> None:
+    def setCompareMode(self, mode) -> Any:
         """
         self.setCompareMode(mode) -> changes the compare mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -303,7 +317,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setDisplayTimecode(self, displayTimecode: bool) -> None:
+    def setDisplayTimecode(self, displayTimecode) -> None:
         """
         self.setDisplayTimecode(displayTimecode) -> Sets the viewer to display Timecode if 'displayTimecode' is True, or Timeline Frame otherwise
 
@@ -311,7 +325,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setExpanded(self, expanded: bool) -> None:
+    def setExpandState(self, ) -> Any:
         """
         self.setExpandState() -> set the expanded state of the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -319,7 +333,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setFrameIncrement(self, frameIncrement: int) -> None:
+    def setFrameIncrement(self, frames: int | float) -> int:
         """
         self.setFrameIncrement(frames) -> changes the frame increment for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -327,7 +341,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setGain(self, gain: float) -> None:
+    def setGain(self, gain) -> Any:
         """
         self.setGain(gain) -> changes the gain for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -335,7 +349,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setGamma(self, gamma: float) -> None:
+    def setGamma(self, gamma) -> Any:
         """
         self.setGamma(gamma) -> changes the gamma for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -343,7 +357,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setGuideOverlayFromRemote(self, overlayNames: typing.Set[str], remoteOverlaysAvailable: typing.Set[str]) -> None:
+    def setGuideOverlayFromRemote(self, ) -> Any:
         """
         self.setGuideOverlayFromRemote() -> Sets the guide overlays in the viewer from a remote source. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -352,7 +366,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setLayer(self, layerName: str) -> None:
+    def setLayer(self, layerName: str) -> Any:
         """
         self.setLayer(layerName) -> Sets the channels layer in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -360,7 +374,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setLayoutMode(self, layoutMode: hiero.ui.Viewer.LayoutMode) -> None:
+    def setLayoutMode(self, mode) -> Any:
         """
         self.setLayoutMode(mode) -> changes the layout mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -368,7 +382,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setMaskOverlayFromRemote(self, overlayName: str) -> None:
+    def setMaskOverlayFromRemote(self, ) -> Any:
         """
         self.setMaskOverlayFromRemote() -> Sets the guide overlays in the viewer from a remote source. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -376,7 +390,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setMaskOverlayStyle(self, pyStyle: hiero.ui.Player.MaskOverlayStyle) -> None:
+    def setMaskOverlayStyle(self, ) -> Any:
         """
         self.setMaskOverlayStyle() -> Sets the channels in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -384,7 +398,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setOverlaysShown(self, show: bool) -> None:
+    def setOverlaysShown(self, show: bool) -> Any:
         """
         self.setOverlaysShown(show) -> set whether overlays are shown in the viewer.
 
@@ -392,7 +406,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setPlaybackMode(self, mode: hiero.ui.Viewer.PlaybackMode) -> None:
+    def setCompareMode(self, mode: Viewer) -> Any:
         """
         self.setCompareMode(mode) -> changes the playback mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -400,13 +414,13 @@ class Viewer(QObject):
         """
         ...
 
-    def setPlaybackSpeed(self, speed: int) -> None:
+    def setPlaybackSpeed(self, speed) -> int:
         """
         self.setPlaybackSpeed(speed) -> Set the current playback speed. Setting to 0 will stop, -1 play in reverse, etc.
         """
         ...
 
-    def setPlayer(self, index: int) -> None:
+    def setPlayer(self, index: int) -> int:
         """
         self.setPlayer(index) -> sets the active player if index is a valid player index.
 
@@ -414,7 +428,15 @@ class Viewer(QObject):
         """
         ...
 
-    def setSequence(self, sequence: hiero.core.SequenceBase, indexOfPlayer: int) -> None:
+    def setSaturation(self, saturation) -> Any:
+        """
+        self.setSaturation(saturation) -> changes the saturation for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
+
+        @param saturation: a saturation value to be set in the viewer
+        """
+        ...
+
+    def setSequence(self, ) -> Iterable:
         """
         self.setSequence() -> set the sequence for this viewer
 
@@ -423,7 +445,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setTime(self, time: int) -> None:
+    def setTime(self, time: int) -> int | float:
         """
         self.setTime(time) -> seeks the play head of the viewer to the time parameter. Works the same as scrubbing the timeline in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -431,7 +453,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setTimeDisplayFormat(self, displayTimecode: bool, displayDropFrames: bool) -> None:
+    def setTimeDisplayFormat(self, ) -> int | float:
         """
         self.setTimeDisplayFormat() -> Change the current time display format of the viewer
 
@@ -440,7 +462,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setTracksMask(self, indexOfPlayer: int, tracksMask: hiero.ui.TracksMask) -> None:
+    def setTracksMask(self, ) -> Any:
         """
         self.setTracksMask() -> modify the status of the tracks of one of the buffers. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -449,7 +471,7 @@ class Viewer(QObject):
         """
         ...
 
-    def setView(self, name: str, viewIndex: int = 0) -> None:
+    def setView(self, name: str, viewIndex: Optional[int] = None) -> str:
         """
         setView(name, viewIndex) -> If name matches an existing view then the Viewers's active view for viewIndex is set to the view given by name.
         @param name: string
@@ -457,13 +479,13 @@ class Viewer(QObject):
         """
         ...
 
-    def stop(self) -> None:
+    def stop(self,) -> Any:
         """
         self.stop() -> stops playback in the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def syncShuttleTargetFPS(self, fps: float) -> None:
+    def syncShuttleTargetFPS(self, ) -> int:
         """
         self.syncShuttleTargetFPS() -> Syncs the current target frame rate of the shuttle target frame rate
 
@@ -471,7 +493,7 @@ class Viewer(QObject):
         """
         ...
 
-    def syncTargetFrameRate(self, numerator: int, denominator: int) -> None:
+    def syncTargetFrameRate(self, ) -> int:
         """
         self.syncTargetFrameRate() -> Syncs the target frame rate of the viewer when it is modifiedby other client during a sync review
 
@@ -480,25 +502,25 @@ class Viewer(QObject):
         """
         ...
 
-    def time(self) -> int:
+    def time(self,) -> int:
         """
         self.time() -> returns the current frame of the viewer.
         """
         ...
 
-    def toggleFullScreen(self) -> None:
+    def toggleFullScreen(self,) -> Any:
         """
         self.toggleFullScreen() -> toggles full screen mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def toggleFullScreen1_1(self) -> None:
+    def toggleFullScreen1_1(self,) -> int:
         """
         self.toggleFullScreen1_1() -> toggles 1:1 full screen mode for the viewer. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
         """
         ...
 
-    def tracksMask(self, indexOfPlayer: int) -> hiero.ui.TracksMask:
+    def tracksMask(self, ) -> TracksMask:
         """
         self.tracksMask() -> returns status of the tracks of one of the buffers. Can only be called from the user interface thread. Use hiero.core.executeInMainThread if you need to call it from a non-ui thread.
 
@@ -507,20 +529,20 @@ class Viewer(QObject):
         """
         ...
 
-    def view(self, viewIndex: int = 0) -> str:
+    def view(self, viewIndex: Optional[int] = None) -> str:
         """
         view(viewIndex) -> Returns the name of the active view for viewIndex.
         @param viewIndex: optional; integer (for example in stereo a viewIndex of 0 corresponds to the primary view and 1 to the secondary view)
         """
         ...
 
-    def window(self) -> PySide2.QtWidgets.QWidget:
+    def window(self,) -> Any:
         """
         self.window() -> Return the viewer window
         """
         ...
 
-    def wipeTool(self) -> hiero.ui.ViewerWipeTool:
+    def wipeTool(self,) -> Any:
         """
         self.wipeTool() -> return the wipe tool for this viewer
         """
@@ -546,25 +568,27 @@ class Viewer(QObject):
     ePlaybackBounce: Any = None
     ePlaybackStop: Any = None
     ePlaybackContinue: Any = None
-    compareModeChanged = Signal()
     timeChanged = Signal()
-    sequenceChanged = Signal()
-    playbackSpeedChanged = Signal()
-    gammaChanged = Signal()
-    channelsChanged = Signal()
-    layoutModeChanged = Signal()
-    gainChanged = Signal()
-    trackSelectionChanged = Signal()
-    maskOverlayStyleChanged = Signal()
-    maskOverlayChanged = Signal()
-    guideOverlayChanged = Signal()
-    targetFrameRateChanged = Signal()
-    playbackModeChanged = Signal()
+    compareModeChanged = Signal()
     timeDisplayFormatChanged = Signal()
-    frameDisplayed = Signal()
+    saturationChanged = Signal()
+    channelsChanged = Signal()
+    playbackSpeedChanged = Signal()
     shuttleTargetFPSChanged = Signal()
-    currentLayerChanged = Signal()
+    frameDisplayed = Signal()
+    maskOverlayChanged = Signal()
+    layoutModeChanged = Signal()
+    guideOverlayChanged = Signal()
+    playbackModeChanged = Signal()
+    targetFrameRateChanged = Signal()
     transformChanged = Signal()
+    sequenceChanged = Signal()
+    gammaChanged = Signal()
+    gainChanged = Signal()
+    playheadStateChanged = Signal()
+    trackSelectionChanged = Signal()
+    currentLayerChanged = Signal()
+    maskOverlayStyleChanged = Signal()
     staticMetaObject: Any = None
 
     def _goToTag(self, tag: str) -> None:

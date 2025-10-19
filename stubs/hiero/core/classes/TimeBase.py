@@ -26,7 +26,7 @@ class TimeBase:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -74,7 +74,7 @@ class TimeBase:
         """
         ...
 
-    def convert(self, t: int, from_: hiero.core.TimeBase, to: hiero.core.TimeBase) -> int:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -97,7 +97,7 @@ class TimeBase:
         """
         ...
 
-    def convertTime(self, t: int, toRate: hiero.core.TimeBase) -> int:
+    def convertTime(self, t: int, toRate: int | float) -> int:
         """
         self.convertTime(t, toRate) -> returns the time specified by the first parameter converted from this object's time base into the second parameter's time base.
         If either of the time bases is invalid, this method returns the t parameter unchanged.
@@ -108,14 +108,14 @@ class TimeBase:
         """
         ...
 
-    def denominator(self) -> int:
+    def denominator(self,) -> int:
         """
         self.denominator() -> gets the denominator of the time base.
         @return: int
         """
         ...
 
-    def fromRational(self, numerator: int, denominator: int) -> hiero.core.TimeBase:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -138,7 +138,7 @@ class TimeBase:
         """
         ...
 
-    def fromString(self, str: str) -> hiero.core.TimeBase:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -161,7 +161,7 @@ class TimeBase:
         """
         ...
 
-    def isNTSC(self) -> bool:
+    def isNTSC(self,) -> Union[True, False]:
         """
         self.isNTSC() -> returns True if the time base is NTSC (24*1000/1001, 30*1000/1001, or 60*1000/1001).
 
@@ -169,7 +169,7 @@ class TimeBase:
         """
         ...
 
-    def isValid(self) -> bool:
+    def isValid(self,) -> Union[True, False]:
         """
         self.isValid() -> returns True if the denominator of the time base is non-zero.
 
@@ -177,14 +177,14 @@ class TimeBase:
         """
         ...
 
-    def numerator(self) -> int:
+    def numerator(self,) -> int:
         """
         self.numerator() -> gets the numerator of the time base.
         @return: int
         """
         ...
 
-    def supportsDropFrames(self) -> bool:
+    def supportsDropFrames(self,) -> Union[True, False]:
         """
         self.supportsDropFrames() -> returns True if the time base supports drop frames (only true for 30 or 60 fps NTSC currently).
 
@@ -192,7 +192,7 @@ class TimeBase:
         """
         ...
 
-    def toFloat(self) -> float:
+    def toFloat(self,) -> float:
         """
         self.toFloat() -> returns the time base value expressed as a floating point value.
 
@@ -200,7 +200,7 @@ class TimeBase:
         """
         ...
 
-    def toInt(self) -> int:
+    def toInt(self,) -> int:
         """
         self.toInt() -> returns the time base value, rounded to the nearest integer.
 
@@ -208,7 +208,7 @@ class TimeBase:
         """
         ...
 
-    def toRational(self) -> typing.Tuple[int, int]:
+    def toRational(self,) -> tuple:
         """
         self.toRational() -> returns a tuple of the numerator and the denominator of the time base.
 
@@ -216,7 +216,7 @@ class TimeBase:
         """
         ...
 
-    def toRationalString(self) -> str:
+    def toRationalString(self,) -> str:
         """
         self.toRationalString() -> returns a string containing the time base expressed as a ratio, for example '30000/1001'.
 
@@ -224,7 +224,7 @@ class TimeBase:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a string containing the time base as a floating point number. Equivalent to str(object).
 
@@ -232,7 +232,7 @@ class TimeBase:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

@@ -89,13 +89,13 @@ class TrackBase:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def addItem(self, trackItem: hiero.core.TrackItem) -> hiero.core.TrackItem:
+    def addItem(self, item: TrackItem) -> TrackItem:
         """
         self.addItem(item) -> deprecated; use addTrackItem instead. Adds a track item to this track. Throws an exception if the item overlaps any existing items on the track.
 
@@ -104,7 +104,7 @@ class TrackBase:
         """
         ...
 
-    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
+    def addTag(self, tag: Tag) -> Tag:
         """
         self.addTag(tag) -> adds the specified tag to the Track.
 
@@ -113,7 +113,18 @@ class TrackBase:
         """
         ...
 
-    def addTransition(self, transition: hiero.core.Transition) -> hiero.core.Transition:
+    def addTagToRange(self, tag: Tag, inTime: int | float, outTime: int | float) -> Tag:
+        """
+        self.addTagToRange(tag, inTime, outTime) -> adds the tag to the specified range of the Track.
+
+        @param tag: Tag object to apply to the track
+        @param inTime: start time of the tag
+        @param outTime: end time of the tag
+        @return: a hiero.core.Tag object
+        """
+        ...
+
+    def addTransition(self, transition: Transition) -> Transition:
         """
         self.addTransition(transition) -> adds a transition to the timeline for the track.  Can only be called when the track has been added to a Sequence.
 
@@ -125,7 +136,7 @@ class TrackBase:
         """
         ...
 
-    def clearRange(self, start: int, end: int, ripple: bool) -> None:
+    def clearRange(self, start: int | float, end: int | float, ripple: bool) -> int | float:
         """
         self.clearRange(start, end, ripple) -> Clears a time range out of the track; effectively a razor on any clips straddling the start and end, and a delete of everything else.
 
@@ -135,13 +146,21 @@ class TrackBase:
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def isEnabled(self) -> bool:
+    def isEmpty(self,) -> Union[True, False]:
+        """
+        self.isEmpty() -> returns True if the Track contains no items.
+
+        @return: True or False
+        """
+        ...
+
+    def isEnabled(self,) -> Union[True, False]:
         """
         self.isEnabled() -> returns True if the Track object is enabled.
 
@@ -149,7 +168,7 @@ class TrackBase:
         """
         ...
 
-    def isLocked(self) -> bool:
+    def isLocked(self,) -> Union[True, False]:
         """
         self.isLocked() -> returns True if the Track object is locked.
 
@@ -157,7 +176,7 @@ class TrackBase:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the Track object is invalid.
 
@@ -165,7 +184,7 @@ class TrackBase:
         """
         ...
 
-    def metadata(self) -> hiero.core.DataCollection:
+    def metadata(self,) -> DataCollection:
         """
         self.metadata() -> returns the metadata for this Track.
 
@@ -173,7 +192,7 @@ class TrackBase:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of the track. Identical to calling trackName().
 
@@ -181,7 +200,7 @@ class TrackBase:
         """
         ...
 
-    def numItems(self) -> int:
+    def numItems(self,) -> int:
         """
         self.numItems() -> returns the number of items in this track.
 
@@ -189,7 +208,7 @@ class TrackBase:
         """
         ...
 
-    def numTransitions(self) -> int:
+    def numTransitions(self,) -> int:
         """
         self.numTransitions() -> returns the number of transitions in this track.
 
@@ -197,7 +216,7 @@ class TrackBase:
         """
         ...
 
-    def project(self) -> object:
+    def project(self,) -> Project:
         """
         self.project() -> returns the Project object that this item is attached to or None if the object is not attached to a project.
 
@@ -205,7 +224,7 @@ class TrackBase:
         """
         ...
 
-    def razorAt(self, *args: typing.Any, **kwargs: typing.Any) -> int | float:
+    def razorAt(self, time: list) -> int | float:
         """
         self.razorAt(time) -> Creates razor cuts on a track for the parameter time(s).
 
@@ -213,7 +232,7 @@ class TrackBase:
         """
         ...
 
-    def removeItem(self, trackItem: hiero.core.TrackItem, option: int = 'eRemoveLinkedItems') -> None:
+    def removeItem(self, trackItem: TrackItem, option=None) -> Any:
         """
         self.removeItem(trackItem, option=eRemoveLinkedItems) -> removes a track item from this track.
 
@@ -222,7 +241,7 @@ class TrackBase:
         """
         ...
 
-    def removeTag(self, tag: hiero.core.Tag) -> None:
+    def removeTag(self, tag) -> Any:
         """
         self.removeTag(tag) -> removes the tag from the track.
 
@@ -230,7 +249,7 @@ class TrackBase:
         """
         ...
 
-    def removeTransition(self, transition: hiero.core.Transition) -> None:
+    def removeTransition(self, transition: int | float) -> int | float:
         """
         self.removeTransition(transition) -> removes a transition from the timeline of this track.
 
@@ -238,13 +257,13 @@ class TrackBase:
         """
         ...
 
-    def setEnabled(self, enabled: bool) -> None:
+    def setEnabled(self,) -> Union[None, None]:
         """
         self.setEnabled() -> enables or disables the Track.
         """
         ...
 
-    def setLocked(self, locked: bool) -> None:
+    def setLocked(self,) -> Union[True, False]:
         """
         self.setLocked() -> locks or unlocks the Track.
 
@@ -252,7 +271,7 @@ class TrackBase:
         """
         ...
 
-    def setName(self, name: str) -> None:
+    def setName(self,) -> str:
         """
         self.setName() -> Sets the name of a track.
 
@@ -260,7 +279,7 @@ class TrackBase:
         """
         ...
 
-    def tags(self) -> object:
+    def tags(self,) -> tuple:
         """
         self.tags() -> returns a tuple of all of the tags applied to this object.
 
@@ -268,7 +287,7 @@ class TrackBase:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -276,13 +295,13 @@ class TrackBase:
         """
         ...
 
-    def trackIndex(self) -> int:
+    def trackIndex(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def trackName(self) -> str:
+    def trackName(self,) -> str:
         """
         self.trackName() -> returns the name of the track. Identical to calling name().
 
@@ -290,7 +309,7 @@ class TrackBase:
         """
         ...
 
-    def transitions(self) -> object:
+    def transitions(self,) -> tuple:
         """
         self.transitions() -> returns a tuple of all of the transitions applied to this track object.
 
@@ -298,7 +317,7 @@ class TrackBase:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

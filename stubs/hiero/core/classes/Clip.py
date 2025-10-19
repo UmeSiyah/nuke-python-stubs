@@ -30,7 +30,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -54,13 +54,13 @@ class Clip(SequenceBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
+    def addTag(self, ) -> Tag:
         """
         self.addTag() -> adds the tag to the set of tags attached to the Clip.
 
@@ -69,7 +69,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def addTagToRange(self, tag: hiero.core.Tag, inTime: int, outTime: int) -> hiero.core.Tag:
+    def addTagToRange(self, tag, inTime: int | float, outTime: int | float) -> Tag:
         """
         self.addTagToRange(tag, inTime, outTime) -> adds the tag to the specified range of the Clip.
 
@@ -91,7 +91,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> Clip:
         """
         self.copy() -> returns a deep copy of this object.
 
@@ -99,7 +99,24 @@ class Clip(SequenceBase):
         """
         ...
 
-    def entityReference(self) -> str:
+    def createEffect(self, effectType: Node) -> EffectTrackItem:
+        """
+        self.createEffect(effectType) -> adds an effect to the clip
+
+        @param effectType: The node type of create a soft effect for
+        @return: The created EffectTrackItem
+        """
+        ...
+
+    def effects(self,) -> list:
+        """
+        self.effects() -> get the list of effects present on the clip.
+
+        return: list(EffectTrackItem)
+        """
+        ...
+
+    def entityReference(self,) -> str:
         """
         self.entityReference() -> returns this clip's asset management system entity reference.
 
@@ -107,7 +124,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def getAvailableOcioColourTransforms(self) -> typing.List[str]:
+    def getAvailableOcioColourTransforms(self,) -> str:
         """
         self.getAvailableOcioColourTransforms() -> returns colour transform for the source media.
 
@@ -115,19 +132,19 @@ class Clip(SequenceBase):
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def hasError(self) -> bool:
+    def hasError(self,) -> Any:
         """
         self.hasError() -> check if the clip is in error state
         """
         ...
 
-    def hasMultipleViews(self) -> bool:
+    def hasMultipleViews(self,) -> bool:
         """
         self.hasMultipleViews() -> returns true if the Clip has multiple views available for display given the current settings of the project it belongs to.
 
@@ -135,7 +152,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def isLocalizationOutdated(self) -> bool:
+    def isLocalizationOutdated(self,) -> bool:
         """
         self.isLocalizationOutdated() -> Returns whether the source media has changed.
 
@@ -143,7 +160,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def isLocalized(self) -> bool:
+    def isLocalized(self,) -> bool:
         """
         self.isLocalized() -> returns whether the clip is completely localized.
 
@@ -151,7 +168,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns False if this is a valid Clip object, True otherwise.
 
@@ -159,7 +176,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def localizationPolicy(self) -> hiero.core.Clip.LocalizationPolicy:
+    def localizationPolicy(self,) -> Any:
         """
         self.localizationPolicy() -> returns the localization policy of the clip.
 
@@ -167,7 +184,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def localizationPriority(self) -> int:
+    def localizationPriority(self,) -> int:
         """
         self.localizationPriority() -> returns localization priority value which determines the order in which files are localized
 
@@ -175,7 +192,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def localizationProgress(self) -> float:
+    def localizationProgress(self,) -> int:
         """
         self.localizationProgress() -> returns the localization progress of the clip, where 0 is totally non-localized and 1 is completely localized.
 
@@ -183,7 +200,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def mediaSource(self) -> hiero.core.MediaSource:
+    def mediaSource(self,) -> MediaSource:
         """
         self.mediaSource() -> returns the clip's media source.
 
@@ -191,7 +208,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def metadata(self) -> hiero.core.DataCollection:
+    def isNull(self,) -> Any:
         """
         self.isNull() -> returns a *copy* of the clip's metadata.
 
@@ -199,7 +216,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def numAudioTracks(self) -> int:
+    def numAudioTracks(self,) -> int:
         """
         self.numAudioTracks() -> returns number of audio tracks contained by this clip.
 
@@ -207,7 +224,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def numVideoTracks(self) -> int:
+    def numVideoTracks(self,) -> int:
         """
         self.numVideoTracks() -> returns number of video tracks contained by this clip.
 
@@ -223,7 +240,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def reconnectMedia(self, path: str) -> None:
+    def reconnectMedia(self, path: str) -> str:
         """
         self.reconnectMedia(path) -> Reconnect the Clip with media found in the specified path.
 
@@ -231,13 +248,19 @@ class Clip(SequenceBase):
         """
         ...
 
-    def refresh(self) -> None:
+    def refresh(self,) -> Any:
         """
         self.refresh() -> updates the clip if the source media has changed.
         """
         ...
 
-    def removeTag(self, tag: hiero.core.Tag) -> None:
+    def removeEffect(self, effect) -> Any:
+        """
+        self.removeEffect(effect) -> removes the given effect from the clip
+        """
+        ...
+
+    def removeTag(self, tag: Tag) -> Any:
         """
         self.removeTag(tag) -> removes the tag from the clip.
 
@@ -245,13 +268,13 @@ class Clip(SequenceBase):
         """
         ...
 
-    def rescan(self) -> None:
+    def rescan(self,) -> int:
         """
         self.rescan() -> updates the clip and rescan the frame range if the source media has changed.
         """
         ...
 
-    def setCameraColourTransform(self, arg__1: str) -> None:
+    def setCameraColourTransform(self, colourTransform: str) -> Any:
         """
         self.setCameraColourTransform(colourTransform) -> sets the camera colour transform for the source media.
 
@@ -259,7 +282,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def setEntityReference(self, location: str) -> None:
+    def setEntityReference(self, location: str) -> Any:
         """
         self.setEntityReference(location) -> set this clip's (asset management system) entity reference.
 
@@ -267,13 +290,13 @@ class Clip(SequenceBase):
         """
         ...
 
-    def setFrameRange(self, startFrame: int, endFrame: int) -> None:
+    def setFrameRange(self,) -> int:
         """
         self.setFrameRange() -> Sets the clip frame range to the specified values.
         """
         ...
 
-    def setLocalizationPolicy(self, policy: hiero.core.Clip.LocalizationPolicy) -> None:
+    def setLocalizationPolicy(self, policy) -> Any:
         """
         self.setLocalizationPolicy( policy ) -> sets the localization policy to the clip.
 
@@ -281,7 +304,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def setLocalizationPriority(self, priority: int) -> None:
+    def setLocalizationPriority(self, priority: int) -> str:
         """
         self.setLocalizationPriority( priority ) -> sets localization priority value which determines the order in which files are localized
 
@@ -289,7 +312,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def setSourceMediaColourTransform(self, arg__1: str) -> None:
+    def setSourceMediaColourTransform(self, colourTransform: str) -> Any:
         """
         self.setSourceMediaColourTransform(colourTransform) -> sets the input colour transform for the source media.
 
@@ -297,7 +320,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def sourceIn(self) -> int:
+    def sourceIn(self,) -> int:
         """
         self.sourceIn() -> returns the source in value for the clip.
 
@@ -305,7 +328,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def sourceMediaColourTransform(self) -> str:
+    def sourceMediaColourTransform(self,) -> str:
         """
         self.sourceMediaColourTransform() -> returns colour transform for the source media.
 
@@ -313,7 +336,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def sourceOut(self) -> int:
+    def sourceOut(self,) -> int:
         """
         self.sourceOut() -> returns the source out value for the clip.
 
@@ -321,13 +344,13 @@ class Clip(SequenceBase):
         """
         ...
 
-    def subTrackItems(self) -> object:
+    def subTrackItems(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def views(self) -> typing.List[str]:
+    def views(self,) -> list:
         """
         self.views() -> get the list of views available for the clip. If it uses a path with %v/%V, this will return all the views for which media exists. If the source media contains multiple named views, it will return those (note this does not work for mov files). Otherwise returns an empty list.
 
@@ -335,7 +358,7 @@ class Clip(SequenceBase):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

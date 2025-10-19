@@ -24,7 +24,7 @@ class MediaSource:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -78,13 +78,13 @@ class MediaSource:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def associatedFilePaths(self) -> typing.List[str]:
+    def associatedFilePaths(self,) -> list:
         """
         self.associatedFilePaths() -> Return a list of file paths associated with the 'main' file, this is used with r3d clips where there are multiple r3ds in sequence, or rmd files.
 
@@ -92,7 +92,7 @@ class MediaSource:
         """
         ...
 
-    def createOfflineVideoMediaSource(self, path: str, start: int, duration: int, frameRate: hiero.core.TimeBase, startTimecode: int = 0) -> hiero.core.MediaSource:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -115,7 +115,7 @@ class MediaSource:
         """
         ...
 
-    def duration(self) -> int:
+    def duration(self,) -> Any:
         """
         self.duration() -> returns the duration, in frames.
 
@@ -123,7 +123,7 @@ class MediaSource:
         """
         ...
 
-    def fileinfos(self) -> typing.List[core.MediaFileInfo]:
+    def fileinfos(self,) -> tuple:
         """
         self.fileinfos() -> returns a tuple of hiero.core.MediaFileInfo objects, which can be used to retrieve all of the file fragments that are used by this MediaSource.
 
@@ -131,7 +131,7 @@ class MediaSource:
         """
         ...
 
-    def filename(self) -> str:
+    def filename(self,) -> str:
         """
         self.filename() -> returns the file name (and just the file name) of the first file used for the MediaSource.
 
@@ -141,7 +141,7 @@ class MediaSource:
         """
         ...
 
-    def filenameHead(self) -> str:
+    def filenameHead(self,) -> str:
         """
         self.filenameHead() -> returns the portion of filename before the frame index for an image sequence.
 
@@ -149,7 +149,7 @@ class MediaSource:
         """
         ...
 
-    def filenamePadding(self) -> int:
+    def filenameHead(self,) -> int:
         """
         self.filenameHead() -> returns the number characters used for frame index. -1 if not an image sequence.
 
@@ -157,7 +157,7 @@ class MediaSource:
         """
         ...
 
-    def firstpath(self) -> str:
+    def firstpath(self,) -> str:
         """
         self.firstpath() -> returns the full path of the first file used for the MediaSource.
         Deprecated; Please use the fileinfos() method instead.
@@ -166,7 +166,7 @@ class MediaSource:
         """
         ...
 
-    def fragmentFilename(self, index: int) -> str:
+    def fragmentFilename(self, fragmentIndex: int) -> str:
         """
         self.fragmentFilename(fragmentIndex) -> returns the file name (and just the file name) for the fragment of the MediaSource, specified by the fragmentIndex.
         Deprecated; Please use the fileinfos() method instead
@@ -176,7 +176,7 @@ class MediaSource:
         """
         ...
 
-    def fragmentPath(self, index: int) -> str:
+    def fragmentPath(self, fragmentIndex: int) -> str:
         """
         self.fragmentPath(fragmentIndex) -> returns the full path for the fragment of the MediaSource, specified by the fragmentIndex.
         Deprecated; Please use the fileinfos() method instead.
@@ -186,7 +186,7 @@ class MediaSource:
         """
         ...
 
-    def hasAudio(self) -> bool:
+    def hasAudio(self,) -> Union[True, False]:
         """
         self.hasAudio() -> True if the source has audio.
 
@@ -194,7 +194,7 @@ class MediaSource:
         """
         ...
 
-    def hasVideo(self) -> bool:
+    def hasVideo(self,) -> Union[True, False]:
         """
         self.hasVideo() -> True if the source has video.
 
@@ -202,7 +202,7 @@ class MediaSource:
         """
         ...
 
-    def height(self) -> int:
+    def height(self,) -> int:
         """
         self.height() -> returns the height of the media.
 
@@ -210,7 +210,7 @@ class MediaSource:
         """
         ...
 
-    def isMediaPresent(self) -> bool:
+    def isMediaPresent(self,) -> Union[True, False]:
         """
         self.isMediaPresent() -> returns True if the media is present.
 
@@ -218,7 +218,7 @@ class MediaSource:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> True if the object points to an invalid source, False otherwise.
 
@@ -226,7 +226,7 @@ class MediaSource:
         """
         ...
 
-    def isOffline(self) -> bool:
+    def isOffline(self,) -> Union[True, False]:
         """
         self.isOffline() -> returns True if the media is missing or unavailable for any reason.
 
@@ -234,7 +234,7 @@ class MediaSource:
         """
         ...
 
-    def metadata(self) -> hiero.core.DataCollection:
+    def metadata(self,) -> MediaSource:
         """
         self.metadata() -> returns a hiero.core.Metadata object with metadata for the MediaSource.
 
@@ -242,13 +242,13 @@ class MediaSource:
         """
         ...
 
-    def numChannels(self, mediaType: hiero.core.MediaSource.MediaType) -> int:
+    def numChannels(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def numFragments(self) -> int:
+    def numFragments(self,) -> int:
         """
         self.numFragments() -> returns the number of files used by this MediaSource, or -1 for invalid media. For instance, for mov files, this will return 1; for exr sequences this method will return the number of exr files in the sequence.
         Deprecated; Please use the fileinfos() method instead.
@@ -257,7 +257,7 @@ class MediaSource:
         """
         ...
 
-    def pixelAspect(self) -> float:
+    def pixelAspect(self,) -> float:
         """
         self.pixelAspect() -> returns the pixel aspect ratio of the media.
 
@@ -265,13 +265,13 @@ class MediaSource:
         """
         ...
 
-    def refresh(self) -> None:
+    def refresh(self,) -> int:
         """
         self.refresh() -> updates source info for latest changes in underlying files but doesn't update the frame range
         """
         ...
 
-    def singleFile(self) -> bool:
+    def singleFile(self,) -> Union[True, False]:
         """
         self.singleFile() -> returns True if this MediaSource is comprised of only a single file regardless of how many frames it contains (like a .mov or .r3d).
 
@@ -279,7 +279,7 @@ class MediaSource:
         """
         ...
 
-    def startTime(self) -> int:
+    def startTime(self,) -> int:
         """
         self.startTime() -> returns the start time of the media.
 
@@ -287,13 +287,13 @@ class MediaSource:
         """
         ...
 
-    def timecodeStart(self) -> int:
+    def timecodeStart(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self, includeMetadata=False) -> str:
         """
         self.toString(includeMetadata=False) -> returns a string with info for the MediaSource. str(object) is equivalent to object.toString().
 
@@ -302,7 +302,7 @@ class MediaSource:
         """
         ...
 
-    def width(self) -> int:
+    def width(self,) -> int:
         """
         self.width() -> returns the width of the media.
 
@@ -310,7 +310,7 @@ class MediaSource:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

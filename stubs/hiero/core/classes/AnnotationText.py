@@ -42,13 +42,13 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def box(self) -> object:
+    def box(self, *args: typing.Any, **kwargs: typing.Any) -> str:
         """
         self.box -> Returns a tuple containing the position and size of the text box, as floating point values.
 
@@ -58,7 +58,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def fontPath(self) -> str:
+    def fontPath(self,) -> str:
         """
         self.fontPath() -> string
 
@@ -68,13 +68,13 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def fontSize(self) -> float:
+    def fontSize(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def horizontalJustification(self) -> hiero.core.AnnotationText.HorizontalJustification:
+    def horizontalJustification(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
         self.horizontalJustification
 
@@ -84,13 +84,13 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def rotation(self) -> float:
+    def rotation(self, *args: typing.Any, **kwargs: typing.Any) -> str:
         """
         self.rotation -> float
 
@@ -100,7 +100,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def setBox(self, x: float, y: float, width: float, height: float) -> None:
+    def setBox(self, x: str, y: str, width: str, height: str) -> None:
         """
         self.setBox(x, y, width, height) -> None
 
@@ -116,7 +116,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def setFontPath(self, fontPath: str) -> None:
+    def setFontPath(self,) -> None:
         """
         self.setFontPath() -> None
 
@@ -124,13 +124,13 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def setFontSize(self, size: float) -> None:
+    def setFontSize(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setHorizontalJustification(self, justify: hiero.core.AnnotationText.HorizontalJustification) -> None:
+    def setHorizontalJustification(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
         self.setHorizontalJustification -> None
 
@@ -140,7 +140,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def setRotation(self, rotation: float) -> None:
+    def setRotation(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
         self.setRotation -> None
 
@@ -150,7 +150,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def setText(self, text: str) -> None:
+    def setText(self, ) -> None:
         """
         self.setText() -> None
 
@@ -160,7 +160,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def setVerticalJustification(self, justify: hiero.core.AnnotationText.VerticalJustification) -> None:
+    def setVerticalJustification(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
         self.setVerticalJustification -> None
 
@@ -170,7 +170,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def text(self) -> str:
+    def text(self,) -> str:
         """
         self.text() -> string
 
@@ -178,7 +178,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -186,7 +186,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def verticalJustification(self) -> hiero.core.AnnotationText.VerticalJustification:
+    def verticalJustification(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
         self.verticalJustification
 
@@ -196,7 +196,7 @@ class AnnotationText(AnnotationElement):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

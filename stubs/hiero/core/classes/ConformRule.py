@@ -24,7 +24,7 @@ class ConformRule:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -48,19 +48,19 @@ class ConformRule:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def activate(self) -> None:
+    def activate(self,) -> list:
         """
         self.activate() -> adds this conform rule to the list of conform rules. Conform operations done after this call will use the rule.
         """
         ...
 
-    def appliesToTrackItems(self) -> bool:
+    def appliesToTrackItems(self,) -> Union[True, False]:
         """
         self.appliesToTrackItems() -> should return True if this conform rule applies to track items.
 
@@ -68,7 +68,7 @@ class ConformRule:
         """
         ...
 
-    def compare(self, media: hiero.core.DataCollection, candidateMedia: hiero.core.DataCollection) -> bool:
+    def compare(self, media, candidateMedia) -> bool:
         """
         self.compare(media, candidateMedia) -> should compare media against candidateMedia, and return True if they match, according to this conform rule.
 
@@ -93,7 +93,7 @@ class ConformRule:
         """
         ...
 
-    def conformType(self) -> int:
+    def conformType(self,) -> Any:
         """
         self.conformType() -> Get the conform types for which this rule can be used.  The default is kConform.
 
@@ -101,13 +101,13 @@ class ConformRule:
         """
         ...
 
-    def deactivate(self) -> None:
+    def deactivate(self,) -> list:
         """
         self.deactivate() -> removes this conform rule from the list of conform rules. Conform operations done after this call will not use the rule.
         """
         ...
 
-    def isNull(self) -> bool:
+    def name(self,) -> bool:
         """
         self.name() -> should return True if the conform rule is invalid.
 
@@ -115,7 +115,7 @@ class ConformRule:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of the conform rule (which was passed to the object in it's initializer).
 
@@ -123,7 +123,7 @@ class ConformRule:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -131,7 +131,7 @@ class ConformRule:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

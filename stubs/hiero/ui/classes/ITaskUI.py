@@ -44,7 +44,7 @@ class ITaskUI:
         """
         ...
 
-    def displayName(self) -> str:
+    def displayName(self,) -> str:
         """
         self.displayName() -> called by Hiero to get the Display name of a task for displaying in UI.
 
@@ -52,7 +52,7 @@ class ITaskUI:
         """
         ...
 
-    def ident(self) -> str:
+    def ident(self,) -> str:
         """
         self.ident() -> called by Hiero to get a unique identifier linking this TaskUI with a Task and TaskPreset.
 
@@ -60,7 +60,7 @@ class ITaskUI:
         """
         ...
 
-    def populateUI(self, widget: PySide2.QtWidgets.QWidget, exportTemplate: hiero.core.IExportStructure) -> None:
+    def populateUI(self, ) -> Any:
         """
         self.populateUI() -> called by Hiero to allow the TaskUI to populate a QWidget with the ui widgets neccessary to reflect the current preset.
 
@@ -69,7 +69,7 @@ class ITaskUI:
         """
         ...
 
-    def preset(self) -> hiero.core.ITaskPreset:
+    def preset(self,) -> ITaskPreset:
         """
         self.preset() -> called by Hiero to get the TaskPreset which this TaskUI is currently reflecting.
 
@@ -77,7 +77,7 @@ class ITaskUI:
         """
         ...
 
-    def setPreset(self, preset: hiero.core.ITaskPreset) -> None:
+    def setPreset(self, ) -> TaskPreset:
         """
         self.setPreset() -> called by Hiero to set the TaskPreset which this TaskUI will reflect.
 
@@ -85,7 +85,7 @@ class ITaskUI:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

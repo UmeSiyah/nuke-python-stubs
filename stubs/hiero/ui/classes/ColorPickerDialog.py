@@ -42,13 +42,13 @@ class ColorPickerDialog(QDialog):
         """
         ...
 
-    def currentColor(self) -> PySide2.QtGui.QColor:
+    def currentColor(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setCurrentColor(self, color: PySide2.QtGui.QColor) -> None:
+    def setCurrentColor(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

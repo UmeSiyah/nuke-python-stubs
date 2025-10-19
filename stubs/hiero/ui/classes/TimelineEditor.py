@@ -30,19 +30,19 @@ class TimelineEditor:
         """
         ...
 
-    def beginSelectionUpdate(self) -> None:
+    def beginSelectionUpdate(self,) -> Any:
         """
         self.beginSelectionUpdate() -> Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.
         """
         ...
 
-    def endSelectionUpdate(self) -> None:
+    def endSelectionUpdate(self,) -> Any:
         """
         self.endSelectionUpdate() -> Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.
         """
         ...
 
-    def getSelection(self) -> object:
+    def getSelection(self, *args: typing.Any, **kwargs: typing.Any) -> tuple:
         """
         Deprecated; please use the selection method instead.
 
@@ -50,7 +50,7 @@ class TimelineEditor:
         """
         ...
 
-    def selectAll(self) -> None:
+    def selectAll(self, ) -> None:
         """
         self.selectAll( )
 
@@ -58,7 +58,7 @@ class TimelineEditor:
         """
         ...
 
-    def selectNone(self) -> None:
+    def selectNone(self, ) -> None:
         """
         self.selectNone( )
 
@@ -66,7 +66,7 @@ class TimelineEditor:
         """
         ...
 
-    def selection(self) -> tuple[hiero.core.TrackItem, hiero.core.Transition]:
+    def selection(self,) -> tuple:
         """
         self.selection() -> returns a tuple with the currently selected items.
 
@@ -74,7 +74,7 @@ class TimelineEditor:
         """
         ...
 
-    def sequence(self) -> hiero.core.Sequence:
+    def sequence(self,) -> Iterable:
         """
         self.sequence() -> returns the Sequence currently being edited in the timeline editor.
 
@@ -82,7 +82,7 @@ class TimelineEditor:
         """
         ...
 
-    def setSelection(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+    def setSelection(self, hiero.core.TrackItem) -> None:
         """
         self.setSelection( hiero.core.TrackItem )
         self.setSelection( [hiero.core.TrackItem] )
@@ -92,7 +92,7 @@ class TimelineEditor:
         """
         ...
 
-    def setTrackSelection(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+    def setTrackSelection(self, hiero.core.TrackBase) -> None:
         """
         self.setTrackSelection( hiero.core.TrackBase )
         self.setTrackSelection( [hiero.core.TrackBase] )
@@ -102,13 +102,13 @@ class TimelineEditor:
         """
         ...
 
-    def window(self) -> PySide2.QtWidgets.QWidget:
+    def window(self,) -> int | float:
         """
         self.window() -> Return the timeline editor window
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

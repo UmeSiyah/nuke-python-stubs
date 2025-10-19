@@ -30,7 +30,7 @@ class ApplicationSettings:
         """
         ...
 
-    def boolValue(self, *args: typing.Any, **kwargs: typing.Any) -> str:
+    def boolValue(self, key: str, defaultValue) -> str:
         """
         self.boolValue(key, defaultValue) -> returns the previously stored value as True or False, named by the key parameter, or the defaultValue parameter
         self.boolValue(key) ->  returns the previously stored value as True or False, named by the key parameter, or the default value as configured (if configured) by the Hiero code. Use this method if you're looking up a value used by Hiero internally.
@@ -42,7 +42,7 @@ class ApplicationSettings:
         """
         ...
 
-    def setBoolValue(self, key: str, value: bool) -> None:
+    def setBoolValue(self, key: str, value: bool) -> bool:
         """
         self.setBoolValue(key, value) -> saves the value as True or False with the application's settings using the key
 
@@ -71,7 +71,7 @@ class ApplicationSettings:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

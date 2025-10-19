@@ -34,43 +34,43 @@ class UndoGroup:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def __enter__(self) -> None:
+    def __enter__(self,) -> Any:
         """
         self.__enter__() -> Allows usage in a with block to automatically end the undo.
         """
         ...
 
-    def __exit__(self, arg__1: object, arg__2: object, arg__3: object) -> None:
+    def __exit__(self,) -> Any:
         """
         self.__exit__() -> Calls self.endUndo().  This allows usage in a with block to automatically end the undo.
         """
         ...
 
-    def beginUndo(self) -> None:
+    def beginUndo(self,) -> str:
         """
         self.beginUndo() -> starts a new undo action on the project with the initialised name.  See hiero.core.Project.beginUndo()
         """
         ...
 
-    def endUndo(self) -> None:
+    def endUndo(self,) -> Any:
         """
         self.endUndo() -> ends the undo action on the project
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

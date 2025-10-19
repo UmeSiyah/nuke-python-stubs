@@ -43,25 +43,25 @@ class AnnotationStroke(AnnotationElement):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def lineWidth(self) -> float:
+    def lineWidth(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def points(self) -> object:
+    def points(self, *args: typing.Any, **kwargs: typing.Any) -> tuple:
         """
         self.points -> Returns a variable tuple containing the 2d points forming the stroke. Each point is
         represented as a 2 component tuple, with the x and y components of the point as floating point values.
@@ -70,13 +70,13 @@ class AnnotationStroke(AnnotationElement):
         """
         ...
 
-    def setLineWidth(self, lineWidth: float) -> None:
+    def setLineWidth(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setPoints(self, arg__1: object) -> None:
+    def setPoints(self, *args: typing.Any, **kwargs: typing.Any) -> Any:
         """
         self.setPoints -> Sets the points that make up this stroke, replacing any points the stroke already had.
         The points must be specified as a list (not tuple) of 2d points, each point being a 2 component tuple of
@@ -84,7 +84,7 @@ class AnnotationStroke(AnnotationElement):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -92,7 +92,7 @@ class AnnotationStroke(AnnotationElement):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

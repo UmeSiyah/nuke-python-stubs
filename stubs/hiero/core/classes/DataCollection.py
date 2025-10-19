@@ -24,7 +24,7 @@ class DataCollection:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -48,7 +48,7 @@ class DataCollection:
         """
         ...
 
-    def dict(self) -> object:
+    def dict(self,) -> dict:
         """
         self.dict() -> returns a dictionary of key/value pairs. Can be used to iterate over the items in this collection.
 
@@ -56,7 +56,7 @@ class DataCollection:
         """
         ...
 
-    def hasKey(self, key: str) -> bool:
+    def hasKey(self, key) -> Union[True, False]:
         """
         self.hasKey(key) -> returns True if the collection has a value for the key.
 
@@ -65,7 +65,7 @@ class DataCollection:
         """
         ...
 
-    def keys(self) -> typing.List[str]:
+    def keys(self,) -> list:
         """
         self.keys() -> returns keys in the collection.
 
@@ -73,7 +73,7 @@ class DataCollection:
         """
         ...
 
-    def readOnly(self) -> bool:
+    def readOnly(self, key) -> Union[True, False]:
         """
         self.readOnly(key) -> returns True if the collection can be modified.
 
@@ -81,7 +81,7 @@ class DataCollection:
         """
         ...
 
-    def setValue(self, key: str, value: str) -> None:
+    def setValue(self, key) -> Any:
         """
         self.setValue(key) -> sets the value of the key stored in this collection.
 
@@ -90,7 +90,7 @@ class DataCollection:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a formatted list of the key/value pairs currently set on this object. Equivalent to str(object).
 
@@ -98,7 +98,7 @@ class DataCollection:
         """
         ...
 
-    def value(self, key: str) -> str:
+    def value(self, key) -> str:
         """
         self.value(key) -> returns the value of the key stored in this collection. Throws an exception if the key does not exist.
 
@@ -107,7 +107,7 @@ class DataCollection:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

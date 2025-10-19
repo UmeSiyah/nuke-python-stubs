@@ -44,13 +44,13 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
+    def addTag(self, tag) -> Tag:
         """
         self.addTag(tag) -> adds a new tag to the track item.
 
@@ -59,7 +59,18 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def currentVersion(self) -> hiero.core.Version:
+    def addTagToRange(self, tag) -> Tag:
+        """
+        self.addTagToRange(tag) -> adds a new tag to the specified range of the track item.
+
+        @param inTime: start time of the tag, relative to the source media start time
+        @param outTime: end time of the tag, relative to the source media start time
+        @param tag: tag object
+        @return: a hiero.core.Tag object
+        """
+        ...
+
+    def currentVersion(self,) -> Version:
         """
         self.currentVersion() -> returns a version object for the current version set on this track item.
 
@@ -67,7 +78,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def eventNumber(self) -> int:
+    def eventNumber(self,) -> int:
         """
         self.eventNumber() -> Get the event number of this track item on it's Sequence.
 
@@ -75,7 +86,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def getAvailableOcioColourTransforms(self) -> typing.List[str]:
+    def getAvailableOcioColourTransforms(self, *args: typing.Any, **kwargs: typing.Any) -> str:
         """
         self.    getAvailableOcioColourTransforms() -> returns colour transform for the media source.
 
@@ -83,7 +94,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def handleInLength(self) -> int:
+    def handleInLength(self,) -> Any:
         """
         self.handleInLength() -> returns the length of the track item's in handle.
 
@@ -91,7 +102,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def handleInTime(self) -> int:
+    def handleInTime(self,) -> int | float:
         """
         self.handleInTime() -> returns the track item's in handle time.
 
@@ -99,7 +110,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def handleOutLength(self) -> int:
+    def handleOutLength(self,) -> Any:
         """
         self.handleOutLength() -> returns the length of the track item's out handle.
 
@@ -107,7 +118,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def handleOutTime(self) -> int:
+    def handleOutTime(self,) -> int | float:
         """
         self.handleOutTime() -> returns the track item's out handle time.
 
@@ -115,7 +126,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def inTransition(self) -> hiero.core.Transition:
+    def inTransition(self,) -> Transition:
         """
         self.inTransition() -> returns the in transition for this track item.
 
@@ -123,7 +134,16 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def isMediaPresent(self) -> bool:
+    def isLinked(self, trackItem) -> Any:
+        """
+        self.isLinked(trackItem) -> Tests if this track item is linked to the given track item.
+
+        @param trackItem: track item to test if this track item is linked to
+        @return True if items are linked, False otherwise
+        """
+        ...
+
+    def isMediaPreset(self,) -> Union[True, False]:
         """
         self.isMediaPreset() -> returns True if the track item represent a media source and if the media source is currently available in Hiero (and not offline). Returns False otherwise.
 
@@ -131,7 +151,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def link(self, trackItem: hiero.core.TrackItem) -> None:
+    def link(self, trackItem) -> Any:
         """
         self.link(trackItem) -> Links track item with another track item. Both track items must point to the same source.
 
@@ -139,7 +159,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def mapSourceToTimeline(self, time: float) -> float:
+    def mapTimelineToSource(self, time: int | float) -> int | float:
         """
         self.mapTimelineToSource(time) -> Map from the track item's source time to timeline time.
 
@@ -148,7 +168,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def mapTimelineToSource(self, time: float) -> float:
+    def mapTimelineToSource(self, time: int | float) -> int | float:
         """
         self.mapTimelineToSource(time) -> Map from timeline time to the track item's source time.
 
@@ -157,7 +177,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def maxVersion(self) -> hiero.core.Version:
+    def maxVersion(self,) -> Version:
         """
         self.maxVersion() -> sets the highest available version on this TrackItem. If versionLinkedToBin() is set, changes the version on all linked objects.
 
@@ -165,7 +185,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def mediaType(self) -> hiero.core.TrackItem.MediaType:
+    def mediaType(self,) -> Any:
         """
         self.mediaType() -> returns media type for the track item.
 
@@ -173,7 +193,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def metadata(self) -> hiero.core.DataCollection:
+    def metadata(self,) -> DataCollection:
         """
         self.metadata() -> returns the metadata for the track item.
 
@@ -181,7 +201,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def minVersion(self) -> hiero.core.Version:
+    def minVersion(self,) -> Version:
         """
         self.minVersion() -> sets the lowest available version on this TrackItem. If versionLinkedToBin() is set, changes the version on all linked objects.
 
@@ -189,7 +209,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the track item's name.
 
@@ -197,7 +217,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def nextVersion(self) -> hiero.core.Version:
+    def nextVersion(self,) -> Version:
         """
         self.nextVersion() -> sets the next available version on this TrackItem. If versionLinkedToBin() is set, changes the version on all linked objects.
 
@@ -205,7 +225,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def numVersions(self) -> int:
+    def numVersions(self,) -> int:
         """
         self.numVersions() -> returns the total number of versions on this track item currently (nothing to do with the maximum or minimum version number).
 
@@ -213,7 +233,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def outTransition(self) -> hiero.core.Transition:
+    def outTransition(self,) -> Transition:
         """
         self.outTransition() -> returns the out transition for this track item.
 
@@ -221,7 +241,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def playbackSpeed(self) -> float:
+    def playbackSpeed(self,) -> Any:
         """
         self.playbackSpeed() -> returns the playback speed of this track item.
 
@@ -229,7 +249,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def prevVersion(self) -> hiero.core.Version:
+    def prevVersion(self,) -> Version:
         """
         self.prevVersion() -> sets the next available version on this TrackItem. If versionLinkedToBin() is set, changes the version on all linked objects.
 
@@ -237,7 +257,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def reconnectMedia(self, path: str) -> None:
+    def reconnectMedia(self, path: str) -> str:
         """
         self.reconnectMedia(path) -> Reconnects media for the Clip used by the TrackItem, using the specified path.
 
@@ -245,7 +265,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def reformatState(self) -> hiero.core.ReformatState:
+    def reformatState(self,) -> ReformatState:
         """
         self.reformatState() -> returns the reformat state for the track item.
 
@@ -253,7 +273,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def removeTag(self, tag: hiero.core.Tag) -> None:
+    def removeTag(self, tag: Tag) -> Any:
         """
         self.removeTag(tag) -> removes the tag from the track item.
 
@@ -261,7 +281,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def replaceClips(self, path: str) -> None:
+    def replaceClips(self, path: str) -> str:
         """
         self.replaceClips(path) -> Find a new Clip from the specified path, and replace the TrackItem's existing Clip with it.
 
@@ -269,7 +289,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setCameraColourTransform(self, arg__1: str) -> None:
+    def setCameraColourTransform(self, colourTransform: str) -> Any:
         """
         self.setCameraColourTransform(colourTransform) -> sets the camera colour transform for the source media.
 
@@ -277,7 +297,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setCurrentVersion(self, version: hiero.core.Version) -> None:
+    def setCurrentVersion(self, version: Version) -> Any:
         """
         self.setCurrentVersion(version) -> sets the current version (by object) on this track item. Note that this method doesn't check that the versioned media source exists on disk.
 
@@ -297,7 +317,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setName(self, name: str) -> None:
+    def setName(self, name: str) -> str:
         """
         self.setName(name) -> sets the name of the track item.
 
@@ -305,7 +325,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setPlaybackSpeed(self, speed: float) -> None:
+    def setPlaybackSpeed(self, newSpeed) -> Any:
         """
         self.setPlaybackSpeed(newSpeed) -> sets the playback speed of this track item.
 
@@ -313,7 +333,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setSource(self, *args: typing.Any, **kwargs: typing.Any) -> Clip:
+    def setSource(self, clip: Clip, trackIndex=0) -> Clip:
         """
         self.setSource(clip, trackIndex=0) -> sets the source Clip for this TrackItem.
         If the TrackItem is not already in a Track, the duration will be set to the Clip's duration.
@@ -324,7 +344,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setSourceIn(self, arg__1: float) -> None:
+    def setSourceIn(self, time: int) -> Any:
         """
         self.setSourceIn(time) -> sets the source in for the track item. This will shrink or grow the duration.
 
@@ -332,7 +352,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setSourceMediaColourTransform(self, arg__1: str) -> None:
+    def setSourceMediaColourTransform(self, colourTransform: str) -> Any:
         """
         self.setSourceMediaColourTransform(colourTransform) -> sets the input colour transform for the source media.
 
@@ -340,7 +360,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setSourceOut(self, arg__1: float) -> None:
+    def setSourceOut(self, time: int) -> Any:
         """
         self.setSourceOut(time) -> sets the source out for the track item. This will shrink or grow the duration.
 
@@ -350,7 +370,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setTimelineIn(self, arg__1: int) -> None:
+    def setTimelineIn(self, inTime: int) -> int | float:
         """
         self.setTimelineIn(inTime) -> sets the timeline in value. Shrinks or grows the timeline duration, as appropriate.
 
@@ -358,7 +378,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setTimelineOut(self, arg__1: int) -> None:
+    def setTimelineOut(self, outTime: int) -> int | float:
         """
         self.setTimelineOut(outTime) -> sets the timeline out value. Shrinks or grows the timeline duration, as appropriate.
 
@@ -366,7 +386,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setTimes(self, timelineIn: int, timelineOut: int, sourceIn: float, sourceOut: float) -> None:
+    def setTimes(self, timelineIn: int, timelineOut: int, sourceIn: int, sourceOut: int) -> int | float:
         """
         self.setTimes(timelineIn, timelineOut, sourceIn, sourceOut) -> sets the timeline and source times for the track item.
 
@@ -377,12 +397,20 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def setVersionLinkedToBin(self, linked: bool, updateVersion: bool = False) -> None:
+    def setVersionLinkedToBin(self, linked: TrackItem) -> bool:
         """
         self.setVersionLinkedToBin(linked) -> link the TrackItem's version to that of it's associated BinItem. If updateVersion is false, the TrackItem's version will not be updated immediately, this will happen next time a version is set on the BinItem or any linked TrackItems.
 
         @param linked: The linked state to be set on the TrackItem
         @param updatedVersion: Whether or not the TrackItems version will be updated
+        """
+        ...
+
+    def setVolume(self, ) -> TrackItem:
+        """
+        self.setVolume() -> sets the volume of an audio TrackItem.
+
+        @param volume: value to set (0.0 - 1.0)
         """
         ...
 
@@ -394,7 +422,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def sourceDuration(self) -> float:
+    def sourceDuration(self,) -> Any:
         """
         self.sourceDuration() -> returns the source duration value for the track item.
 
@@ -404,7 +432,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def sourceIn(self) -> float:
+    def sourceIn(self,) -> int:
         """
         self.sourceIn() -> returns the source in value for the track item.
 
@@ -414,7 +442,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def sourceMediaColourTransform(self) -> str:
+    def setSourceMediaColourTransform(self,) -> str:
         """
         self.setSourceMediaColourTransform() -> returns colour transform for the media source.
 
@@ -422,7 +450,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def sourceOut(self) -> float:
+    def sourceOut(self,) -> int:
         """
         self.sourceOut() -> returns the source out value for the track item.
 
@@ -432,7 +460,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def tags(self) -> object:
+    def tags(self,) -> tuple:
         """
         self.tags() -> returns a tuple of all of the tags applied to this object.
 
@@ -450,7 +478,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -458,7 +486,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def unlink(self, trackItem: hiero.core.TrackItem) -> None:
+    def unlink(self, trackItem) -> Any:
         """
         self.unlink(trackItem) -> Unlinks this track item from given track item.
 
@@ -477,7 +505,7 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def versionLinkedToBin(self) -> bool:
+    def versionLinkedToBin(self,) -> bool:
         """
         self.versionLinkedToBin() -> get if the TrackItem's version is linked to the associated BinItem
 
@@ -540,7 +568,13 @@ class TrackItem(TrackItemBase):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def volume(self,) -> Any:
+        """
+        self.volume() -> returns the volume of the track item.
+        """
+        ...
+
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

@@ -20,9 +20,9 @@ class GeoSelectionItem(pybind11_object):
         """
         ...
 
-    def getPath(self: _nuke.GeoSelectionItem) -> str:
+    def getPath(self: _nuke.GeoSelectionItem) -> object:
         """
-        getPath(self: _nuke.GeoSelectionItem) -> usg::Path
+        getPath(self: _nuke.GeoSelectionItem) -> object
         """
         ...
 
@@ -56,14 +56,14 @@ class GeoSelectionItem(pybind11_object):
         """
         ...
 
-    def getWorldPoints(self: _nuke.GeoSelectionItem, stage: usg: : Stage, time: float = nan) -> list:
+    def getWorldPoints(self: _nuke.GeoSelectionItem, arg0: object, time: float = nan) -> list:
         """
-        getWorldPoints(self: _nuke.GeoSelectionItem, stage: usg::Stage, time: float = nan) -> usg::Array<fdk::Vec3<float> >
+        getWorldPoints(self: _nuke.GeoSelectionItem, arg0: object, time: float = nan) -> List[nukemath.Vector3]
         """
         ...
 
-    def getWorldNormals(self: _nuke.GeoSelectionItem, stage: usg: : Stage, time: float = nan) -> list:
+    def getWorldNormals(self: _nuke.GeoSelectionItem, arg0: object, time: float = nan) -> list:
         """
-        getWorldNormals(self: _nuke.GeoSelectionItem, stage: usg::Stage, time: float = nan) -> usg::Array<fdk::Vec3<float> >
+        getWorldNormals(self: _nuke.GeoSelectionItem, arg0: object, time: float = nan) -> List[nukemath.Vector3]
         """
         ...

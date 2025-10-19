@@ -24,7 +24,7 @@ class WindowManager:
         """
         ...
 
-    def addWindow(self, *args: typing.Any, **kwargs: typing.Any) -> Any:
+    def addWindow(self, window, section: int, shortcut: str) -> Any:
         """
         self.addWindow(window, section, shortcut) -> adds a window to the window manager and insert a menu item for it into the Window menu. This will also make the window dockable with Hiero's other windows.
 
@@ -34,7 +34,7 @@ class WindowManager:
         """
         ...
 
-    def popupWindow(self, w: PySide2.QtWidgets.QWidget) -> None:
+    def popupWindow(self, window) -> float:
         """
         self.popupWindow(window) -> Opens the window in a floating dock panel.
 
@@ -42,7 +42,7 @@ class WindowManager:
         """
         ...
 
-    def showWindow(self, w: PySide2.QtWidgets.QWidget) -> None:
+    def showWindow(self, window) -> int | float:
         """
         self.showWindow(window) -> Opens the window in its layout position or if as a floating dock panel
 
@@ -50,7 +50,7 @@ class WindowManager:
         """
         ...
 
-    def windows(self) -> typing.List[PySide2.QtWidgets.QWidget]:
+    def windows(self,) -> list:
         """
         self.windows() -> Returns a list with the available widgets in WindowManager
 
@@ -58,7 +58,7 @@ class WindowManager:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

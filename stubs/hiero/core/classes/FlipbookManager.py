@@ -30,7 +30,7 @@ class FlipbookManager:
         """
         ...
 
-    def createClip(self, filepath: str) -> hiero.core.Clip:
+    def createClip(self, filepath) -> Clip:
         """
         self.createClip(filepath) -> creates and return a flipbook clip for the defined filepath.
 
@@ -38,7 +38,7 @@ class FlipbookManager:
         """
         ...
 
-    def createEffectItem(self, effectType: bytes, timelineIn: int, timelineOut: int) -> hiero.core.EffectTrackItem:
+    def createEffectItem(self, effectType, timelineIn, timelineOut) -> EffectTrackItem:
         """
         self.createEffectItem(effectType, timelineIn, timelineOut) -> creates and return a flipbook Soft Effect with defiend effectType,
         covering the specified timeline in and out range.
@@ -47,7 +47,7 @@ class FlipbookManager:
         """
         ...
 
-    def createSequence(self, frameRate: hiero.core.TimeBase, outputFormat: hiero.core.Format, views: typing.List[str]) -> hiero.core.Sequence:
+    def createSequence(self, framerate, outputformat) -> Iterable:
         """
         self.createSequence(framerate, outputformat) -> creates and returns a flipbook sequence with the defined framerate and ouput formar.
 
@@ -55,7 +55,7 @@ class FlipbookManager:
         """
         ...
 
-    def setWorkingSpace(self, workingSpace: str) -> None:
+    def setWorkingSpace(self, workingSpace) -> None:
         """
         self.setWorkingSpace(workingSpace) -> sets the colorspace to use as the working space.
 
@@ -63,7 +63,7 @@ class FlipbookManager:
         """
         ...
 
-    def updateOCIOConfig(self, ocioConfigPath: str) -> None:
+    def updateOCIOConfig(self, ocioConfigPath) -> None:
         """
         self.updateOCIOConfig(ocioConfigPath) -> updates the flipbook OCIO setting with the defined ocio config filename.
 
@@ -71,7 +71,7 @@ class FlipbookManager:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

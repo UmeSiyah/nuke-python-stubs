@@ -42,19 +42,19 @@ class SubTrackItem(TrackItemBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def descString(self) -> str:
+    def descString(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setTimelineIn(self, time: int) -> None:
+    def setTimelineIn(self, inTime: int) -> SubTrackItem:
         """
         self.setTimelineIn(inTime) -> sets the in point for this SubTrackItem. Note that this trims the duration of the SubTrackItem.
 
@@ -62,7 +62,7 @@ class SubTrackItem(TrackItemBase):
         """
         ...
 
-    def setTimelineOut(self, time: int) -> None:
+    def setTimelineOut(self, outTime: int) -> SubTrackItem:
         """
         self.setTimelineOut(outTime) -> sets the out point for this SubTrackItem. Note that this trims the duration of the SubTrackItem.
 
@@ -70,7 +70,7 @@ class SubTrackItem(TrackItemBase):
         """
         ...
 
-    def subTrackIndex(self) -> int:
+    def subTrackIndex(self,) -> int:
         """
         self.subTrackIndex() -> get the index of the item's parent sub-track.
 
@@ -78,7 +78,7 @@ class SubTrackItem(TrackItemBase):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -86,7 +86,7 @@ class SubTrackItem(TrackItemBase):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

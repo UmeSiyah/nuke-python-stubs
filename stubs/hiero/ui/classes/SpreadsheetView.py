@@ -30,19 +30,19 @@ class SpreadsheetView:
         """
         ...
 
-    def beginSelectionUpdate(self) -> None:
+    def beginSelectionUpdate(self,) -> Any:
         """
         self.beginSelectionUpdate() -> Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.
         """
         ...
 
-    def endSelectionUpdate(self) -> None:
+    def endSelectionUpdate(self,) -> Any:
         """
         self.endSelectionUpdate() -> Call beginSelectionUpdate before, and endSelectionUpdate after, making multiple setSelection.
         """
         ...
 
-    def selectAll(self) -> None:
+    def selectAll(self, ) -> None:
         """
         self.selectAll( )
 
@@ -50,7 +50,7 @@ class SpreadsheetView:
         """
         ...
 
-    def selectNone(self) -> None:
+    def selectNone(self, ) -> None:
         """
         self.selectNone( )
 
@@ -58,19 +58,19 @@ class SpreadsheetView:
         """
         ...
 
-    def selection(self) -> object:
+    def selection(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def sequence(self) -> object:
+    def sequence(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setSelection(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+    def setSelection(self, hiero.core.TrackItem) -> None:
         """
         self.setSelection( hiero.core.TrackItem )
         self.setSelection( [hiero.core.TrackItem] )
@@ -80,13 +80,13 @@ class SpreadsheetView:
         """
         ...
 
-    def window(self) -> PySide2.QtWidgets.QWidget:
+    def window(self,) -> Any:
         """
         self.window() -> Return the spreadsheet view window
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

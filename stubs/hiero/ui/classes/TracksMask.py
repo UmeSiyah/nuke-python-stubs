@@ -66,25 +66,25 @@ class TracksMask:
         """
         ...
 
-    def setTracks(self, tracks: typing.List[core.VideoTrack]) -> None:
+    def setTracks(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setVisibleByDefault(self, visibleByDefault: bool) -> None:
+    def setVisibleByDefault(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def tracks(self) -> typing.List[core.VideoTrack]:
+    def tracks(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def visibleByDefault(self) -> bool:
+    def visibleByDefault(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

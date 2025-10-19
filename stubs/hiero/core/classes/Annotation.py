@@ -27,7 +27,7 @@ class Annotation(SubTrackItem):
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -51,7 +51,7 @@ class Annotation(SubTrackItem):
         """
         ...
 
-    def addElement(self, element: hiero.core.AnnotationElement) -> hiero.core.AnnotationElement:
+    def addElement(self,) -> str:
         """
         self.addElement() -> Adds the specified AnnotationElement, which should be an instance of an AnnotationElement sub-class, i.e. either
         an AnnotationStroke or an AnnotationText object.
@@ -60,13 +60,13 @@ class Annotation(SubTrackItem):
         """
         ...
 
-    def deserialize(self, data: str) -> None:
+    def deserialize(self,) -> Any:
         """
         self.deserialize() -> restore the annotation from XML data
         """
         ...
 
-    def elements(self) -> object:
+    def elements(self,) -> tuple:
         """
         self.elements() -> returns a tuple with all of the elements contained in this annotation.
 
@@ -74,13 +74,13 @@ class Annotation(SubTrackItem):
         """
         ...
 
-    def serialize(self) -> str:
+    def serialize(self,) -> Any:
         """
         self.serialize() -> serialize the annotation object to XML
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -88,7 +88,7 @@ class Annotation(SubTrackItem):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

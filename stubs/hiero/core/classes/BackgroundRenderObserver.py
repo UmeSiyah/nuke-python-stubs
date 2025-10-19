@@ -30,55 +30,55 @@ class BackgroundRenderObserver:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def onFrameRenderCancelled(self, path: str, frame: int, nodeName: str) -> None:
+    def onFrameRenderCancelled(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def onFrameRenderError(self, path: str, frame: int, nodeName: str, error: str) -> None:
+    def onFrameRenderError(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def onFrameRenderInProgress(self, path: str, frame: int, nodeName: str) -> None:
+    def onFrameRenderInProgress(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def onFrameRenderQueued(self, path: str, frame: int, nodeName: str) -> None:
+    def onFrameRenderQueued(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def onFrameRendered(self, path: str, frame: int, nodeName: str) -> None:
+    def onFrameRendered(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def onRenderQueued(self, path: str, frameRanges: str, nodeName: str, views: str) -> None:
+    def onRenderQueued(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

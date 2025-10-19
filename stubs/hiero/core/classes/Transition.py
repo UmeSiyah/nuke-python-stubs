@@ -24,7 +24,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -48,13 +48,13 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def alignment(self) -> hiero.core.Transition.Alignments:
+    def alignment(self,) -> Transition:
         """
         self.alignment() -> returns the alignment mode of this transition. Either kFadeIn, kDissolve, kFadeOut or kUnknown.
 
@@ -62,7 +62,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def createAudioCrossfadeTransition(self, item1: hiero.core.TrackItem, item2: hiero.core.TrackItem, duration1: int, duration2: int) -> hiero.core.Transition:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -85,7 +85,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def createAudioFadeInTransition(self, item: hiero.core.TrackItem, duration: int) -> hiero.core.Transition:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -108,7 +108,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def createAudioFadeOutTransition(self, item: hiero.core.TrackItem, duration: int) -> hiero.core.Transition:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -131,7 +131,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def createDissolveTransition(self, item1: hiero.core.TrackItem, item2: hiero.core.TrackItem, duration1: int, duration2: int) -> hiero.core.Transition:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -154,7 +154,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def createFadeInTransition(self, item: hiero.core.TrackItem, duration: int) -> hiero.core.Transition:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -177,7 +177,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def createFadeOutTransition(self, item: hiero.core.TrackItem, duration: int) -> hiero.core.Transition:
+    def staticmethod(self, function) -> Any:
         """
         staticmethod(function) -> method
 
@@ -200,7 +200,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def dissolveNode(self) -> object:
+    def dissolveNode(self,) -> Node:
         """
         self.dissolveNode() -> Returns the Dissolve node which controls the transition curve.
 
@@ -208,13 +208,13 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def guid(self) -> object:
+    def guid(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def inTrackItem(self) -> hiero.core.TrackItem:
+    def inTrackItem(self,) -> Any:
         """
         self.inTrackItem() -> Get the in track item for this transition.
 
@@ -222,7 +222,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def outTrackItem(self) -> hiero.core.TrackItem:
+    def outTrackItem(self,) -> Any:
         """
         self.outTrackItem() -> Get the out track item for this transition.
 
@@ -230,7 +230,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def parent(self) -> object:
+    def parent(self,) -> AudioTrack:
         """
         self.parent() -> returns the AudioTrack or VideoTrack that contains this transition.
 
@@ -238,7 +238,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def project(self) -> object:
+    def project(self,) -> Project:
         """
         self.project() -> returns the Project object that this is attached to, or None if the object is not attached to a project.
 
@@ -246,7 +246,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def setAlignment(self, alignment: hiero.core.Transition.Alignments) -> None:
+    def setAlignment(self, alignment: Transition) -> Any:
         """
         self.setAlignment(alignment) -> sets the alignment mode on this transition.
 
@@ -254,7 +254,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def setTimelineIn(self, arg__1: int) -> None:
+    def setTimelineIn(self, inTime: int) -> Any:
         """
         self.setTimelineIn(inTime) -> sets the in point for this transition. Note that this trims the duration of the transition.
 
@@ -262,7 +262,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def setTimelineOut(self, arg__1: int) -> None:
+    def setTimelineOut(self, outTime: int) -> Any:
         """
         self.setTimelineOut(outTime) -> sets the out point for this transition. Note that this trims the duration of the transition.
 
@@ -270,7 +270,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -278,7 +278,7 @@ class Transition(TrackItemBase):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

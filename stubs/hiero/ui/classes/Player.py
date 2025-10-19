@@ -24,7 +24,7 @@ class Player:
         """
         ...
 
-    def LUT(self) -> str:
+    def LUT(self,) -> str:
         """
         self.LUT() -> returns the name of the LUT currently in use by the player.
 
@@ -32,7 +32,7 @@ class Player:
         """
         ...
 
-    def alphaIsTransparent(self) -> bool:
+    def alphaIsTransparent(self,) -> Union[True, False]:
         """
         self.alphaIsTransparent() -> returns whether the player treats the alpha channel as premultiplied transparency (True) or not (False).
 
@@ -40,13 +40,13 @@ class Player:
         """
         ...
 
-    def centerImage(self) -> None:
+    def centerImage(self,) -> Any:
         """
         self.centerImage() -> centers the player, resetting the pan values.
         """
         ...
 
-    def channels(self) -> hiero.ui.Player.Channels:
+    def channels(self,) -> Player:
         """
         self.channels() -> returns channel(s) that the player is currently displaying.
 
@@ -54,7 +54,7 @@ class Player:
         """
         ...
 
-    def displayGain(self) -> float:
+    def displayGain(self,) -> float:
         """
         self.displayGain() -> returns the current gain of the player. Defaults to 1.0
 
@@ -62,7 +62,7 @@ class Player:
         """
         ...
 
-    def displayGamma(self) -> float:
+    def displayGamma(self,) -> float:
         """
         self.displayGamma() -> returns the current gamma of the player. Since the viewer displays pixels in linear space, this value defaults to 1.0.
 
@@ -70,7 +70,23 @@ class Player:
         """
         ...
 
-    def guideOverlay(self) -> object:
+    def displaySaturation(self,) -> float:
+        """
+        self.displaySaturation() -> returns the current saturation of the player. Can only be called from the user interface thread. Defaults to 1.0
+
+        @return: float
+        """
+        ...
+
+    def getCurrentErrorMessage(self,) -> str:
+        """
+        self.getCurrentErrorMessage() -> Get any error that might be set on this Player
+
+        @return: string
+        """
+        ...
+
+    def guideOverlay(self,) -> Iterable:
         """
         self.guideOverlay() -> returns the guide overlays displayed in the player.
 
@@ -78,7 +94,7 @@ class Player:
         """
         ...
 
-    def ignorePixelAspectRatio(self) -> bool:
+    def ignorePixelAspectRatio(self,) -> Union[True, False]:
         """
         self.ignorePixelAspectRatio() -> returns whether the player ignores the pixel aspect ratio or not.
 
@@ -86,7 +102,7 @@ class Player:
         """
         ...
 
-    def maskOverlay(self) -> object:
+    def maskOverlay(self,) -> Any:
         """
         self.maskOverlay() -> returns the drawing used as the mask overlay in the player.
 
@@ -94,7 +110,7 @@ class Player:
         """
         ...
 
-    def maskOverlayStyle(self) -> hiero.ui.Player.MaskOverlayStyle:
+    def maskOverlayStyle(self,) -> Player:
         """
         self.maskOverlayStyle() -> returns the current drawing style of the mask overlay used by the player.
 
@@ -102,7 +118,7 @@ class Player:
         """
         ...
 
-    def pan(self, dx: float, dy: float) -> None:
+    def pan(self, dx: float, dy: float) -> Iterable:
         """
         self.pan(dx, dy) -> pans the player by (dx, dy).
 
@@ -111,7 +127,7 @@ class Player:
         """
         ...
 
-    def proxyResolution(self) -> hiero.ui.Player.ProxyResolution:
+    def proxyResolution(self,) -> Player:
         """
         self.proxyResolution() -> get the current proxy resolution setting for the player
 
@@ -119,7 +135,7 @@ class Player:
         """
         ...
 
-    def rect(self) -> PySide2.QtCore.QRect:
+    def rect(self,) -> int | float:
         """
         self.rect() -> player rectangular area in GL coordinates.
 
@@ -127,7 +143,7 @@ class Player:
         """
         ...
 
-    def sequence(self, *args: typing.Any, **kwargs: typing.Any) -> Iterable:
+    def sequence(self,) -> Iterable:
         """
         self.sequence() -> returns the object currently being played.
 
@@ -135,7 +151,7 @@ class Player:
         """
         ...
 
-    def setAlphaIsTransparent(self, alphaIsTransparent: bool) -> None:
+    def setAlphaIsTransparent(self, alphaIsTransparent: bool) -> Any:
         """
         self.setAlphaIsTransparent( alphaIsTransparent ) -> sets whether the player treats the alpha channel as premultiplied transparency.
 
@@ -143,7 +159,7 @@ class Player:
         """
         ...
 
-    def setChannels(self, channels: hiero.ui.Player.Channels) -> None:
+    def setChannels(self, channels: Player) -> Any:
         """
         self.setChannels(channels) -> sets the channels to display in the player. It's currently either one of the channels or red, green and blue.
 
@@ -151,7 +167,7 @@ class Player:
         """
         ...
 
-    def setDisplayGain(self, gain: float) -> None:
+    def setDisplayGain(self, gain: float) -> Any:
         """
         self.setDisplayGain(gain) -> sets the gain of the player.
 
@@ -159,7 +175,7 @@ class Player:
         """
         ...
 
-    def setDisplayGamma(self, gamma: float) -> None:
+    def setDisplayGamma(self, gamma: float) -> Any:
         """
         self.setDisplayGamma(gamma) -> sets the gamma of the player.
 
@@ -167,7 +183,15 @@ class Player:
         """
         ...
 
-    def setGuideOverlay(self, arg__1: object) -> object:
+    def setDisplaySaturation(self, saturation: float) -> Any:
+        """
+        self.setDisplaySaturation(saturation) -> sets the saturation of the player. Can only be called from the user interface thread.
+
+        @param saturation: float
+        """
+        ...
+
+    def setGuideOverlay(self, guideOverlays: Iterable) -> Any:
         """
         self.setGuideOverlay(guideOverlays) -> sets the guide overlays to display in the player.
 
@@ -175,7 +199,7 @@ class Player:
         """
         ...
 
-    def setIgnorePixelAspectRatio(self, ignorePixelAspectRatio: bool) -> None:
+    def setIgnorePixelAspectRatio(self, ignorePixelAspectRatio: bool) -> Any:
         """
         self.setIgnorePixelAspectRatio(ignorePixelAspectRatio) -> tells the player whether or not to display in anamorphic mode.
 
@@ -183,7 +207,7 @@ class Player:
         """
         ...
 
-    def setLUT(self, lut: str) -> None:
+    def setLUT(self, lut: str) -> Any:
         """
         self.setLUT(lut) -> sets the LUT to use in the player. If the lut doesn't exist, will raise an exception.
 
@@ -191,7 +215,7 @@ class Player:
         """
         ...
 
-    def setMaskOverlay(self, arg__1: object) -> object:
+    def setMaskOverlay(self, aspect) -> Any:
         """
         self.setMaskOverlay(aspect) -> sets the drawing to use for the mask overlay.
 
@@ -199,7 +223,7 @@ class Player:
         """
         ...
 
-    def setMaskOverlayStyle(self, maskOverlayStyle: hiero.ui.Player.MaskOverlayStyle) -> None:
+    def setMaskOverlayStyle(self, style: Player) -> Any:
         """
         self.setMaskOverlayStyle(style) -> sets the drawing style of the mask overlay.
 
@@ -207,7 +231,7 @@ class Player:
         """
         ...
 
-    def setProxyResolution(self, resolution: hiero.ui.Player.ProxyResolution) -> None:
+    def setProxyResolution(self, resolution: Player) -> Any:
         """
         self.setProxyResolution(resolution) -> set the player proxy resolution.
 
@@ -215,13 +239,13 @@ class Player:
         """
         ...
 
-    def setSequence(self, sequence: hiero.core.SequenceBase) -> None:
+    def setSequence(self, clip) -> Iterable:
         """
         self.setSequence(clip) -> deprecated; use Viewer.setSequence instead
         """
         ...
 
-    def setWarningOverlay(self, warningOverlay: hiero.ui.Player.WarningOverlay) -> None:
+    def setWarningOverlay(self, warningOverlay=None) -> Any:
         """
         self.setWarningOverlay(warningOverlay) -> sets the warning overlay.
 
@@ -229,7 +253,7 @@ class Player:
         """
         ...
 
-    def setZoomMode(self, mode: hiero.ui.Player.ZoomMode) -> None:
+    def setZoomMode(self, mode) -> Any:
         """
         self.setZoomMode(mode) -> Change the current zoom mode. Use zoomAbsolute or zoomRelative for eZoomFixed instead of this method.
 
@@ -237,7 +261,7 @@ class Player:
         """
         ...
 
-    def time(self) -> int:
+    def time(self,) -> int:
         """
         self.time() -> gets the time of the playhead.
 
@@ -245,7 +269,7 @@ class Player:
         """
         ...
 
-    def translation(self) -> PySide2.QtCore.QPointF:
+    def translation(self,) -> float:
         """
         self.translation() -> translation applied to the footage in the player.
 
@@ -253,7 +277,7 @@ class Player:
         """
         ...
 
-    def warningOverlay(self) -> hiero.ui.Player.WarningOverlay:
+    def warningOverlay(self,) -> None:
         """
         self.warningOverlay() -> returns player's warningOverlay.
 
@@ -261,7 +285,7 @@ class Player:
         """
         ...
 
-    def zoom(self) -> float:
+    def zoomMode(self,) -> float:
         """
         self.zoomMode() -> current zoom
 
@@ -269,7 +293,7 @@ class Player:
         """
         ...
 
-    def zoomAbsolute(self, centreX: float, centreY: float, zoom: float) -> None:
+    def zoomAbsolute(self, centerX, centerY, zoom: int | float) -> Any:
         """
         self.zoomAbsolute(centerX, centerY, zoom) -> sets the zoom to a specific centre and zoom level, ignoring previous zoom state.
 
@@ -279,7 +303,7 @@ class Player:
         """
         ...
 
-    def zoomMode(self) -> hiero.ui.Player.ZoomMode:
+    def zoomMode(self,) -> Any:
         """
         self.zoomMode() -> current zoom mode.
 
@@ -287,7 +311,7 @@ class Player:
         """
         ...
 
-    def zoomRelative(self, centreX: float, centreY: float, zoomFactor: float) -> None:
+    def zoomRelative(self, centerX, centerY, zoomFactor) -> int | float:
         """
         self.zoomRelative(centerX, centerY, zoomFactor) -> scales the image relatively and repositions the image.
 
@@ -297,43 +321,43 @@ class Player:
         """
         ...
 
-    def zoomToActualSize(self) -> None:
+    def zoomToActualSize(self,) -> int | float:
         """
         self.zoomToActualSize() -> scales and centers the image to the full size of the image.
         """
         ...
 
-    def zoomToFill(self) -> None:
+    def zoomToFill(self,) -> int | float:
         """
         self.zoomToFill() -> scales the image so that it fills the player window.
         """
         ...
 
-    def zoomToFit(self) -> None:
+    def zoomToFit(self,) -> int | float:
         """
         self.zoomToFit() -> scales the image so that it fits in the player window, maintaining the pixel aspect ratio.
         """
         ...
 
-    def zoomToFitHeight(self) -> None:
+    def zoomToFitHeight(self,) -> int | float:
         """
         self.zoomToFitHeight() -> scales the image so that the height of the image fits in the player window, maintaining the pixel aspect ratio.
         """
         ...
 
-    def zoomToFitWidth(self) -> None:
+    def zoomToFitWidth(self,) -> int | float:
         """
         self.zoomToFitWidth() -> scales the image so that the width of the image fits in the player window, maintaining the pixel aspect ratio.
         """
         ...
 
-    def zoomToHalfSize(self) -> None:
+    def zoomToActualSize(self,) -> int | float:
         """
         self.zoomToActualSize() -> scales and centers the image to half the size of the image.
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

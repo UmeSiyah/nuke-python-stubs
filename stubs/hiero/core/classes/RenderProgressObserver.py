@@ -42,26 +42,26 @@ class RenderProgressObserver:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def updateProgress(self, progressList: typing.Sequence[typing.Any]) -> None:
+    def updateProgress(self, ) -> int:
         """
         RenderProgressObserver.updateProgress() -> called on progress of frame renders
         @param progressList: list of lists containing [filePath, frame, progress]
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

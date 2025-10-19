@@ -30,13 +30,13 @@ class ItemWrapper:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def bin(self) -> hiero.core.Bin:
+    def bin(self,) -> Bin:
         """
         self.bin() -> converts this ItemWrapper to a hiero.core.Bin object. If the item wrapper isn't wrapping a Bin object, it will return a non-functioning (isNull returns True) TrackItem object (meaning that it has all of the methods of a Bin object, but the methods don't do anything)
 
@@ -44,7 +44,7 @@ class ItemWrapper:
         """
         ...
 
-    def binItem(self) -> hiero.core.BinItem:
+    def binItem(self,) -> BinItem:
         """
         self.binItem() -> converts this ItemWrapper to a hiero.core.BinItem object. If the item wrapper isn't wrapping a BinItem object, it will return a non-functioning (isNull returns True) TrackItem object (meaning that it has all of the methods of a BinItem object, but the methods don't do anything)
 
@@ -52,7 +52,7 @@ class ItemWrapper:
         """
         ...
 
-    def clip(self) -> hiero.core.Clip:
+    def clip(self,) -> Clip:
         """
         self.clip() -> converts this ItemWrapper to a hiero.core.Clip object. If the item wrapper isn't wrapping a Clip object, it will return a non-functioning (isNull returns True) Clip object (meaning that it has all of the methods of a Clip object, but the methods don't do anything)
 
@@ -60,13 +60,13 @@ class ItemWrapper:
         """
         ...
 
-    def ignore(self) -> bool:
+    def ignore(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if this is a invalid or uninitialized item, or False otherwise
 
@@ -74,7 +74,7 @@ class ItemWrapper:
         """
         ...
 
-    def item(self) -> object:
+    def item(self,) -> Iterable:
         """
         self.item() -> Return the item contained within this wrapper.
 
@@ -82,7 +82,7 @@ class ItemWrapper:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> Returns item name.
 
@@ -90,7 +90,7 @@ class ItemWrapper:
         """
         ...
 
-    def root(self) -> hiero.core.Bin:
+    def root(self,) -> Bin:
         """
         self.root() -> the root is the highest level in the bin selected for export, Root may be null.
 
@@ -98,7 +98,7 @@ class ItemWrapper:
         """
         ...
 
-    def sequence(self) -> hiero.core.Sequence:
+    def sequence(self,) -> Iterable:
         """
         self.sequence() -> converts this ItemWrapper to a hiero.core.Sequence object. If the item wrapper isn't wrapping a Sequence object, it will return a non-functioning (isNull returns True) Sequence object (meaning that it has all of the methods of a Sequence object, but the methods don't do anything)
 
@@ -106,13 +106,13 @@ class ItemWrapper:
         """
         ...
 
-    def setTrackItemsForViews(self, items: typing.List[core.TrackItemBase]) -> None:
+    def setTrackItemsForViews(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def trackItem(self) -> hiero.core.TrackItemBase:
+    def trackItem(self,) -> TrackItem:
         """
         self.trackItem() -> converts this ItemWrapper to a hiero.core.TrackItemBase object. If the item wrapper isn't wrapping a TrackItem object, it will return a non-functioning (isNull returns True) TrackItem object (meaning that it has all of the methods of a TrackItem object, but the methods don't do anything)
 
@@ -120,13 +120,13 @@ class ItemWrapper:
         """
         ...
 
-    def trackItemsForViews(self) -> typing.List[core.TrackItemBase]:
+    def trackItemsForViews(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

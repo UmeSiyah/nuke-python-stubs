@@ -13,9 +13,9 @@ from PySide2.QtWidgets import *
 from . import *
 
 
-class FormatChooser(QComboBox):
+class ViewerROITool(ViewerTool):
     """
-    QComboBox(self, parent: typing.Optional[PySide2.QtWidgets.QWidget] = None) -> None
+    Python interface for the viewer tools
     """
 
     def __new__(self, *args, **kwargs) -> None:
@@ -36,29 +36,23 @@ class FormatChooser(QComboBox):
         """
         ...
 
+    def ROI(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+        """
+
+        """
+        ...
+
+    def setROI(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+        """
+
+        """
+        ...
+
+    activeChanged = Signal()
+    staticMetaObject: Any = None
+
     def __init__(self,  *args, **kwargs) -> None:
         """
         Initialize self.  See help(type(self)) for accurate signature.
         """
         ...
-
-    def currentFormat(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        """
-
-        """
-        ...
-
-    def setCurrentFormat(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        """
-
-        """
-        ...
-
-    def setProject(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        """
-
-        """
-        ...
-
-    formatChanged = Signal()
-    staticMetaObject: Any = None

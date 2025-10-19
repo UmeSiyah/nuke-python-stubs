@@ -24,7 +24,7 @@ class Snapshot:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -36,13 +36,13 @@ class Snapshot:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def comment(self) -> str:
+    def comment(self,) -> str:
         """
         self.comment() -> returns the comment set on this snapshot object.
 
@@ -50,7 +50,7 @@ class Snapshot:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the object is invalid, False otherwise.
 
@@ -58,7 +58,7 @@ class Snapshot:
         """
         ...
 
-    def item(self) -> None:
+    def item(self,) -> Iterable:
         """
         self.item() -> returns the clip or sequence stored with this snapshot.
 
@@ -66,7 +66,7 @@ class Snapshot:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of this snapshot.
 
@@ -74,7 +74,7 @@ class Snapshot:
         """
         ...
 
-    def setComment(self, comment: str) -> None:
+    def setComment(self, comment: str) -> str:
         """
         self.setComment(comment) -> sets the comment on this snapshot object.
 
@@ -83,7 +83,7 @@ class Snapshot:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -91,7 +91,7 @@ class Snapshot:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

@@ -84,13 +84,19 @@ class SequenceBase:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
+    def activePlayhead(self,) -> int:
+        """
+        activePlayhead() -> Returns the index of the active playhead.
+        """
+        ...
+
+    def addTag(self, tag) -> Tag:
         """
         self.addTag(tag) -> adds a hiero.core.Tag object to the Clip or Sequence.
 
@@ -99,7 +105,7 @@ class SequenceBase:
         """
         ...
 
-    def addTagToRange(self, tag: hiero.core.Tag, inTime: int, outTime: int) -> hiero.core.Tag:
+    def addTagToRange(self, tag, inTime: int | float, outTime: int | float) -> Tag:
         """
         self.addTagToRange(tag, inTime, outTime) -> adds a hiero.core.Tag object to the specified range of the Clip or Sequence.
 
@@ -110,7 +116,7 @@ class SequenceBase:
         """
         ...
 
-    def autoDiskCacheMode(self) -> hiero.core.SequenceAutoDiskCacheMode:
+    def autoDiskCacheMode(self,) -> Iterable:
         """
         self.autoDiskCacheMode() -> returns the auto disk cache mode of the Sequence or Clip.
 
@@ -118,7 +124,7 @@ class SequenceBase:
         """
         ...
 
-    def binItem(self) -> hiero.core.BinItem:
+    def binItem(self,) -> BinItem:
         """
         self.binItem() -> returns the parent BinItem this Sequence or Clip belongs to, if any.
 
@@ -126,7 +132,7 @@ class SequenceBase:
         """
         ...
 
-    def clearInTime(self) -> None:
+    def clearInTime(self, t) -> None:
         """
         self.clearInTime(t) -> clear the 'in' point for the clip to Time t.
 
@@ -134,7 +140,7 @@ class SequenceBase:
         """
         ...
 
-    def clearOutTime(self) -> None:
+    def clearInTime(self, t) -> None:
         """
         self.clearInTime(t) -> clear the 'out' point for the clip to Time t.
 
@@ -142,7 +148,23 @@ class SequenceBase:
         """
         ...
 
-    def clearRange(self, start: int, end: int, ripple: bool) -> None:
+    def clearPlayheadInTime(self, index: int) -> None:
+        """
+        clearPlayheadInTime(index) -> Clear the in marker time position for the given playhead index.
+        @param index: The index of the playhead to be changed.
+        @return: None
+        """
+        ...
+
+    def clearPlayheadOutTime(self, index: int) -> None:
+        """
+        clearPlayheadOutTime(index) -> Clear the out marker time position for the given playhead index.
+        @param index: The index of the playhead to be changed.
+        @return: None
+        """
+        ...
+
+    def clearRange(self, start: int | float, end: int | float, ripple: bool) -> Iterable:
         """
         self.clearRange(start, end, ripple) -> Clears a time range out of the sequence; effectively a razor on any clips straddling the start and end, and a delete of everything else.
 
@@ -152,19 +174,19 @@ class SequenceBase:
         """
         ...
 
-    def disableSoftTrims(self) -> None:
+    def disableSoftTrims(self,) -> Any:
         """
         self.disableSoftTrims() -> disables soft trims on the object.
         """
         ...
 
-    def dropFrame(self) -> bool:
+    def dropFrame(self,) -> int:
         """
         self.dropFrame() -> get whether sequence timecode is displayed in drop frame format
         """
         ...
 
-    def duration(self) -> int:
+    def duration(self,) -> int:
         """
         self.duration() -> returns the duration of the Clip or Sequence.
 
@@ -172,7 +194,7 @@ class SequenceBase:
         """
         ...
 
-    def editFinished(self, *args: typing.Any, **kwargs: typing.Any) -> list:
+    def editFinished(self, trackItems=None) -> list:
         """
         self.editFinished(trackItems) -> this should be called after finishing editing the sequence to ensure that its internal state is updated properly and to send a signal to all objects listening to changes in this object (e.g. UI views).This function optionally takes a list of track items that is used to selectively rebuild only those sections of the timeline.This allows a faster update when the edited track items are known.
 
@@ -180,7 +202,7 @@ class SequenceBase:
         """
         ...
 
-    def enableSoftTrims(self, inTime: int, outTime: int) -> None:
+    def enableSoftTrims(self, inTime: int | float, outTime: int | float) -> Any:
         """
         self.enableSoftTrims(inTime, outTime) -> enables soft trims on the object.
 
@@ -189,7 +211,7 @@ class SequenceBase:
         """
         ...
 
-    def format(self) -> hiero.core.Format:
+    def format(self,) -> Format:
         """
         self.format() -> returns the output Format object for this Sequence or Clip.
 
@@ -197,7 +219,7 @@ class SequenceBase:
         """
         ...
 
-    def framerate(self) -> hiero.core.TimeBase:
+    def framerate(self,) -> int | float:
         """
         self.framerate() -> returns the framerate of the Sequence or Clip.
 
@@ -205,13 +227,13 @@ class SequenceBase:
         """
         ...
 
-    def getAnnotationsTrack(self) -> hiero.core.VideoTrack:
+    def getAnnotationsTrack(self,) -> Iterable:
         """
         self.getAnnotationsTrack() -> Returns the annotations track for the Clip or Sequence. If one does not already exist, it will be created.
         """
         ...
 
-    def inOutEnabled(self) -> bool:
+    def inOutEnabled(self,) -> bool:
         """
         self.inOutEnabled() -> Checks if the 'in' and 'out' points are enabled in the Sequence or Clip.
 
@@ -219,7 +241,7 @@ class SequenceBase:
         """
         ...
 
-    def inTime(self) -> int:
+    def inTime(self,) -> int:
         """
         self.inTime() -> returns the 'in' point set on the clip.
 
@@ -227,7 +249,7 @@ class SequenceBase:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns False if this is a valid Sequence or Clip object, True otherwise.
 
@@ -235,7 +257,7 @@ class SequenceBase:
         """
         ...
 
-    def metadata(self) -> hiero.core.DataCollection:
+    def metadata(self,) -> DataCollection:
         """
         self.metadata() -> returns a collection of metadata for the object.
 
@@ -243,7 +265,7 @@ class SequenceBase:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the name of the object.
 
@@ -251,7 +273,7 @@ class SequenceBase:
         """
         ...
 
-    def outTime(self) -> int:
+    def outTime(self,) -> int:
         """
         self.outTime() -> returns the 'out' point set on the clip.
 
@@ -259,7 +281,44 @@ class SequenceBase:
         """
         ...
 
-    def posterFrame(self) -> int:
+    def playheadCount(self, index) -> Iterable:
+        """
+        playheadCount(index) -> Returns the number of playheads in the sequence.
+        """
+        ...
+
+    def playheadInTime(self, index: int) -> Iterable:
+        """
+        playheadInTime(index) -> Returns the in marker time position of the playhead in the sequence.
+        @param index: The index of the playhead.
+        """
+        ...
+
+    def playheadOutTime(self, index: int) -> Iterable:
+        """
+        playheadOutTime(index) -> Returns the out marker time position of the playhead in the sequence.
+        @param index: The index of the playhead.
+        """
+        ...
+
+    def playheadState(self, index: int) -> int:
+        """
+        playheadState(index) -> The state of the given playhead index.
+        The available states are:  ePlayheadActive : is the active playhead
+          ePlayheadEnabled : is not the active playhead but is editable
+          ePlayheadDisabled : has been removed.
+          ePlayheadInvalid : index does not reference a valid playhead.@param index: The index of the playhead to be queried.
+        """
+        ...
+
+    def playheadTime(self, index: int) -> Iterable:
+        """
+        playheadTime(index) -> Returns the time position of the playhead in the sequence.
+        @param index: The index of the playhead.
+        """
+        ...
+
+    def posterFrame(self,) -> int:
         """
         self.posterFrame() -> get the frame in the sequence used for thumbnails
         """
@@ -273,7 +332,7 @@ class SequenceBase:
         """
         ...
 
-    def rawView(self) -> str:
+    def rawView(self,) -> str:
         """
         self.rawView() -> returns a string representing the raw view of this sequence or clip.
 
@@ -281,7 +340,7 @@ class SequenceBase:
         """
         ...
 
-    def razorAt(self, *args: typing.Any, **kwargs: typing.Any) -> int | float:
+    def razorAt(self, time: list) -> int | float:
         """
         self.razorAt(time) -> Creates razor cuts on all of the unlocked tracks for the parameter time(s).
 
@@ -289,7 +348,7 @@ class SequenceBase:
         """
         ...
 
-    def refreshInOutEnabled(self) -> None:
+    def refreshInOutEnabled(self,) -> None:
         """
         self.refreshInOutEnabled() -> Automatically set the sequence in/out enabled based on the current in/out values.
 
@@ -297,7 +356,7 @@ class SequenceBase:
         """
         ...
 
-    def removeTag(self, tag: hiero.core.Tag) -> None:
+    def removeTag(self, tag: Tag) -> Any:
         """
         self.removeTag(tag) -> removes the tag from the track.
 
@@ -305,7 +364,15 @@ class SequenceBase:
         """
         ...
 
-    def setAutoDiskCacheMode(self, autoDiskCacheMode: hiero.core.SequenceAutoDiskCacheMode) -> None:
+    def setActivePlayhead(self, index: int) -> int:
+        """
+        setActivePlayhead(index) -> The given playhead index is made active.
+        There can only be one active playhead, the previous playhead will be made inactive.
+        @param index: The index of the playhead to be made active.
+        """
+        ...
+
+    def setAutoDiskCacheMode(self, autoDiskCacheMode: Iterable) -> Iterable:
         """
         self.setAutoDiskCacheMode(autoDiskCacheMode) -> set the auto disk cache mode of the Sequence or Clip.
 
@@ -313,13 +380,13 @@ class SequenceBase:
         """
         ...
 
-    def setDropFrame(self, drop: bool) -> None:
+    def setDropFrame(self, drop) -> int:
         """
         self.setDropFrame(drop) -> set whether sequence timecode is displayed in drop frame format
         """
         ...
 
-    def setFormat(self, format: hiero.core.Format) -> None:
+    def setFormat(self, format: Iterable) -> Iterable:
         """
         self.setFormat(format) -> set the format of the Sequence or Clip.
 
@@ -329,7 +396,7 @@ class SequenceBase:
         """
         ...
 
-    def setFramerate(self, timeBase: hiero.core.TimeBase) -> None:
+    def setFramerate(self, framerate) -> Iterable:
         """
         self.setFramerate(framerate) -> set the framerate of the Sequence or Clip.
 
@@ -337,7 +404,7 @@ class SequenceBase:
         """
         ...
 
-    def setInOutEnabled(self, enable: bool) -> None:
+    def setInOutEnabled(self, enable) -> None:
         """
         self.setInOutEnabled(enable) -> Enable/Disable the 'in' and 'out' points.
 
@@ -345,7 +412,7 @@ class SequenceBase:
         """
         ...
 
-    def setInTime(self, t: int) -> None:
+    def setInTime(self, t) -> None:
         """
         self.setInTime(t) -> set the 'in' point for the clip to Time t.
         This will also enable the In/Out lock.
@@ -354,7 +421,7 @@ class SequenceBase:
         """
         ...
 
-    def setName(self, name: str) -> None:
+    def setName(self, ) -> str:
         """
         self.setName() -> set the name of the object.
 
@@ -362,7 +429,7 @@ class SequenceBase:
         """
         ...
 
-    def setOutTime(self, t: int) -> None:
+    def setOutTime(self, t) -> None:
         """
         self.setOutTime(t) -> set the 'out' point for the clip to Time t.
         This will also enable the In/Out lock.
@@ -371,13 +438,46 @@ class SequenceBase:
         """
         ...
 
-    def setPosterFrame(self, frame: int) -> None:
+    def setPlayheadEnabled(self, index: int, enabled: bool) -> Any:
+        """
+        setPlayheadEnabled(index, enabled) -> Put the given playhead into the enabled state. The playheadis not active but is visible and editable in the UI. Otherwise the playhead will be disabled, which means thatit will not be visible in the UI.
+        The current active playhead cannot be changed by this function.
+        @param index: The index of the playhead to be changed.
+        @param enabled: True if the playhead is enabled.
+        """
+        ...
+
+    def setPlayheadInTime(self, index: int, time: int | float) -> int:
+        """
+        setPlayheadInTime(index, time) -> Set the in marker time position for the given playhead index.
+        @param index: The index of the playhead to be changed.
+        @param time: The new in time position to be set.
+        """
+        ...
+
+    def setPlayheadOutTime(self, index: int, time: int | float) -> int:
+        """
+        setPlayheadOutTime(index, time) -> Set the out marker time position for the given playhead index.
+        @param index: The index of the playhead to be changed.
+        @param time: The new in time position to be set.
+        """
+        ...
+
+    def setPlayheadTime(self, index: int, time: int | float) -> int:
+        """
+        setPlayheadTime(index, time) -> Set the time position for the given playhead index.
+        @param index: The index of the playhead to be changed.
+        @param time: The new time position to be set.
+        """
+        ...
+
+    def setPosterFrame(self, frame) -> int:
         """
         self.setPosterFrame(frame) -> set the frame in the sequence used for thumbnails
         """
         ...
 
-    def setSoftTrimsInTime(self, value: int) -> None:
+    def setSoftTrimsInTime(self, inTime: int) -> int | float:
         """
         self.setSoftTrimsInTime(inTime) -> sets the in time for the soft trims. Note: this method does not enable soft trims if they are disabled.
 
@@ -385,7 +485,7 @@ class SequenceBase:
         """
         ...
 
-    def setSoftTrimsOutTime(self, value: int) -> None:
+    def setSoftTrimsOutTime(self, outTime: int) -> int | float:
         """
         self.setSoftTrimsOutTime(outTime) -> sets the out time for the soft trims. Note: this method does not enable soft trims if they are disabled.
 
@@ -393,7 +493,7 @@ class SequenceBase:
         """
         ...
 
-    def setTimecodeStart(self, *args: typing.Any, **kwargs: typing.Any) -> int:
+    def setTimecodeStart(self, time: int) -> int:
         """
         self.setTimecodeStart(time) -> sets the value of the start timecode by frame. To convert times to frame values, use TimeCode.HMSFToFrames or TimeCode.stringToTime.
         self.setTimecodeStart(timecodeValue, hasDropFrames) -> sets the value of the start timecode by formatted string, using the framerate of the Sequence or Clip as the time base. If just passing in a framerate, pass it in as an integer.
@@ -404,7 +504,7 @@ class SequenceBase:
         """
         ...
 
-    def softTrimsEnabled(self) -> bool:
+    def softTrimsEnabled(self,) -> Union[True, False]:
         """
         self.softTrimsEnabled() -> returns True if soft trims are enabled, False otherwise.
 
@@ -412,7 +512,7 @@ class SequenceBase:
         """
         ...
 
-    def softTrimsInTime(self) -> int:
+    def softTrimsInTime(self,) -> int:
         """
         self.softTrimsInTime() -> returns the in time set for the soft trims.
 
@@ -420,7 +520,7 @@ class SequenceBase:
         """
         ...
 
-    def softTrimsOutTime(self) -> int:
+    def softTrimsOutTime(self,) -> int:
         """
         self.softTrimsOutTime() -> returns the out time set for the soft trims.
 
@@ -436,7 +536,7 @@ class SequenceBase:
         """
         ...
 
-    def thumbnail(self, index: int = 0, layer: str = '') -> PySide2.QtGui.QImage:
+    def thumbnail(self, index: int = 0, layer: str = None) -> PySide2.QtGui.QImage:
         """
         self.thumbnail(frame, layer) -> returns a thumbnail of the frame specified as a QImage object.
 
@@ -446,7 +546,7 @@ class SequenceBase:
         """
         ...
 
-    def timecodeStart(self) -> int:
+    def timecodeStart(self,) -> int:
         """
         self.timecodeStart() -> returns the frame value of the start timecode. To convert this to a time code string, use TimeCode.timeToString.
 
@@ -454,7 +554,7 @@ class SequenceBase:
         """
         ...
 
-    def timelineOffset(self) -> int:
+    def timelineOffset(self,) -> int:
         """
         self.timelineOffset() -> returns the timeline offset value.
 
@@ -462,7 +562,7 @@ class SequenceBase:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -470,7 +570,7 @@ class SequenceBase:
         """
         ...
 
-    def writeAudioToFile(self, *args: typing.Any, **kwargs: typing.Any) -> str:
+    def writeAudioToFile(self, ) -> str:
         """
         self.writeAudioToFile() -> Bounce down audio tracks and write to wav file at specified location. File will be created or overwritten.
 
@@ -484,8 +584,14 @@ class SequenceBase:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
+
+    PlayheadState: Any = None
+    ePlayheadActive: Any = None
+    ePlayheadEnabled: Any = None
+    ePlayheadDisabled: Any = None
+    ePlayheadInvalid: Any = None

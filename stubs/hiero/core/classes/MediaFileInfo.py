@@ -30,7 +30,7 @@ class MediaFileInfo:
         """
         ...
 
-    def endFrame(self) -> int:
+    def endFrame(self,) -> int:
         """
         self.endFrame() -> returns the last frame of the media source contained by this object. Note that for video formats (mov, r3d), this will always be the media's (duration - 1).
 
@@ -38,7 +38,7 @@ class MediaFileInfo:
         """
         ...
 
-    def filename(self) -> str:
+    def filename(self,) -> str:
         """
         self.filename() -> returns a path to a media source on disk. May represent multiple files, as with image sequences. The form will be one of the following, depending on the file extension of the media:
         * /somepath/file.mov
@@ -50,7 +50,7 @@ class MediaFileInfo:
         """
         ...
 
-    def startFrame(self) -> int:
+    def startFrame(self,) -> int:
         """
         self.startFrame() -> returns the first frame of the media source contained by this object. Note that for video formats (mov, r3d), this will always be 0.
 
@@ -58,7 +58,7 @@ class MediaFileInfo:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

@@ -47,25 +47,25 @@ class EffectTrackItem(SubTrackItem):
         """
         ...
 
-    def clone(self) -> object:
+    def clone(self,) -> Any:
         """
         self.clone() -> returns a deep copy of this object but, unlike copy(), this clones the underlying Nuke node so that the knobs are shared.
         """
         ...
 
-    def copy(self) -> object:
+    def copy(self,) -> Any:
         """
         self.copy() -> returns a deep copy of this object.
         """
         ...
 
-    def declone(self) -> None:
+    def declone(self,) -> Any:
         """
         self.declone() -> Declones the effect item. Has no effect if the item is not a clone.
         """
         ...
 
-    def executeNode(self, frames: typing.List[int]) -> None:
+    def executeNode(self, frames: int) -> Any:
         """
         self.executeNode(frames) -> execute the effect item's node
 
@@ -73,13 +73,13 @@ class EffectTrackItem(SubTrackItem):
         """
         ...
 
-    def isValid(self) -> bool:
+    def isValid(self,) -> bool:
         """
         self.isValid() -> Returns true if the effect item is in a valid state and position and false otherwise.
         """
         ...
 
-    def node(self) -> object:
+    def node(self,) -> Node:
         """
         self.node() -> Node
 
@@ -89,7 +89,7 @@ class EffectTrackItem(SubTrackItem):
         """
         ...
 
-    def nodeHasError(self) -> bool:
+    def nodeHasError(self,) -> bool:
         """
         self.nodeHasError() -> Returns True if the node is in error.
 
@@ -97,7 +97,7 @@ class EffectTrackItem(SubTrackItem):
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -105,7 +105,7 @@ class EffectTrackItem(SubTrackItem):
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

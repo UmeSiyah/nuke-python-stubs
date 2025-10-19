@@ -25,7 +25,7 @@ class Tag:
         """
         ...
 
-    def __repr__(self) -> object:
+    def __repr__(self, ) -> None:
         """
         Return repr(self).
         """
@@ -73,19 +73,19 @@ class Tag:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def copy(self) -> hiero.core.Tag:
+    def copy(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def guid(self) -> str:
+    def guid(self,) -> str:
         """
         self.guid() -> Return the Tag guid.
 
@@ -93,7 +93,7 @@ class Tag:
         """
         ...
 
-    def icon(self) -> str:
+    def icon(self,) -> str:
         """
         self.icon() -> returns the tags icon path.
         If the file doesn't exist, it will search for it in the plugin paths and the project folder and return the located file.
@@ -102,7 +102,7 @@ class Tag:
         """
         ...
 
-    def inTime(self) -> int:
+    def inTime(self,) -> int:
         """
         self.inTime() -> returns the in time of the tag.
 
@@ -110,7 +110,7 @@ class Tag:
         """
         ...
 
-    def isNull(self) -> bool:
+    def isNull(self,) -> Union[True, False]:
         """
         self.isNull() -> returns True if the tag is invalid, False otherwise.
 
@@ -118,7 +118,7 @@ class Tag:
         """
         ...
 
-    def metadata(self) -> hiero.core.DataCollection:
+    def metadata(self,) -> DataCollection:
         """
         self.metadata() -> returns the clip's metadata.
 
@@ -126,7 +126,7 @@ class Tag:
         """
         ...
 
-    def name(self) -> str:
+    def name(self,) -> str:
         """
         self.name() -> returns the label of the tag.
 
@@ -134,7 +134,7 @@ class Tag:
         """
         ...
 
-    def note(self) -> str:
+    def note(self,) -> str:
         """
         self.note() -> returns the note on the tag.
 
@@ -142,7 +142,7 @@ class Tag:
         """
         ...
 
-    def outTime(self) -> int:
+    def outTime(self,) -> int:
         """
         self.outTime() -> returns the out time of the tag.
 
@@ -150,13 +150,13 @@ class Tag:
         """
         ...
 
-    def parentBin(self) -> object:
+    def parentBin(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def project(self) -> object:
+    def project(self,) -> Project:
         """
         self.project() -> returns the Project object that this is attached to, or None if the object is not attached to a project.
 
@@ -164,13 +164,13 @@ class Tag:
         """
         ...
 
-    def serialize(self) -> str:
+    def serialize(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def setIcon(self, iconPath: str) -> None:
+    def setIcon(self, ) -> Any:
         """
         self.setIcon() -> sets the icon on the tag.
 
@@ -178,7 +178,7 @@ class Tag:
         """
         ...
 
-    def setInTime(self, time: int) -> None:
+    def setInTime(self, time: int | float) -> int | float:
         """
         self.setInTime(time) -> set the in time of the tag.
 
@@ -186,7 +186,7 @@ class Tag:
         """
         ...
 
-    def setName(self, name: str) -> None:
+    def setName(self, ) -> str:
         """
         self.setName() -> sets the name label of the tag.
 
@@ -194,7 +194,7 @@ class Tag:
         """
         ...
 
-    def setNote(self, note: str) -> None:
+    def setNote(self, ) -> Any:
         """
         self.setNote() -> sets the note on the tag.
 
@@ -202,7 +202,7 @@ class Tag:
         """
         ...
 
-    def setOutTime(self, time: int) -> None:
+    def setOutTime(self, time: int | float) -> int | float:
         """
         self.setOutTime(time) -> set the out time of the tag.
 
@@ -210,7 +210,7 @@ class Tag:
         """
         ...
 
-    def setVisible(self, visible: bool) -> None:
+    def setVisible(self, ) -> Any:
         """
         self.setVisible() -> sets the visibility of the tag.
 
@@ -218,13 +218,13 @@ class Tag:
         """
         ...
 
-    def syncName(self, name: str) -> None:
+    def syncName(self, name) -> str:
         """
         self.syncName(name) -> set the name of the tag without sending additional notifications.
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -232,7 +232,7 @@ class Tag:
         """
         ...
 
-    def visible(self) -> bool:
+    def visible(self,) -> bool:
         """
         self.visible() -> gets the visibility state of the tag.
 
@@ -240,7 +240,7 @@ class Tag:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

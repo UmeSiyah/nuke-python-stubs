@@ -30,13 +30,13 @@ class ReformatState:
         """
         ...
 
-    def __bool__(self, ) -> bool:
+    def __bool__(self) -> bool:
         """
         True if self else False
         """
         ...
 
-    def boxForceShape(self) -> bool:
+    def boxForceShape(self,) -> bool:
         """
         self.boxForceShape() -> returns the box 'force shape' flag.
 
@@ -44,7 +44,7 @@ class ReformatState:
         """
         ...
 
-    def boxPAR(self) -> float:
+    def boxPAR(self,) -> Any:
         """
         self.boxPAR() -> returns the box pixel aspect ratio.
 
@@ -52,7 +52,7 @@ class ReformatState:
         """
         ...
 
-    def boxSize(self) -> PySide2.QtCore.QSize:
+    def boxSize(self,) -> Any:
         """
         self.boxSize() -> returns the box size.
 
@@ -60,13 +60,21 @@ class ReformatState:
         """
         ...
 
-    def isNull(self) -> bool:
+    def copyFrom(self,) -> ReformatState:
+        """
+        self.copyFrom() -> Copy the properties from another ReformatState.
+
+        @param: ReformatState
+        """
+        ...
+
+    def isNull(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """
         ...
 
-    def originalResizeFlip(self) -> bool:
+    def originalResizeFlip(self,) -> bool:
         """
         self.originalResizeFlip() -> returns the original resize flip flag, which may be a deprecated value if it was loaded from an old project.
 
@@ -74,7 +82,7 @@ class ReformatState:
         """
         ...
 
-    def originalResizeFlop(self) -> bool:
+    def originalResizeFlop(self,) -> bool:
         """
         self.originalResizeFlop() -> returns the original resize flop flag, which may be a deprecated value if it was loaded from an old project.
 
@@ -82,7 +90,7 @@ class ReformatState:
         """
         ...
 
-    def originalResizeTurn(self) -> bool:
+    def originalResizeTurn(self,) -> bool:
         """
         self.originalResizeTurn() -> returns the original resize turn flag, which may be a deprecated value if it was loaded from an old project.
 
@@ -90,7 +98,7 @@ class ReformatState:
         """
         ...
 
-    def originalType(self) -> str:
+    def originalType(self,) -> str:
         """
         self.originalType() -> returns the original reformat type of the state, which may be a deprecated value if it was loaded from an old project.
 
@@ -98,7 +106,7 @@ class ReformatState:
         """
         ...
 
-    def resizeCenter(self) -> bool:
+    def resizeCenter(self,) -> bool:
         """
         self.resizeCenter() -> returns the resize center flag.
 
@@ -106,7 +114,7 @@ class ReformatState:
         """
         ...
 
-    def resizeFlip(self) -> bool:
+    def resizeFlip(self,) -> bool:
         """
         self.resizeFlip() -> returns the resize flip flag. Note: the flip option has been removed, this method should not be called.
 
@@ -114,7 +122,7 @@ class ReformatState:
         """
         ...
 
-    def resizeFlop(self) -> bool:
+    def resizeFlop(self,) -> bool:
         """
         self.resizeFlop() -> returns the resize flop flag. Note: the flop option has been removed, this method should not be called.
 
@@ -122,7 +130,7 @@ class ReformatState:
         """
         ...
 
-    def resizeTurn(self) -> bool:
+    def resizeTurn(self,) -> bool:
         """
         self.resizeTurn() -> returns the resize turn flag. Note: the turn option has been removed, this method should not be called.
 
@@ -130,7 +138,7 @@ class ReformatState:
         """
         ...
 
-    def resizeType(self) -> str:
+    def resizeType(self,) -> str:
         """
         self.resizeType() -> returns the resize type.
 
@@ -138,7 +146,7 @@ class ReformatState:
         """
         ...
 
-    def scale(self) -> float:
+    def scale(self,) -> int | float:
         """
         self.scale() -> returns the scaling factor. Note: the scale option has been removed, this method should not be called.
 
@@ -146,7 +154,7 @@ class ReformatState:
         """
         ...
 
-    def setBoxForceShape(self, force: bool) -> None:
+    def setBoxForceShape(self, ) -> Any:
         """
         self.setBoxForceShape() -> sets the box 'force shape' flag if the reformat type is set to 'to box'.
 
@@ -154,7 +162,7 @@ class ReformatState:
         """
         ...
 
-    def setBoxPAR(self, PAR: float) -> None:
+    def setBoxPAR(self, ) -> Any:
         """
         self.setBoxPAR() -> sets the box pixel aspect ratio if the reformat type is set to 'to box'.
 
@@ -162,7 +170,7 @@ class ReformatState:
         """
         ...
 
-    def setBoxSize(self, size: PySide2.QtCore.QSize) -> None:
+    def setBoxSize(self, ) -> Any:
         """
         self.setBoxSize() -> sets the box size if the reformat type is set to 'to box'.
 
@@ -170,7 +178,7 @@ class ReformatState:
         """
         ...
 
-    def setResizeCenter(self, center: bool) -> None:
+    def setResizeCenter(self, ) -> Any:
         """
         self.setResizeCenter() -> sets the resize center flag on the track item.
 
@@ -178,25 +186,25 @@ class ReformatState:
         """
         ...
 
-    def setResizeFlip(self, flip: bool) -> None:
+    def setResizeFlip(self,) -> Any:
         """
         self.setResizeFlip() -> the flip option has been removed, this method exists only for compatibility reasons
         """
         ...
 
-    def setResizeFlop(self, flop: bool) -> None:
+    def setResizeFlop(self,) -> Any:
         """
         self.setResizeFlop() -> the flop option has been removed, this method exists only for compatibility reasons
         """
         ...
 
-    def setResizeTurn(self, turn: bool) -> None:
+    def setResizeTurn(self,) -> Any:
         """
         self.setResizeTurn() -> the turn option has been removed, this method exists only for compatibility reasons
         """
         ...
 
-    def setResizeType(self, newResizeType: str) -> None:
+    def setResizeType(self, ) -> Any:
         """
         self.setResizeType() -> sets the resize type of the state.
 
@@ -204,13 +212,13 @@ class ReformatState:
         """
         ...
 
-    def setScale(self, value: float) -> None:
+    def setScale(self,) -> int | float:
         """
         self.setScale() -> the scale option has been removed, this method exists only for compatibility reasons
         """
         ...
 
-    def setType(self, newType: str) -> None:
+    def setType(self, ) -> Any:
         """
         self.setType() -> sets the reformat type of the state.
 
@@ -218,7 +226,7 @@ class ReformatState:
         """
         ...
 
-    def toString(self) -> str:
+    def toString(self,) -> str:
         """
         self.toString() -> returns a description of the object. Equivalent to str(object).
 
@@ -226,7 +234,7 @@ class ReformatState:
         """
         ...
 
-    def type(self) -> str:
+    def type(self,) -> str:
         """
         self.type() -> returns the reformat type of the state.
 
@@ -234,7 +242,7 @@ class ReformatState:
         """
         ...
 
-    def __copy__(self,) -> None:
+    def __copy__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """
 
         """

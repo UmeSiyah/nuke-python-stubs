@@ -66,7 +66,7 @@ class Sequence(SequenceBase):
         """
         ...
 
-    def addTrack(self, track: Union[None, None]) -> Iterable:
+    def addTrack(self, track: Union[VideoTrack, AudioTrack]) -> Iterable:
         """
         self.addTrack(track) -> adds a video or audio track to the Sequence.
 

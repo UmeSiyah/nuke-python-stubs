@@ -14,7 +14,7 @@ class Text_Knob(Knob):
     A knob which holds a string value.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Text_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

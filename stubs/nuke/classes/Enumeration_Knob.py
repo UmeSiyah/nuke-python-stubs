@@ -23,7 +23,7 @@ class Enumeration_Knob(Unsigned_Knob):
     k = nuke.Enumeration_Knob('MyEnumKnobName', 'MyEnumKnobLabel', ['label1', 'label2'])
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Enumeration_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

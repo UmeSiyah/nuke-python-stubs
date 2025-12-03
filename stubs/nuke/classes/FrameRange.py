@@ -14,7 +14,7 @@ class FrameRange(object):
     A frame range, with an upper and lower bound and an increment.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "FrameRange":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

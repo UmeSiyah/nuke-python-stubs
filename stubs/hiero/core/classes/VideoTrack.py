@@ -18,7 +18,7 @@ class VideoTrack(TrackBase):
     Object for manipulating video tracks.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "VideoTrack":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
@@ -77,7 +77,15 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def addTrackItem(self, clip: hiero.core.Clip, position: Optional[int] = None) -> hiero.core.TrackItem:
+    def addTag(self, tag: hiero.core.Tag) -> hiero.core.Tag:
+        """
+        self.addTag(tag) -> adds a tag to the video track item.
+
+        @param tag: the hiero.core.Tag to add to the video track.
+        """
+        ...
+
+    def addTrackItem(self, clip: hiero.core.Clip | hiero.core.TrackItem, position: Optional[int] = None) -> hiero.core.TrackItem:
         """
         self.addTrackItem(clip, position) -> if the first parameter is a Clip object, the second parameter must be specified and this method creates a new track item and adds it to this video track at the given position.
         If the first parameter is a TrackItem, then this method just adds the track item specified.
@@ -150,7 +158,7 @@ class VideoTrack(TrackBase):
         """
         ...
 
-    def parent(self,) -> Iterable:
+    def parent(self) -> hiero.core.Sequence:
         """
         self.parent() -> returns the sequence that contains this track.
 

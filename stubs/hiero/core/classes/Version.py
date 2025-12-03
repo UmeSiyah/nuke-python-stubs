@@ -18,7 +18,7 @@ class Version:
     Object representing a version of a clip or sequence. Can be created with a Clip or Sequence object.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Version":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
@@ -104,7 +104,7 @@ class Version:
         """
         ...
 
-    def item(self,) -> Iterable:
+    def item(self,) -> Union[hiero.core.Clip, hiero.core.Sequence]:
         """
         self.item() -> returns the clip or sequence stored with this version.
 

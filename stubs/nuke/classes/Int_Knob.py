@@ -14,7 +14,7 @@ class Int_Knob(Array_Knob):
     A knob which holds one or more integer values.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Int_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

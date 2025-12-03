@@ -18,7 +18,7 @@ class BinItem:
     Generic object wrapper with shared functionality for sequences and clips.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "BinItem":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
@@ -217,7 +217,7 @@ class BinItem:
         """
         ...
 
-    def items(self,) -> tuple:
+    def items(self,) -> tuple[Version, ...]:
         """
         self.items() -> returns a tuple containing all of the different versions of this object.
 

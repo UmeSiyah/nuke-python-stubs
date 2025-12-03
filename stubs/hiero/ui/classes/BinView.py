@@ -38,7 +38,7 @@ class BinView:
         """
         ...
 
-    def selection(self,) -> tuple:
+    def selection(self) -> tuple[hiero.core.BinItem, ...]:
         """
         self.selection() -> returns a tuple with the currently selected items.
 

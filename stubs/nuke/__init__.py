@@ -2103,9 +2103,9 @@ def resumePathProcessing() -> None:
     ...
 
 
-def root() -> Node:
+def root() -> Root:
     """
-    root() -> node
+    root() -> Root
 
     Get the DAG's root node. Always succeeds.
 

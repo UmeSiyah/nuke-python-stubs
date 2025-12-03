@@ -14,7 +14,7 @@ class String_Knob(Knob):
     A knob which holds a string value. Appears as a text entry field in a Node panel.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "String_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

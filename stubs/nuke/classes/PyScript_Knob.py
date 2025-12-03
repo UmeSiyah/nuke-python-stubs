@@ -15,7 +15,7 @@ class PyScript_Knob(Script_Knob):
     A button that executes a Python script.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "PyScript_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

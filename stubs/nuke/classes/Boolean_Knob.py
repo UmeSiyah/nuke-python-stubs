@@ -14,7 +14,7 @@ class Boolean_Knob(Array_Knob):
     A knob which holds a boolean value. This appears in a Node panel as a check box.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Boolean_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

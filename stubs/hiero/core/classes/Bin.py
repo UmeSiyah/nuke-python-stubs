@@ -18,7 +18,7 @@ class Bin:
     Container object for hiero.core.BinItem objects (wrapping hiero.core.Clip and hiero.core.Sequence objects) and other hiero.core.Bin objects.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Self":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
@@ -114,7 +114,7 @@ class Bin:
         """
         ...
 
-    def addItem(self, object: Bin) -> Any:
+    def addItem(self, object: Bin | BinItem) -> Any:
         """
         self.addItem(object) -> adds the item to the bin object.
 

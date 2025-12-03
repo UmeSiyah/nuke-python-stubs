@@ -124,7 +124,7 @@ class SequenceBase:
         """
         ...
 
-    def binItem(self,) -> BinItem:
+    def binItem(self,) -> Optional[BinItem]:
         """
         self.binItem() -> returns the parent BinItem this Sequence or Clip belongs to, if any.
 

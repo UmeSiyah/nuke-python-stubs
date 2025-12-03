@@ -14,7 +14,7 @@ class File_Knob(EvalString_Knob):
     A knob which holds a filename. When it appears in a Node panel it provides a text field to show the filename and a button which opens the file chooser dialog.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "File_Knob":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

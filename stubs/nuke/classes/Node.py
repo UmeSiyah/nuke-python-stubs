@@ -151,7 +151,7 @@ class Node(object):
         """
         ...
 
-    def input(self, i: int | float) -> int:
+    def input(self, i: int | float) -> Node:
         """
         self.input(i) -> The i'th input.
         @param i: Input number.
@@ -183,7 +183,7 @@ class Node(object):
         """
         ...
 
-    def knob(self, p: Union[str, int], follow_link=None):
+    def knob(self, p: Union[str, int], follow_link=None) -> Optional[Knob]:
         """
         self.knob(p[, follow_link]) -> The knob named p or the pth knob.
         @param p: A string or an integer.
@@ -337,7 +337,7 @@ class Node(object):
         """
         ...
 
-    def xpos(self,) -> int | float:
+    def xpos(self,) -> int:
         """
         self.xpos() -> X position of node in node graph.
         @return: X position of node in node graph.
@@ -372,7 +372,7 @@ class Node(object):
         """
         ...
 
-    def ypos(self,) -> int | float:
+    def ypos(self,) -> int:
         """
         self.ypos() -> Y position of node in node graph.
         @return: Y position of node in node graph.
@@ -617,7 +617,7 @@ class Node(object):
         """
         ...
 
-    def frameRange(self,) -> int | float:
+    def frameRange(self,) -> FrameRange:
         """
         self.frameRange() -> FrameRange.
         Frame range for this node.
@@ -858,7 +858,7 @@ class Node(object):
         """
         ...
 
-    def parent(self,) -> Any:
+    def parent(self,) -> Optional[Node]:
         """
         self.parent() -> Return the parent group node for this node.
         """

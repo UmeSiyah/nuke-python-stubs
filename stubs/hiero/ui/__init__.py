@@ -229,7 +229,7 @@ def browseForApplication(*args: typing.Any, **kwargs: typing.Any) -> str:
     ...
 
 
-def currentContextMenuView() -> int | float:
+def currentContextMenuView() -> hiero.ui.Viewer | hiero.ui.TimelineEditor | hiero.ui.BinView:
     """
     hiero.ui.currentContextMenuView() -> returns the current view for the context menu. Only valid during a kShowContextMenu event callback.
 

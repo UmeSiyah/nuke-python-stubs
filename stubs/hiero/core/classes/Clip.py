@@ -24,7 +24,7 @@ class Clip(SequenceBase):
     mediaSource may be a MediaSource object or a string containing the media path.  If first and last are given, the Clip only plays frames within this range.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Clip":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

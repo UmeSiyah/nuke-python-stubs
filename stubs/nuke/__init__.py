@@ -214,7 +214,7 @@ def alert(prompt: str) -> None:
     ...
 
 
-def allNodes(filter: Optional[str] = None, group: Optional[str] = None) -> list[Node]:
+def allNodes(filter: Optional[str] = None, group: Optional[str] = None, recurseGroups: bool = False) -> list[Node]:
     """
     allNodes(filter, group) -> List.
 

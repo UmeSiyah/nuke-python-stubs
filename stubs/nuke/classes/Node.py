@@ -86,6 +86,12 @@ class Node(object):
         """
         ...
 
+    def __enter__(self) -> None:
+        ...
+
+    def __exit__(self, exception_type, exception_value, exception_traceback, ) -> None:
+        ...
+
     def Class(self,) -> str:
         """
         self.Class() -> Class of node.

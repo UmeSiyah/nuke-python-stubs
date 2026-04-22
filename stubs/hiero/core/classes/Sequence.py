@@ -18,7 +18,7 @@ class Sequence(SequenceBase):
     Object for Sequences.
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Sequence":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """

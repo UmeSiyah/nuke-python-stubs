@@ -20,7 +20,7 @@ class Project:
     project = hiero.core.projects()[-1]
     """
 
-    def __new__(self, *args, **kwargs) -> None:
+    def __new__(self, *args, **kwargs) -> "Project":
         """
         Create and return a new object.  See help(type) for accurate signature.
         """
